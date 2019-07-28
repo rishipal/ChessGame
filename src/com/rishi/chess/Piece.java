@@ -11,7 +11,7 @@ public class Piece {
     protected PieceColor pieceColor;
 
     public Piece() {}
-    public String pieceIconPath = "~/IdeaProjects/ChessGame/src/com/rishi/art/";
+    public String pieceIconPath = "art/";
 
 
 

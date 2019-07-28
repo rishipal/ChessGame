@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -164,8 +165,10 @@ public class Table {
             this.removeAll();
             if(board.getPiece(this.tileId) != null) {
                 try{
-                    String path = board.getPiece(this.tileId).pieceIconPath;
-                    final BufferedImage image = ImageIO.read(new File(path));
+                    String relativePath = board.getPiece(this.tileId).pieceIconPath;
+                    URL url = getClass().getResource(relativePath);
+                    File file = new File(url.getPath());
+                    final BufferedImage image = ImageIO.read(file);
                     add(new JLabel(new ImageIcon(image)));
                 } catch(final IOException e) {
                     e.printStackTrace();

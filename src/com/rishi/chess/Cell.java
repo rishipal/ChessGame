@@ -1,5 +1,4 @@
 package com.rishi.chess;
-import java.awt.*;
 
 class Cell {
     private int row, col;
