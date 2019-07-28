@@ -1,44 +1,42 @@
 package com.rishi.chess;
 
-import java.util.Random;
+import java.awt.*;
 
-class Cell {
-    public boolean occupied = false;
-    public Piece piece = null;
-    public Cell() {}
-    public Cell(Piece p) {
-        occupied = true;
-        piece = p;
-    }
-}
 
 public class ChessBoard {
-    private final int SIZE_BOARD = 9;
+    public final int SIZE_BOARD = 9;
     private final Cell[][] board;
 
     public ChessBoard() {
-        board = new Cell[SIZE_BOARD][SIZE_BOARD];
-        createAndPopulateRandomBoard();
+        this.board = new Cell[SIZE_BOARD][SIZE_BOARD];
+        createInitialBoard();
     }
 
-    void createAndPopulateRandomBoard() {
-        for(int i = 0; i < SIZE_BOARD; i++) {
-            for(int j = 0; j < SIZE_BOARD; j++) {
-                board[i][j] = new Cell();
+    public Piece getPiece(int tileId) {
+        int row = tileId/SIZE_BOARD;
+        int col = tileId % SIZE_BOARD;
+        return board[row][col].piece;
+    }
+
+    private void createInitialBoard() {
+        createAllCells();
+        fillPawns();
+    }
+
+    private void createAllCells() {
+        for(int i = 0; i < this.SIZE_BOARD; i++) {
+            for(int j = 0; j < this.SIZE_BOARD; j++) {
+                this.board[i][j] = new Cell(i, j);
             }
         }
-        Random random = new Random(23);
-        for(int i = 0; i < 36; i++) {
-            int randomRow = random.nextInt(9);
-            int randomColumn = random.nextInt(9);
-
-            //TODO: Randomize the type of piece that this cell should hold
-            Piece piece = new Piece();
-            Cell cell = new Cell(piece);
-            board[randomRow][randomColumn] = cell;
-        }
     }
 
+    private void fillPawns() {
+            for(int j = 0; j < this.SIZE_BOARD; j++) {
+                this.board[1][j].setPiece(new Pawn(1,j, Piece.PieceColor.WHITE));
+                this.board[7][j].setPiece(new Pawn(7,j, Piece.PieceColor.BLACK));
+            }
+    }
 
     public void printBoard() {
         for(int i = 0; i < SIZE_BOARD; i++) {

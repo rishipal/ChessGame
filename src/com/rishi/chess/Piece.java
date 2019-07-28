@@ -4,16 +4,20 @@ public class Piece {
     protected int x;
     protected int y;
 
-    public Piece() {}
-
-    public Piece (int x, int y) {
-        this.x = x;
-        this.y = y;
+    protected enum PieceColor {
+        WHITE,
+        BLACK
     }
+    protected PieceColor pieceColor;
 
-    public boolean isMoveLegal(int end_x, int end_y) {
+    public Piece() {}
+    public String pieceIconPath = "~/IdeaProjects/ChessGame/src/com/rishi/art/";
+
+
+
+   /* public boolean isMoveLegal(int end_x, int end_y) {
         System.out.println("This should not be called");
         return true;
-    }
+    }*/
 }
 
