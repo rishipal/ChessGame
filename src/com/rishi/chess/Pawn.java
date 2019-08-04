@@ -1,7 +1,12 @@
 package com.rishi.chess;
 
+import java.util.ArrayList;
+
 class Pawn extends Piece {
-    Pawn(int x, int y, PieceColor pieceColor) {
+
+
+    Pawn(int x, int y, PieceColor pieceColor, ChessBoard cb) {
+        this.board = cb;
         this.x = x;
         this.y = y;
         this.pieceColor = pieceColor;
@@ -10,34 +15,34 @@ class Pawn extends Piece {
     }
 
 
-    boolean isMoveSpatiallyLegal(int dest_x, int dest_y, ChessBoard board) {
-        if (!board.isPieceLocationWithinBounds(dest_x, dest_y)) {
+    boolean isMoveSpatiallyLegal(Cordinate destination) {
+        if (!destination.isWithinBounds(board.SIZE_BOARD)) {
             return false;
         }
 
         //no move
-        if (dest_x == this.x) {
+        if (destination.row == this.x) {
             return false;
         }
 
-        // digonal movement restricted to neighboaring cols
-        if(Math.abs(dest_y - this.y) > 1) {
+        // diagonal movement restricted to neighboring cols
+        if(Math.abs(destination.col - this.y) > 1) {
             return false;
         }
         return true;
     }
 
-    boolean isMoveDirectionallyLegal(int dest_x, int dest_y, ChessBoard board) {
+    boolean isMoveDirectionallyLegal(Cordinate destination) {
         //moves in only the facing direction
-        if((this.pieceDirection == PieceDirection.UP && dest_x <= this.x) ||
-                this.pieceDirection == PieceDirection.DOWN && dest_x >= this.x) {
+        if((this.pieceDirection == PieceDirection.UP && destination.row <= this.x) ||
+                this.pieceDirection == PieceDirection.DOWN && destination.row >= this.x) {
             return false;
         }
         return true;
 
     }
 
-    boolean isLegalConsideringVerticalObstructions(int dest_x, int dest_y, ChessBoard board) {
+    boolean isLegalConsideringVerticalObstructions(Cordinate destination) {
         boolean twoStepJumpAllowed = false;
         if((this.x == 1 && this.pieceDirection == PieceDirection.DOWN) ||
                 (this.x == 7 && this.pieceDirection == PieceDirection.UP)) {
@@ -46,8 +51,8 @@ class Pawn extends Piece {
 
         if(twoStepJumpAllowed){
             //vertical path to destination does not have an occupied cell
-            int smallerRow = dest_x > this.x? this.x : dest_x;
-            if(board.getChessBoard()[smallerRow+1][dest_y].occupied) {
+            int smallerRow = destination.row > this.x? this.x : destination.col;
+            if(board.getChessBoard()[smallerRow+1][destination.col].occupied) {
                 return false;
             }
         }
@@ -55,17 +60,17 @@ class Pawn extends Piece {
 
     }
 
-    boolean isKillingEnemyDiagonally(int dest_x, int dest_y, ChessBoard board) {
-        if(dest_y == this.y) {
+    boolean isKillingEnemyDiagonally(Cordinate destination) {
+        if(destination.col == this.y) {
             return false;
         }
 
         //For diagonal movement, the destination cell must be occupied
-        if(!board.getChessBoard()[dest_x][dest_y].occupied) {
+        if(!board.getChessBoard()[destination.row][destination.col].occupied) {
             return false;
         }
         PieceColor expectedColorOfOpponent = this.pieceColor == PieceColor.BLACK? PieceColor.WHITE: PieceColor.BLACK;
-        PieceColor destinationCellPieceColor = board.getChessBoard()[dest_x][dest_y].piece.pieceColor;
+        PieceColor destinationCellPieceColor = board.getChessBoard()[destination.row][destination.col].piece.pieceColor;
 
         if(destinationCellPieceColor != expectedColorOfOpponent) {
             return false;
@@ -74,14 +79,55 @@ class Pawn extends Piece {
 
     }
 
-    boolean isMoveLegal(int dest_x, int dest_y, ChessBoard board) {
-        if(isMoveSpatiallyLegal(dest_x, dest_y, board) &&
-                isMoveDirectionallyLegal(dest_x, dest_y, board) &&
-                isLegalConsideringVerticalObstructions(dest_x, dest_y, board) &&
-                isKillingEnemyDiagonally(dest_x, dest_y, board)) {
+    @Override
+    public boolean isMoveLegal(Cordinate destination) {
+        if(isMoveSpatiallyLegal(destination) &&
+                isMoveDirectionallyLegal(destination) &&
+                isLegalConsideringVerticalObstructions(destination) &&
+                isKillingEnemyDiagonally(destination)) {
             return true;
         }
         return false;
-
     }
+
+    private boolean isDestionationPossible(Cell cell) {
+        return true;
+        //ATTN: todo
+    }
+
+    @Override
+    public ArrayList<Move> generateLegalMovesForPiece() {
+        ArrayList<Cell> legalDestinations = new ArrayList<>();
+        ArrayList<Move> legalMoves = new ArrayList<>();
+        System.out.println("Should come here");
+        if(pieceDirection == PieceDirection.UP) {
+            if(this.x == 0) {
+                return null;
+            }
+            Cell firstCellAboveThis = board.getChessBoard()[this.x - 1][this.y];
+            if(isDestionationPossible(firstCellAboveThis)) {
+                legalDestinations.add(firstCellAboveThis);
+            }
+            if(this.x == 7) {
+                Cell secondCellAboveThis = board.getChessBoard()[this.x - 2][this.y];
+                if(isDestionationPossible(secondCellAboveThis)) {
+                    legalDestinations.add(secondCellAboveThis);
+                }
+            }
+        } else {
+            //ATTN: Handle DOWN direction later
+            //if(this.y )
+        }
+
+
+        // ATTN: handle diagonal moves later
+        for (Cell c : legalDestinations) {
+            Move m = new Move(this, c);
+            m.generatePathsForThisMove();
+            legalMoves.add(m);
+
+        }
+        return legalMoves;
+    }
+
 }

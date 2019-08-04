@@ -1,5 +1,6 @@
 package com.rishi.gui;
 import javax.imageio.ImageIO;
+import javax.print.attribute.standard.Destination;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,9 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.rishi.chess.Cell;
 import com.rishi.chess.ChessBoard;
+import com.rishi.chess.Move;
 
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 
@@ -21,8 +26,11 @@ public class Table {
     private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
     private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
 
+
+
     private ChessBoard chessBoard;
     private BoardPanel boardPanel;
+    private Set<Integer> tileToHighlight;
 
     private Color lightTileColor = Color.decode("#FFFACD");
     private Color darkTileColor = Color.decode("#593E1A");
@@ -30,6 +38,8 @@ public class Table {
     public Table() {
         chessBoard = new ChessBoard();
         boardPanel = new BoardPanel();
+        tileToHighlight = new HashSet<>();
+
 
         gameFrame = new JFrame();
         JMenuBar jMenuBar = new JMenuBar();
@@ -59,7 +69,7 @@ public class Table {
     }
 
     public void show() {
-        this.getBoardPanel().drawBoard(this.getChessBoard());
+        this.getBoardPanel().drawBoard();
     }
 
     public static Table get() {
@@ -104,6 +114,7 @@ public class Table {
 
         final List<TilePanel> boardTiles;
 
+
         BoardPanel() {
             super(new GridLayout(chessBoard.SIZE_BOARD, chessBoard.SIZE_BOARD));
             this.boardTiles = new ArrayList<>();
@@ -118,15 +129,23 @@ public class Table {
             validate();
         }
 
-        void drawBoard(final ChessBoard board) {
+        void drawBoard() {
             removeAll();
             for (final TilePanel boardTile : boardTiles) {
-                boardTile.drawTile(board);
+                boardTile.drawTile(chessBoard);
                 add(boardTile);
             }
             validate();
             repaint();
         }
+
+        void highlightTiles() {
+            for(Integer tileID : tileToHighlight) {
+                boardTiles.get(tileID).drawTile(chessBoard);
+            }
+        }
+
+
     }
 
 
@@ -141,6 +160,8 @@ public class Table {
             addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(final MouseEvent event) {
+                    accumulateLegalPathTilesToHighlight();
+                    boardPanel.highlightTiles();
                 }
 
                 @Override
@@ -160,6 +181,27 @@ public class Table {
                 }
             });
             validate();
+        }
+
+        void accumulateLegalPathTilesToHighlight() {
+            ArrayList<Move> legalMoves = chessBoard.getPiece(tileId).generateLegalMovesForPiece();
+            if(legalMoves == null) {
+                return;
+            }
+            if(tileToHighlight == null) {
+                tileToHighlight = new HashSet<>();
+            }
+            tileToHighlight.clear();
+
+
+            for(Move m : legalMoves) {
+                ArrayList<Cell> path = m.path;
+                for(Cell c : path) {
+                    int tileNum = c.getTileIDFromCell();
+                    tileToHighlight.add(tileNum);
+
+                }
+            }
         }
 
         void drawTile(final ChessBoard board) {
@@ -191,6 +233,12 @@ public class Table {
 
         private void assignTileColor() {
             setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
+            System.out.println("Setting any color");
+
+            if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
+                System.out.println("Setting black color");
+                setBackground(Color.CYAN);
+            }
         }
     }
 

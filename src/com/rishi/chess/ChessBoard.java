@@ -30,7 +30,7 @@ public class ChessBoard {
     private void setAllCells() {
         for(int i = 0; i < this.SIZE_BOARD; i++) {
             for(int j = 0; j < this.SIZE_BOARD; j++) {
-                this.board[i][j] = new Cell(i,j);
+                this.board[i][j] = new Cell(i,j, this);
             }
         }
     }
@@ -51,8 +51,8 @@ public class ChessBoard {
 
     private void fillPawns() {
             for(int j = 0; j < this.SIZE_BOARD; j++) {
-                this.board[1][j].setPiece(new Pawn(1,j, Piece.PieceColor.WHITE));
-                this.board[7][j].setPiece(new Pawn(7,j, Piece.PieceColor.BLACK));
+                this.board[1][j].setPiece(new Pawn(1,j, Piece.PieceColor.WHITE, this));
+                this.board[7][j].setPiece(new Pawn(7,j, Piece.PieceColor.BLACK, this));
             }
     }
 
@@ -65,10 +65,5 @@ public class ChessBoard {
     }
 
 
-    public boolean isPieceLocationWithinBounds(int dest_x, int dest_y) {
-        if (dest_x < SIZE_BOARD && dest_y < SIZE_BOARD) {
-            return true;
-        }
-        return false;
-    }
+
 }
