@@ -1,11 +1,13 @@
 package com.rishi.chess;
 
-import java.awt.*;
-
 
 public class ChessBoard {
     public final int SIZE_BOARD = 9;
     private final Cell[][] board;
+
+    public Cell[][] getChessBoard() {
+        return board;
+    }
 
     public ChessBoard() {
         this.board = new Cell[SIZE_BOARD][SIZE_BOARD];
@@ -19,16 +21,32 @@ public class ChessBoard {
     }
 
     private void createInitialBoard() {
-        createAllCells();
+        setAllCells();
         fillPawns();
+        fillRook();
+        fillKnights();
     }
 
-    private void createAllCells() {
+    private void setAllCells() {
         for(int i = 0; i < this.SIZE_BOARD; i++) {
             for(int j = 0; j < this.SIZE_BOARD; j++) {
-                this.board[i][j] = new Cell(i, j);
+                this.board[i][j] = new Cell(i,j);
             }
         }
+    }
+
+    private void fillKnights() {
+        this.board[0][1].setPiece(new Knight(0, 1 , Piece.PieceColor.WHITE));
+        this.board[0][7].setPiece(new Knight(0, 7 , Piece.PieceColor.WHITE));
+        this.board[8][1].setPiece(new Knight(8, 1 , Piece.PieceColor.BLACK));
+        this.board[8][7].setPiece(new Knight(8, 7 , Piece.PieceColor.BLACK));
+    }
+
+    private void fillRook() {
+        this.board[0][0].setPiece(new Rook(0, 0 , Piece.PieceColor.WHITE));
+        this.board[0][8].setPiece(new Rook(0, 8 , Piece.PieceColor.WHITE));
+        this.board[8][8].setPiece(new Rook(8, 8 , Piece.PieceColor.BLACK));
+        this.board[8][0].setPiece(new Rook(8, 0 , Piece.PieceColor.BLACK));
     }
 
     private void fillPawns() {
@@ -44,5 +62,13 @@ public class ChessBoard {
                 System.out.print(board[i][j].occupied);
             }
         }
+    }
+
+
+    public boolean isPieceLocationWithinBounds(int dest_x, int dest_y) {
+        if (dest_x < SIZE_BOARD && dest_y < SIZE_BOARD) {
+            return true;
+        }
+        return false;
     }
 }

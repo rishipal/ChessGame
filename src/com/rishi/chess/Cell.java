@@ -1,7 +1,7 @@
 package com.rishi.chess;
 
 class Cell {
-    private int row, col;
+    public int row, col;
     public boolean occupied = false;
     public Piece piece = null;
     public Cell( int x, int y) {

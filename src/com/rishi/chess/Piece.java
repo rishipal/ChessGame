@@ -10,14 +10,20 @@ public class Piece {
     }
     protected PieceColor pieceColor;
 
+    protected enum PieceDirection {
+        UP,
+        DOWN
+    }
+    protected PieceDirection pieceDirection;
+
     public Piece() {}
     public String pieceIconPath = "art/";
 
 
 
-   /* public boolean isMoveLegal(int end_x, int end_y) {
+    public boolean isMoveLegal(int end_x, int end_y) {
         System.out.println("This should not be called");
         return true;
-    }*/
+    }
 }
 

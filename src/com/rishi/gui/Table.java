@@ -85,6 +85,17 @@ public class Table {
                                     }
         );
         filesMenu.add(resetGame);
+
+        final JMenuItem exitMenuItem = new JMenuItem("Exit", KeyEvent.VK_X);
+        exitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                gameFrame.dispose();
+                System.exit(0);
+            }
+        });
+        filesMenu.add(exitMenuItem);
+
         return filesMenu;
     }
 
@@ -120,9 +131,7 @@ public class Table {
 
 
     private class TilePanel extends JPanel {
-
         private final int tileId;
-
         TilePanel(final BoardPanel boardPanel,
                   final int tileId) {
             super(new GridBagLayout());
@@ -177,15 +186,13 @@ public class Table {
         }
 
         private void highlightTileBorder(final ChessBoard board) {
-            setBorder(BorderFactory.createLineBorder(Color.BLUE));
+            setBorder(BorderFactory.createLineBorder(Color.BLACK));
         }
 
         private void assignTileColor() {
             setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
         }
     }
-
-
 
     private static void center(final JFrame frame) {
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
