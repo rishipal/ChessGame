@@ -91,6 +91,8 @@ public class Table {
         resetGame.addActionListener(new ActionListener() {
                                         @Override
                                         public void actionPerformed(final ActionEvent e) {
+                                            gameFrame.dispose();
+                                            Table.get().show();
                                         }
                                     }
         );
@@ -105,15 +107,12 @@ public class Table {
             }
         });
         filesMenu.add(exitMenuItem);
-
         return filesMenu;
     }
 
 
     private class BoardPanel extends JPanel {
-
         final List<TilePanel> boardTiles;
-
 
         BoardPanel() {
             super(new GridLayout(chessBoard.SIZE_BOARD, chessBoard.SIZE_BOARD));
@@ -144,8 +143,6 @@ public class Table {
                 boardTiles.get(tileID).drawTile(chessBoard);
             }
         }
-
-
     }
 
 
@@ -160,6 +157,8 @@ public class Table {
             addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(final MouseEvent event) {
+                    tileToHighlight.clear();
+                    boardPanel.drawBoard();
                     accumulateLegalPathTilesToHighlight();
                     boardPanel.highlightTiles();
                 }
@@ -193,13 +192,11 @@ public class Table {
             }
             tileToHighlight.clear();
 
-
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
                 for(Cell c : path) {
                     int tileNum = c.getTileIDFromCell();
                     tileToHighlight.add(tileNum);
-
                 }
             }
         }

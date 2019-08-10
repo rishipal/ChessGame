@@ -115,8 +115,19 @@ class Pawn extends Piece {
                 }
             }
         } else {
-            //ATTN: Handle DOWN direction later
-            //if(this.y )
+            if(this.x == 7) {
+                return null;
+            }
+            Cell firstCellBelowThis = board.getChessBoard()[this.x + 1][this.y];
+            if(isDestionationPossible(firstCellBelowThis)) {
+                legalDestinations.add(firstCellBelowThis);
+            }
+            if(this.x == 1) {
+                Cell secondCellAboveThis = board.getChessBoard()[this.x + 2][this.y];
+                if(isDestionationPossible(secondCellAboveThis)) {
+                    legalDestinations.add(secondCellAboveThis);
+                }
+            }
         }
 
 
