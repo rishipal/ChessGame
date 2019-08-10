@@ -1,5 +1,8 @@
 package com.rishi.chess;
 
+import jdk.management.jfr.RecordingInfo;
+
+import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
 
 class Pawn extends Piece {
@@ -92,7 +95,7 @@ class Pawn extends Piece {
 
     private boolean isDestionationPossible(Cell cell) {
         return true;
-        //ATTN: todo
+        //ATTN: todo check for obstruction from source to destination
     }
 
     @Override
@@ -114,6 +117,20 @@ class Pawn extends Piece {
                     legalDestinations.add(secondCellAboveThis);
                 }
             }
+            Cordinate topLeft = new Cordinate(this.x -1, this.y -1);
+            if(topLeft.isWithinBounds(board.SIZE_BOARD)) {
+                Cell topLeftCell = board.getCellFromCordinate(topLeft);
+                if(topLeftCell.occupied && topLeftCell.piece.pieceColor != this.pieceColor) {
+                    legalDestinations.add(topLeftCell);
+                }
+            }
+            Cordinate topRight = new Cordinate(this.x -1, this.y + 1);
+            if(topRight.isWithinBounds(board.SIZE_BOARD)) {
+                Cell topRightCell = board.getCellFromCordinate(topLeft);
+                if(topRightCell.occupied && topRightCell.piece.pieceColor != this.pieceColor) {
+                    legalDestinations.add(topRightCell);
+                }
+            }
         } else {
             if(this.x == 7) {
                 return null;
@@ -128,10 +145,22 @@ class Pawn extends Piece {
                     legalDestinations.add(secondCellAboveThis);
                 }
             }
+            Cordinate downLeft = new Cordinate(this.x +1, this.y -1);
+            if(downLeft.isWithinBounds(board.SIZE_BOARD)) {
+                Cell downLeftCell = board.getCellFromCordinate(downLeft);
+                if(downLeftCell.occupied && downLeftCell.piece.pieceColor != this.pieceColor) {
+                    legalDestinations.add(downLeftCell);
+                }
+            }
+            Cordinate downRight = new Cordinate(this.x -1, this.y + 1);
+            if(downRight.isWithinBounds(board.SIZE_BOARD)) {
+                Cell downRightCell = board.getCellFromCordinate(downRight);
+                if(downRightCell.occupied && downRightCell.piece.pieceColor != this.pieceColor) {
+                    legalDestinations.add(downRightCell);
+                }
+            }
         }
 
-
-        // ATTN: handle diagonal moves later
         for (Cell c : legalDestinations) {
             Move m = new Move(this, c);
             m.generatePathsForThisMove();
@@ -140,5 +169,4 @@ class Pawn extends Piece {
         }
         return legalMoves;
     }
-
 }

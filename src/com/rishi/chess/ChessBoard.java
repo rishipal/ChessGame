@@ -14,6 +14,10 @@ public class ChessBoard {
         createInitialBoard();
     }
 
+    public Cell getCellFromCordinate(Cordinate c) {
+        return this.board[c.row][c.col];
+    }
+
     public Piece getPiece(int tileId) {
         int row = tileId/SIZE_BOARD;
         int col = tileId % SIZE_BOARD;
