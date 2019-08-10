@@ -11,7 +11,7 @@ class Cordinate {
     }
 
     public boolean isWithinBounds( int boardSize) {
-        if (this.row < boardSize && this.col < boardSize) {
+        if (this.row >= 0 && this.col >= 0 && this.row < boardSize && this.col < boardSize) {
             return true;
         }
         return false;

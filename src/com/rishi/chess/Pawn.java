@@ -1,8 +1,4 @@
 package com.rishi.chess;
-
-import jdk.management.jfr.RecordingInfo;
-
-import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
 
 class Pawn extends Piece {
@@ -126,7 +122,7 @@ class Pawn extends Piece {
             }
             Cordinate topRight = new Cordinate(this.x -1, this.y + 1);
             if(topRight.isWithinBounds(board.SIZE_BOARD)) {
-                Cell topRightCell = board.getCellFromCordinate(topLeft);
+                Cell topRightCell = board.getCellFromCordinate(topRight);
                 if(topRightCell.occupied && topRightCell.piece.pieceColor != this.pieceColor) {
                     legalDestinations.add(topRightCell);
                 }
@@ -165,7 +161,6 @@ class Pawn extends Piece {
             Move m = new Move(this, c);
             m.generatePathsForThisMove();
             legalMoves.add(m);
-
         }
         return legalMoves;
     }
