@@ -1,6 +1,5 @@
 package com.rishi.gui;
 import javax.imageio.ImageIO;
-import javax.print.attribute.standard.Destination;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,6 +15,7 @@ import java.util.Set;
 import com.rishi.chess.Cell;
 import com.rishi.chess.ChessBoard;
 import com.rishi.chess.Move;
+import com.rishi.chess.Piece;
 
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 
@@ -25,9 +25,6 @@ public class Table {
     private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
     private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
-
-
-
     private ChessBoard chessBoard;
     private BoardPanel boardPanel;
     private Set<Integer> tileToHighlight;
@@ -39,33 +36,21 @@ public class Table {
         chessBoard = new ChessBoard();
         boardPanel = new BoardPanel();
         tileToHighlight = new HashSet<>();
-
-
         gameFrame = new JFrame();
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.add(CreateFileMenu());
         gameFrame.setJMenuBar(jMenuBar);
-
         gameFrame.setTitle("Rishi Chess Game");
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
-
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        //this.gameSetup = new GameSetup(this.gameFrame, true);
-        //this.gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
-        //this.gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
-        //this.gameFrame.add(debugPanel, BorderLayout.SOUTH);
         setDefaultLookAndFeelDecorated(true);
         this.gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
         center(this.gameFrame);
         gameFrame.setVisible(true);
-
-
     }
 
     public void show() {
@@ -113,6 +98,7 @@ public class Table {
 
     private class BoardPanel extends JPanel {
         final List<TilePanel> boardTiles;
+        private Piece selectedPiece;
 
         BoardPanel() {
             super(new GridLayout(chessBoard.SIZE_BOARD, chessBoard.SIZE_BOARD));
@@ -130,6 +116,7 @@ public class Table {
 
         void drawBoard() {
             removeAll();
+            highlightTiles();
             for (final TilePanel boardTile : boardTiles) {
                 boardTile.drawTile(chessBoard);
                 add(boardTile);
@@ -138,29 +125,30 @@ public class Table {
             repaint();
         }
 
-        void highlightTiles() {
+        private void highlightTiles() {
             for(Integer tileID : tileToHighlight) {
                 boardTiles.get(tileID).drawTile(chessBoard);
             }
         }
     }
 
-
     private class TilePanel extends JPanel {
         private final int tileId;
+        private Piece piece;
+        private final Cell cell;
         TilePanel(final BoardPanel boardPanel,
                   final int tileId) {
             super(new GridBagLayout());
             this.tileId = tileId;
+            cell = getCellFromTileID(tileId);
             setPreferredSize(TILE_PANEL_DIMENSION);
             highlightTileBorder(chessBoard);
             addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(final MouseEvent event) {
                     tileToHighlight.clear();
-                    boardPanel.drawBoard();
                     accumulateLegalPathTilesToHighlight();
-                    boardPanel.highlightTiles();
+                    boardPanel.drawBoard();
                 }
 
                 @Override
@@ -173,13 +161,26 @@ public class Table {
 
                 @Override
                 public void mouseReleased(final MouseEvent e) {
+                    piece = boardPanel.selectedPiece;
+                    cell.setPiece(piece);
+                    boardPanel.drawBoard();
+                    boardPanel.selectedPiece = null;
+                    System.out.println("Mouse Released");
                 }
 
                 @Override
                 public void mousePressed(final MouseEvent e) {
+                     boardPanel.selectedPiece = chessBoard.getPiece(tileId);
+                     System.out.println("Mouse Pressed");
                 }
             });
             validate();
+        }
+
+        private Cell getCellFromTileID(int tileId) {
+            int row = tileId/chessBoard.SIZE_BOARD;
+            int col = tileId - row * chessBoard.SIZE_BOARD;
+            return chessBoard.getChessBoard()[row][col];
         }
 
         void accumulateLegalPathTilesToHighlight() {
@@ -233,7 +234,7 @@ public class Table {
             System.out.println("Setting any color");
 
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
-                System.out.println("Setting black color");
+                System.out.println("Setting Cyan color");
                 setBackground(Color.CYAN);
             }
         }
