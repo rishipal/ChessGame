@@ -153,10 +153,22 @@ public class Table {
 
                 @Override
                 public void mouseExited(final MouseEvent e) {
+                    tileToHighlight.clear();
+                    boardPanel.drawBoard();
                 }
 
                 @Override
                 public void mouseEntered(final MouseEvent e) {
+                    Cell c = getCellFromTileID(tileId);
+                    if(c.occupied == false) {
+                        return;
+                    }
+                    if(tileToHighlight == null) {
+                        tileToHighlight = new HashSet<>();
+                    }
+                    tileToHighlight.clear();
+                    tileToHighlight.add(tileId);
+                    boardPanel.drawBoard();
                 }
 
                 @Override

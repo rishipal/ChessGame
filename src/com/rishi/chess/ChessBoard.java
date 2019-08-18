@@ -2,8 +2,10 @@ package com.rishi.chess;
 
 
 public class ChessBoard {
+
     public final int SIZE_BOARD = 9;
     private final Cell[][] board;
+    private final MoveManager moveManager;
 
     public Cell[][] getChessBoard() {
         return board;
@@ -11,17 +13,8 @@ public class ChessBoard {
 
     public ChessBoard() {
         this.board = new Cell[SIZE_BOARD][SIZE_BOARD];
+        moveManager = new MoveManager();
         createInitialBoard();
-    }
-
-    public Cell getCellFromCordinate(Cordinate c) {
-        return this.board[c.row][c.col];
-    }
-
-    public Piece getPiece(int tileId) {
-        int row = tileId/SIZE_BOARD;
-        int col = tileId % SIZE_BOARD;
-        return board[row][col].piece;
     }
 
     private void createInitialBoard() {
@@ -60,6 +53,17 @@ public class ChessBoard {
             }
     }
 
+
+    public Cell getCellFromCordinate(Cordinate c) {
+        return this.board[c.row][c.col];
+    }
+
+    public Piece getPiece(int tileId) {
+        int row = tileId/SIZE_BOARD;
+        int col = tileId % SIZE_BOARD;
+        return board[row][col].piece;
+    }
+
     public void printBoard() {
         for(int i = 0; i < SIZE_BOARD; i++) {
             for(int j = 0; j < SIZE_BOARD; j++) {
@@ -67,7 +71,4 @@ public class ChessBoard {
             }
         }
     }
-
-
-
 }
