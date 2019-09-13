@@ -243,10 +243,7 @@ public class Table {
 
         private void assignTileColor() {
             setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
-            System.out.println("Setting any color");
-
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
-                System.out.println("Setting Cyan color");
                 setBackground(Color.CYAN);
             }
         }

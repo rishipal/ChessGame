@@ -1,13 +1,10 @@
 package com.rishi.chess;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 public class MoveManager {
 
     ArrayList<Move> movesHistory;
-
     MoveManager() {
         movesHistory = new ArrayList<>();
     }

@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,8 +23,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/rishi/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="14" selection-start-line="8" selection-end-line="9" />
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="e#129#130#0" expanded="true" />
+                <element signature="e#159#160#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/rishi/gui/Table.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="246" selection-start-line="246" selection-end-line="246" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -34,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -57,17 +72,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            <state relative-caret-position="165">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#136#137#0" expanded="true" />
+                <element signature="e#135#136#0" expanded="true" />
                 <element signature="e#183#184#0" expanded="true" />
-                <element signature="e#213#214#0" expanded="true" />
-                <element signature="e#246#247#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,6 +108,7 @@
       <find>accumulateLegalPathTilesToHighlight</find>
       <find>getCellFromTileID</find>
       <find>highlightTiles</find>
+      <find>setting</find>
     </findStrings>
     <replaceStrings>
       <replace>Knight</replace>
@@ -112,7 +125,6 @@
         <option value="$PROJECT_DIR$/src/com/rishi/Piece.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/Rook.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/Rook.java" />
-        <option value="$PROJECT_DIR$/src/com/rishi/Main.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/ChessBoardTests.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/Cordinates.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/Knight.java" />
@@ -120,18 +132,17 @@
         <option value="$PROJECT_DIR$/src/com/rishi/chess/Cell.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/Move.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java" />
-        <option value="$PROJECT_DIR$/src/com/rishi/gui/Table.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/Pawn.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" />
         <option value="$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java" />
+        <option value="$PROJECT_DIR$/src/com/rishi/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/rishi/gui/Table.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="402" />
-    <option name="y" value="23" />
-    <option name="width" value="1037" />
-    <option name="height" value="825" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -139,8 +150,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,32 +160,65 @@
             <path>
               <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rishi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rishi" type="462c0819:PsiDirectoryNode" />
               <item name="chess" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rishi" type="462c0819:PsiDirectoryNode" />
               <item name="gui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rishi" type="462c0819:PsiDirectoryNode" />
               <item name="gui" type="462c0819:PsiDirectoryNode" />
               <item name="art" type="462c0819:PsiDirectoryNode" />
@@ -185,6 +227,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -289,14 +333,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565586843849</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="removing comments, etc">
+      <created>1566091118196</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1566091118196</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="402" y="23" width="1037" height="825" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26331657" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17668097" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -305,7 +356,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.12957746" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.12887236" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.35935563" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -357,7 +408,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
-          <line>250</line>
+          <line>247</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
@@ -369,7 +420,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
-          <line>249</line>
+          <line>246</line>
           <properties />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
@@ -381,7 +432,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
-          <line>247</line>
+          <line>245</line>
           <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
@@ -501,20 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/rishi/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="14" selection-start-line="8" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/rishi/gui/Table.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/Knight.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -546,10 +583,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java">
+    <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="195">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -560,23 +597,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java">
+    <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+        <state relative-caret-position="165">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#135#136#0" expanded="true" />
+            <element signature="e#183#184#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/rishi/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#129#130#0" expanded="true" />
+            <element signature="e#159#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/rishi/gui/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="246" selection-start-line="246" selection-end-line="246" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#136#137#0" expanded="true" />
-            <element signature="e#183#184#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
-            <element signature="e#246#247#0" expanded="true" />
           </folding>
         </state>
       </provider>
