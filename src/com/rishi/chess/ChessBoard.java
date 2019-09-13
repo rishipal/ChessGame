@@ -47,10 +47,10 @@ public class ChessBoard {
     }
 
     private void fillPawns() {
-            for(int j = 0; j < this.SIZE_BOARD; j++) {
-                this.board[1][j].setPiece(new Pawn(1,j, Piece.PieceColor.WHITE, this));
-                this.board[7][j].setPiece(new Pawn(7,j, Piece.PieceColor.BLACK, this));
-            }
+        for(int j = 0; j < this.SIZE_BOARD; j++) {
+            this.board[1][j].setPiece(new Pawn(1,j, Piece.PieceColor.WHITE, this));
+            this.board[7][j].setPiece(new Pawn(7,j, Piece.PieceColor.BLACK, this));
+        }
     }
 
 
@@ -62,13 +62,5 @@ public class ChessBoard {
         int row = tileId/SIZE_BOARD;
         int col = tileId % SIZE_BOARD;
         return board[row][col].piece;
-    }
-
-    public void printBoard() {
-        for(int i = 0; i < SIZE_BOARD; i++) {
-            for(int j = 0; j < SIZE_BOARD; j++) {
-                System.out.print(board[i][j].occupied);
-            }
-        }
     }
 }

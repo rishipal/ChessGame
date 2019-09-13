@@ -1,11 +1,7 @@
 package com.rishi.chess;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-class Pawn extends Piece {
-
-
-
+public class Pawn extends Piece {
     Pawn(int x, int y, PieceColor pieceColor, ChessBoard cb) {
         this.board = cb;
         this.x = x;
@@ -99,7 +95,6 @@ class Pawn extends Piece {
     @Override
     public ArrayList<Move> generateLegalMovesForPiece() {
         ArrayList<Cell> legalDestinations = new ArrayList<>();
-        ArrayList<Move> legalMoves = new ArrayList<>();
         System.out.println("Should come here");
         if(pieceDirection == PieceDirection.UP) {
             if(this.x == 0) {
@@ -159,6 +154,7 @@ class Pawn extends Piece {
             }
         }
 
+        ArrayList<Move> legalMoves = new ArrayList<>();
         for (Cell c : legalDestinations) {
             Move m = new Move(this, c);
             m.generatePathsForThisMove();

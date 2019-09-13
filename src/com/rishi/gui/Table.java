@@ -127,7 +127,7 @@ public class Table {
 
         private void highlightTiles() {
             for(Integer tileID : tileToHighlight) {
-                boardTiles.get(tileID).drawTile(chessBoard);
+                boardTiles.get(tileID).assignTileColor();
             }
         }
     }

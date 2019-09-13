@@ -13,7 +13,19 @@ public class Knight extends Piece {
     public boolean isMoveLegal(int end_x, int end_y) {
         return true;
     }
-    public ArrayList<Move> generateLegalMovesForPiece() { return null;}
+
+    @Override
+    public ArrayList<Move> generateLegalMovesForPiece() {
+        ArrayList<Cell> legalDestinations = new ArrayList<>();
+
+        // Knight's moves are independent from the direction on the player.
+        // Collect all spatially possible destinations,
+        // Out of those, legal destinations are the ones which are unoccupied by the current player
 
 
+        ArrayList<Move> legalMoves = new ArrayList<>();
+        return legalMoves;
     }
+
+
+}
