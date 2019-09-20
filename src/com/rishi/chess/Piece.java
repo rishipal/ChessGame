@@ -35,5 +35,9 @@ public class Piece {
         System.out.println("Should not come here in genearteLegalMovesForPiece");
         return null;
     }
+
+    public Cell getEnclosingCell() {
+        return board.getCell(this.x, this.y);
+    }
 }
 

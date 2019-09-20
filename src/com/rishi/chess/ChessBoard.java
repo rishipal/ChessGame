@@ -53,6 +53,10 @@ public class ChessBoard {
         }
     }
 
+    public Cell getCell(int x, int y) {
+        return board[x][y];
+    }
+
 
     public Cell getCellFromCordinate(Cordinate c) {
         return this.board[c.row][c.col];
