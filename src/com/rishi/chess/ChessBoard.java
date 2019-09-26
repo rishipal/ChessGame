@@ -33,10 +33,10 @@ public class ChessBoard {
     }
 
     private void fillKnights() {
-        this.board[0][1].setPiece(new Knight(0, 1 , Piece.PieceColor.WHITE));
-        this.board[0][7].setPiece(new Knight(0, 7 , Piece.PieceColor.WHITE));
-        this.board[8][1].setPiece(new Knight(8, 1 , Piece.PieceColor.BLACK));
-        this.board[8][7].setPiece(new Knight(8, 7 , Piece.PieceColor.BLACK));
+        this.board[0][1].setPiece(new Knight(0, 1 , Piece.PieceColor.WHITE, this));
+        this.board[0][7].setPiece(new Knight(0, 7 , Piece.PieceColor.WHITE, this));
+        this.board[8][1].setPiece(new Knight(8, 1 , Piece.PieceColor.BLACK, this));
+        this.board[8][7].setPiece(new Knight(8, 7 , Piece.PieceColor.BLACK, this));
     }
 
     private void fillRook() {

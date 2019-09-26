@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Knight extends Piece {
-    public Knight(int x, int y, PieceColor c) {
+    public Knight(int x, int y, PieceColor c, ChessBoard cb) {
+        this.board = cb;
         this.x = x;
         this.y = y;
         this.pieceColor = c;
@@ -47,7 +48,7 @@ public class Knight extends Piece {
         while (itr.hasNext())
         {
             Cordinate c = (Cordinate)itr.next();
-            if(!c.isWithinBounds(board.SIZE_BOARD)) {
+            if(c != null && !c.isWithinBounds(this.board.SIZE_BOARD)) {
                 itr.remove();
             }
         }
@@ -84,6 +85,4 @@ public class Knight extends Piece {
         }
         return legalMoves;
     }
-
-
 }
