@@ -32,23 +32,23 @@ public class ChessBoard {
     }
 
     private void fillKnights() {
-        this.board[0][1].setPiece(new Knight(0, 1 , Piece.PieceColor.WHITE, this));
-        this.board[0][7].setPiece(new Knight(0, 7 , Piece.PieceColor.WHITE, this));
-        this.board[8][1].setPiece(new Knight(8, 1 , Piece.PieceColor.BLACK, this));
-        this.board[8][7].setPiece(new Knight(8, 7 , Piece.PieceColor.BLACK, this));
+        this.board[0][1].setPiece(new Knight( new Cordinate(0, 1) , Piece.PieceColor.WHITE, this));
+        this.board[0][7].setPiece(new Knight(new Cordinate(0, 7) , Piece.PieceColor.WHITE, this));
+        this.board[8][1].setPiece(new Knight( new Cordinate(8, 1) , Piece.PieceColor.BLACK, this));
+        this.board[8][7].setPiece(new Knight(new Cordinate(8, 7 ), Piece.PieceColor.BLACK, this));
     }
 
     private void fillRook() {
-        this.board[0][0].setPiece(new Rook(0, 0 , Piece.PieceColor.WHITE));
-        this.board[0][8].setPiece(new Rook(0, 8 , Piece.PieceColor.WHITE));
-        this.board[8][8].setPiece(new Rook(8, 8 , Piece.PieceColor.BLACK));
-        this.board[8][0].setPiece(new Rook(8, 0 , Piece.PieceColor.BLACK));
+        this.board[0][0].setPiece(new Rook(new Cordinate(0, 0) , Piece.PieceColor.WHITE));
+        this.board[0][8].setPiece(new Rook(new Cordinate(0, 8) , Piece.PieceColor.WHITE));
+        this.board[8][8].setPiece(new Rook(new Cordinate(8, 8), Piece.PieceColor.BLACK));
+        this.board[8][0].setPiece(new Rook(new Cordinate(8, 0) , Piece.PieceColor.BLACK));
     }
 
     private void fillPawns() {
         for(int j = 0; j < this.SIZE_BOARD; j++) {
-            this.board[1][j].setPiece(new Pawn(1,j, Piece.PieceColor.WHITE, this));
-            this.board[7][j].setPiece(new Pawn(7,j, Piece.PieceColor.BLACK, this));
+            this.board[1][j].setPiece(new Pawn(new Cordinate(1,j), Piece.PieceColor.WHITE, this));
+            this.board[7][j].setPiece(new Pawn(new Cordinate(7,j), Piece.PieceColor.BLACK, this));
         }
     }
 

@@ -2,10 +2,9 @@ package com.rishi.chess;
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
-    Pawn(int x, int y, PieceColor pieceColor, ChessBoard cb) {
+    Pawn(Cordinate cord, PieceColor pieceColor, ChessBoard cb) {
         this.board = cb;
-        this.x = x;
-        this.y = y;
+        this.cordinate = cord;
         this.pieceColor = pieceColor;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BP.gif" : "WP.gif");
         this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
@@ -18,12 +17,12 @@ public class Pawn extends Piece {
         }
 
         //no move
-        if (destination.row == this.x) {
+        if (destination.row == this.cordinate.row) {
             return false;
         }
 
         // diagonal movement restricted to neighboring cols
-        if(Math.abs(destination.col - this.y) > 1) {
+        if(Math.abs(destination.col - this.cordinate.col) > 1) {
             return false;
         }
         return true;
@@ -31,8 +30,8 @@ public class Pawn extends Piece {
 
     boolean isMoveDirectionallyLegal(Cordinate destination) {
         //moves in only the facing direction
-        if((this.pieceDirection == PieceDirection.UP && destination.row <= this.x) ||
-                this.pieceDirection == PieceDirection.DOWN && destination.row >= this.x) {
+        if((this.pieceDirection == PieceDirection.UP && destination.row <= this.cordinate.row) ||
+                this.pieceDirection == PieceDirection.DOWN && destination.row >= this.cordinate.row) {
             return false;
         }
         return true;
@@ -41,14 +40,14 @@ public class Pawn extends Piece {
 
     boolean isLegalConsideringVerticalObstructions(Cordinate destination) {
         boolean twoStepJumpAllowed = false;
-        if((this.x == 1 && this.pieceDirection == PieceDirection.DOWN) ||
-                (this.x == 7 && this.pieceDirection == PieceDirection.UP)) {
+        if((this.cordinate.row == 1 && this.pieceDirection == PieceDirection.DOWN) ||
+                (this.cordinate.row == 7 && this.pieceDirection == PieceDirection.UP)) {
             twoStepJumpAllowed = true;
         }
 
         if(twoStepJumpAllowed){
             //vertical path to destination does not have an occupied cell
-            int smallerRow = destination.row > this.x? this.x : destination.col;
+            int smallerRow = destination.row > this.cordinate.row? this.cordinate.row : destination.col;
             if(board.getChessBoard()[smallerRow+1][destination.col].occupied) {
                 return false;
             }
@@ -58,7 +57,7 @@ public class Pawn extends Piece {
     }
 
     boolean isKillingEnemyDiagonally(Cordinate destination) {
-        if(destination.col == this.y) {
+        if(destination.col == this.cordinate.col) {
             return false;
         }
 
@@ -89,7 +88,7 @@ public class Pawn extends Piece {
 
     private boolean isDestionationPossible(Cell cell) {
         return true;
-        //ATTN: todo check for obstruction from source to destination
+        //AI: todo check for obstruction from source to destination
     }
 
     @Override
@@ -97,27 +96,27 @@ public class Pawn extends Piece {
         ArrayList<Cell> legalDestinations = new ArrayList<>();
         System.out.println("Should come here");
         if(pieceDirection == PieceDirection.UP) {
-            if(this.x == 0) {
+            if(this.cordinate.row == 0) {
                 return null;
             }
-            Cell firstCellAboveThis = board.getChessBoard()[this.x - 1][this.y];
+            Cell firstCellAboveThis = board.getChessBoard()[this.cordinate.row - 1][this.cordinate.col];
             if(isDestionationPossible(firstCellAboveThis)) {
                 legalDestinations.add(firstCellAboveThis);
             }
-            if(this.x == 7) {
-                Cell secondCellAboveThis = board.getChessBoard()[this.x - 2][this.y];
+            if(this.cordinate.row == 7) {
+                Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row - 2][this.cordinate.col];
                 if(isDestionationPossible(secondCellAboveThis)) {
                     legalDestinations.add(secondCellAboveThis);
                 }
             }
-            Cordinate topLeft = new Cordinate(this.x -1, this.y -1);
+            Cordinate topLeft = new Cordinate(this.cordinate.row -1, this.cordinate.row -1);
             if(topLeft.isWithinBounds(board.SIZE_BOARD)) {
                 Cell topLeftCell = board.getCellFromCordinate(topLeft);
                 if(topLeftCell.occupied && topLeftCell.piece.pieceColor != this.pieceColor) {
                     legalDestinations.add(topLeftCell);
                 }
             }
-            Cordinate topRight = new Cordinate(this.x -1, this.y + 1);
+            Cordinate topRight = new Cordinate(this.cordinate.row -1, this.cordinate.col + 1);
             if(topRight.isWithinBounds(board.SIZE_BOARD)) {
                 Cell topRightCell = board.getCellFromCordinate(topRight);
                 if(topRightCell.occupied && topRightCell.piece.pieceColor != this.pieceColor) {
@@ -125,27 +124,27 @@ public class Pawn extends Piece {
                 }
             }
         } else {
-            if(this.x == 7) {
+            if(this.cordinate.row == 7) {
                 return null;
             }
-            Cell firstCellBelowThis = board.getChessBoard()[this.x + 1][this.y];
+            Cell firstCellBelowThis = board.getChessBoard()[this.cordinate.row + 1][this.cordinate.col];
             if(isDestionationPossible(firstCellBelowThis)) {
                 legalDestinations.add(firstCellBelowThis);
             }
-            if(this.x == 1) {
-                Cell secondCellAboveThis = board.getChessBoard()[this.x + 2][this.y];
+            if(this.cordinate.row == 1) {
+                Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row + 2][this.cordinate.col];
                 if(isDestionationPossible(secondCellAboveThis)) {
                     legalDestinations.add(secondCellAboveThis);
                 }
             }
-            Cordinate downLeft = new Cordinate(this.x +1, this.y -1);
+            Cordinate downLeft = new Cordinate(this.cordinate.row +1, this.cordinate.col -1);
             if(downLeft.isWithinBounds(board.SIZE_BOARD)) {
                 Cell downLeftCell = board.getCellFromCordinate(downLeft);
                 if(downLeftCell.occupied && downLeftCell.piece.pieceColor != this.pieceColor) {
                     legalDestinations.add(downLeftCell);
                 }
             }
-            Cordinate downRight = new Cordinate(this.x -1, this.y + 1);
+            Cordinate downRight = new Cordinate(this.cordinate.row -1, this.cordinate.col + 1);
             if(downRight.isWithinBounds(board.SIZE_BOARD)) {
                 Cell downRightCell = board.getCellFromCordinate(downRight);
                 if(downRightCell.occupied && downRightCell.piece.pieceColor != this.pieceColor) {

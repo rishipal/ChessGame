@@ -1,14 +1,16 @@
 package com.rishi.chess;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
+import static java.lang.Math.abs;
+
 public class Knight extends Piece {
-    public Knight(int x, int y, PieceColor c, ChessBoard cb) {
+    public Knight(Cordinate cord, PieceColor color, ChessBoard cb) {
         this.board = cb;
-        this.x = x;
-        this.y = y;
-        this.pieceColor = c;
+        this.cordinate = cord;
+        this.pieceColor = color;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BN.gif" : "WN.gif");
     }
 
@@ -34,14 +36,14 @@ public class Knight extends Piece {
     private ArrayList<Cordinate> getAllSpatiallyPossibleDestinations() {
         ArrayList<Cordinate> allDests = new ArrayList<>();
         final int one = 1, two = 2;
-        allDests.add(new Cordinate(this.x + two, this.y + one));
-        allDests.add(new Cordinate(this.x + two, this.y - one));
-        allDests.add(new Cordinate(this.x - two, this.y + one));
-        allDests.add(new Cordinate(this.x - two, this.y - one));
-        allDests.add(new Cordinate(this.x + one, this.y + two));
-        allDests.add(new Cordinate(this.x - one, this.y + two));
-        allDests.add(new Cordinate(this.x - one, this.y - two));
-        allDests.add(new Cordinate(this.x + one, this.y - two));
+        allDests.add(new Cordinate(this.cordinate.row + two, this.cordinate.col + one));
+        allDests.add(new Cordinate(this.cordinate.row + two, this.cordinate.col - one));
+        allDests.add(new Cordinate(this.cordinate.row - two, this.cordinate.col + one));
+        allDests.add(new Cordinate(this.cordinate.row - two, this.cordinate.col - one));
+        allDests.add(new Cordinate(this.cordinate.row + one, this.cordinate.col + two));
+        allDests.add(new Cordinate(this.cordinate.row - one, this.cordinate.col + two));
+        allDests.add(new Cordinate(this.cordinate.row - one, this.cordinate.col - two));
+        allDests.add(new Cordinate(this.cordinate.row + one, this.cordinate.col - two));
 
 
         Iterator itr = allDests.iterator();
@@ -53,6 +55,48 @@ public class Knight extends Piece {
             }
         }
         return allDests;
+    }
+
+    /**
+     * Generates the path for a Knight's move
+     * @param m move
+     * @return list of cells in the path for this move
+     */
+    private ArrayList<Cell> generatePathForKnightMove(Move m) {
+        Cordinate destCord = m.destination.getCordinate();
+        assert(abs(destCord.row - this.cordinate.row) == 1 || abs(destCord.col - this.cordinate.col) == 1 );
+
+        ArrayList<Cell> result = new ArrayList<>();
+        result.add(m.destination);
+
+        if(abs(destCord.row - this.cordinate.row) == 1) {
+            if(destCord.col > this.cordinate.col) {
+                Cordinate c1 = new Cordinate(this.cordinate.row, this.cordinate.col + 1);
+                Cordinate c2 = new Cordinate(this.cordinate.row, this.cordinate.col + 2);
+                result.add(board.getCellFromCordinate(c1));
+                result.add(board.getCellFromCordinate(c2));
+            } else {
+                Cordinate c1 = new Cordinate(this.cordinate.row, this.cordinate.col - 1);
+                Cordinate c2 = new Cordinate(this.cordinate.row, this.cordinate.col - 2);
+                result.add(board.getCellFromCordinate(c1));
+                result.add(board.getCellFromCordinate(c2));
+            }
+        } else if(abs(destCord.col - this.cordinate.col) == 1) {
+            if(destCord.row > this.cordinate.row) {
+                Cordinate c1 = new Cordinate(this.cordinate.row + 1, this.cordinate.col);
+                Cordinate c2 = new Cordinate(this.cordinate.row + 2, this.cordinate.col);
+                result.add(board.getCellFromCordinate(c1));
+                result.add(board.getCellFromCordinate(c2));
+            } else {
+                Cordinate c1 = new Cordinate(this.cordinate.row - 1, this.cordinate.col);
+                Cordinate c2 = new Cordinate(this.cordinate.row - 2, this.cordinate.col);
+                result.add(board.getCellFromCordinate(c1));
+                result.add(board.getCellFromCordinate(c2));
+            }
+        }
+        result.add(board.getCellFromCordinate(this.cordinate));
+        Collections.reverse(result);
+        return result;
     }
 
     /**
@@ -78,9 +122,10 @@ public class Knight extends Piece {
         }
 
         ArrayList<Move> legalMoves = new ArrayList<>();
-        for(Cell c : legalDestinations) {
-            Move m = new Move(this, c);
-            m.generatePathsForThisMove();
+        for(Cell dest : legalDestinations) {
+            Move m = new Move(this, dest);
+            ArrayList<Cell> path = this.generatePathForKnightMove(m);
+            m.setPath(path);
             legalMoves.add(m);
         }
         return legalMoves;

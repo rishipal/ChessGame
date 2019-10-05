@@ -20,7 +20,9 @@ public class Move {
         moveTime = LocalDateTime.now();
     }
 
-
+    void setPath(ArrayList<Cell> p) {
+        this.path = p;
+    }
 
     boolean isMoveLegal() {
         return piece.isMoveLegal(destination.getCordinate());

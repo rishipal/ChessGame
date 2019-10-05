@@ -28,6 +28,7 @@ public class Table {
     private ChessBoard chessBoard;
     private BoardPanel boardPanel;
     private Set<Integer> tileToHighlight;
+    private Set<Integer> destTileToHighlight;
 
     private Color lightTileColor = Color.decode("#FFFACD");
     private Color darkTileColor = Color.decode("#593E1A");
@@ -36,6 +37,7 @@ public class Table {
         chessBoard = new ChessBoard();
         boardPanel = new BoardPanel();
         tileToHighlight = new HashSet<>();
+        destTileToHighlight = new HashSet<>();
         gameFrame = new JFrame();
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.add(CreateFileMenu());
@@ -130,6 +132,9 @@ public class Table {
             for(Integer tileID : tileToHighlight) {
                 boardTiles.get(tileID).assignTileColor();
             }
+            for(Integer tileID : destTileToHighlight) {
+                boardTiles.get(tileID).assignTileColor();
+            }
         }
     }
 
@@ -148,6 +153,7 @@ public class Table {
                 @Override
                 public void mouseClicked(final MouseEvent event) {
                     tileToHighlight.clear();
+                    destTileToHighlight.clear();
                     accumulateLegalPathTilesToHighlight();
                     boardPanel.drawBoard();
                 }
@@ -155,6 +161,7 @@ public class Table {
                 @Override
                 public void mouseExited(final MouseEvent e) {
                     tileToHighlight.clear();
+                    destTileToHighlight.clear();
                     boardPanel.drawBoard();
                 }
 
@@ -204,10 +211,18 @@ public class Table {
             if(tileToHighlight == null) {
                 tileToHighlight = new HashSet<>();
             }
+            if(destTileToHighlight == null) {
+                destTileToHighlight = new HashSet<>();
+            }
             tileToHighlight.clear();
+            destTileToHighlight.clear();
 
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
+                if(path.size() != 0) {
+                    Cell dest = path.get(path.size()-1);
+                    destTileToHighlight.add(dest.getTileIDFromCell());
+                }
                 for(Cell c : path) {
                     int tileNum = c.getTileIDFromCell();
                     tileToHighlight.add(tileNum);
@@ -246,6 +261,9 @@ public class Table {
             setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
                 setBackground(Color.CYAN);
+            }
+            if(destTileToHighlight != null && destTileToHighlight.contains((this.tileId))){
+                setBackground(Color.GREEN);
             }
         }
     }

@@ -3,8 +3,7 @@ package com.rishi.chess;
 import java.util.ArrayList;
 
 public class Piece {
-    protected int x;
-    protected int y;
+    protected Cordinate cordinate;
     protected ChessBoard board;
     public Cell cell;
 
@@ -32,12 +31,12 @@ public class Piece {
 
     public ArrayList<Move> generateLegalMovesForPiece() {
         // do nothing, will be overridden.
-        System.out.println("Should not come here in genearteLegalMovesForPiece");
+        System.out.println("Should not come here in generateLegalMovesForPiece");
         return null;
     }
 
     public Cell getEnclosingCell() {
-        return board.getCell(this.x, this.y);
+        return board.getCellFromCordinate(cordinate);
     }
 }
 
