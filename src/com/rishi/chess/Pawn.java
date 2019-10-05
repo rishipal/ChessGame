@@ -41,7 +41,7 @@ public class Pawn extends Piece {
     boolean isLegalConsideringVerticalObstructions(Cordinate destination) {
         boolean twoStepJumpAllowed = false;
         if((this.cordinate.row == 1 && this.pieceDirection == PieceDirection.DOWN) ||
-                (this.cordinate.row == 7 && this.pieceDirection == PieceDirection.UP)) {
+                (this.cordinate.row == 6 && this.pieceDirection == PieceDirection.UP)) {
             twoStepJumpAllowed = true;
         }
 
@@ -103,7 +103,7 @@ public class Pawn extends Piece {
             if(isDestionationPossible(firstCellAboveThis)) {
                 legalDestinations.add(firstCellAboveThis);
             }
-            if(this.cordinate.row == 7) {
+            if(this.cordinate.row == 6) {
                 Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row - 2][this.cordinate.col];
                 if(isDestionationPossible(secondCellAboveThis)) {
                     legalDestinations.add(secondCellAboveThis);
@@ -124,7 +124,7 @@ public class Pawn extends Piece {
                 }
             }
         } else {
-            if(this.cordinate.row == 7) {
+            if(this.cordinate.row == 6) {
                 return null;
             }
             Cell firstCellBelowThis = board.getChessBoard()[this.cordinate.row + 1][this.cordinate.col];

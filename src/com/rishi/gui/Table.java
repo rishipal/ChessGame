@@ -130,10 +130,10 @@ public class Table {
 
         private void highlightTiles() {
             for(Integer tileID : tileToHighlight) {
-                boardTiles.get(tileID).assignTileColor();
+                boardTiles.get(tileID).highlightTileColor();
             }
             for(Integer tileID : destTileToHighlight) {
-                boardTiles.get(tileID).assignTileColor();
+                boardTiles.get(tileID).highlightTileColor();
             }
         }
     }
@@ -231,7 +231,7 @@ public class Table {
         }
 
         void drawTile(final ChessBoard board) {
-            assignTileColor();
+            assignTileColor(board.SIZE_BOARD);
             assignTilePieceIcon(board);
             highlightTileBorder(board);
             validate();
@@ -257,14 +257,23 @@ public class Table {
             setBorder(BorderFactory.createLineBorder(Color.BLACK));
         }
 
-        private void assignTileColor() {
-            setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
+        private void highlightTileColor() {
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
                 setBackground(Color.CYAN);
             }
             if(destTileToHighlight != null && destTileToHighlight.contains((this.tileId))){
                 setBackground(Color.GREEN);
             }
+        }
+
+        private void assignTileColor(int boardSize) {
+            int row = tileId/boardSize;
+            if(row %2 == 0) {
+                setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
+            } else {
+                setBackground(this.tileId % 2 == 0 ? darkTileColor : lightTileColor);
+            }
+            highlightTileColor();
         }
     }
 
