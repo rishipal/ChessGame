@@ -1,7 +1,7 @@
 package com.rishi.chess;
 
 
-class Cordinate {
+public class Cordinate {
     public final int row;
     public final int col;
 

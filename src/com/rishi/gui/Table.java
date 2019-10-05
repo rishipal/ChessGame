@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.rishi.chess.Cell;
 import com.rishi.chess.ChessBoard;
 import com.rishi.chess.Move;
 import com.rishi.chess.Piece;
+import com.rishi.chess.Cordinate;
 
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 
@@ -204,6 +206,12 @@ public class Table {
 
         void accumulateLegalPathTilesToHighlight() {
             ArrayList<Move> legalMoves = chessBoard.getPiece(tileId).generateLegalMovesForPiece();
+
+            //ATTN: Using the Java 8 stream API along with Lamda
+            List<Move> verifiedLegalMoves = legalMoves.stream().filter((e) ->
+                    e.destination.getCordinate().isWithinBounds(chessBoard.SIZE_BOARD)).collect(Collectors.toList());
+            assert(verifiedLegalMoves.size() == legalMoves.size());
+
             if(legalMoves == null) {
                 return;
             }

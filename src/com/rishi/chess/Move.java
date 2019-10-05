@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Move {
 
     Cell source;
-    Cell destination;
+    public Cell destination;
     Piece piece;
     public ArrayList<Cell> path;
+    // ATTN:
     LocalDateTime moveTime;
 
 
