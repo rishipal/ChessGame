@@ -57,6 +57,7 @@ public class Table {
         this.getBoardPanel().drawBoard();
     }
 
+
     public static Table get() {
         return new Table();
     }

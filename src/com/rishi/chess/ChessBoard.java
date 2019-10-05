@@ -1,6 +1,5 @@
 package com.rishi.chess;
 
-
 public class ChessBoard {
 
     public final int SIZE_BOARD = 9;

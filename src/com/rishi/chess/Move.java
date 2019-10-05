@@ -1,5 +1,6 @@
 package com.rishi.chess;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Move {
@@ -8,6 +9,7 @@ public class Move {
     Cell destination;
     Piece piece;
     public ArrayList<Cell> path;
+    LocalDateTime moveTime;
 
 
     Move(Piece p, Cell dest) {
@@ -15,6 +17,7 @@ public class Move {
         source = p.getEnclosingCell();
         destination = dest;
         path = new ArrayList<>();
+        moveTime = LocalDateTime.now();
     }
 
 
