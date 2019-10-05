@@ -21,6 +21,7 @@ public class ChessBoard {
         fillPawns();
         fillRook();
         fillKnights();
+        fillBishops();
     }
 
     private void setAllCells() {
@@ -29,6 +30,13 @@ public class ChessBoard {
                 this.board[i][j] = new Cell(i,j, this);
             }
         }
+    }
+
+    private void fillBishops() {
+        this.board[0][2].setPiece(new Bishop( new Cordinate(0, 2) , Piece.PieceColor.WHITE, this));
+        this.board[0][6].setPiece(new Bishop(new Cordinate(0, 6) , Piece.PieceColor.WHITE, this));
+        this.board[8][2].setPiece(new Bishop( new Cordinate(8, 2) , Piece.PieceColor.BLACK, this));
+        this.board[8][6].setPiece(new Bishop(new Cordinate(8, 6 ), Piece.PieceColor.BLACK, this));
     }
 
     private void fillKnights() {
@@ -50,10 +58,6 @@ public class ChessBoard {
             this.board[1][j].setPiece(new Pawn(new Cordinate(1,j), Piece.PieceColor.WHITE, this));
             this.board[7][j].setPiece(new Pawn(new Cordinate(7,j), Piece.PieceColor.BLACK, this));
         }
-    }
-
-    public Cell getCell(int x, int y) {
-        return board[x][y];
     }
 
 
