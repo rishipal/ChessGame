@@ -76,6 +76,7 @@ public class Table {
         JMenu filesMenu = new JMenu("File");
 
         final JMenuItem resetGame = new JMenuItem("Reset", KeyEvent.VK_O);
+        // ATTN: Using Anonymous class here for action listener
         resetGame.addActionListener(new ActionListener() {
                                         @Override
                                         public void actionPerformed(final ActionEvent e) {
@@ -87,13 +88,11 @@ public class Table {
         filesMenu.add(resetGame);
 
         final JMenuItem exitMenuItem = new JMenuItem("Exit", KeyEvent.VK_X);
-        exitMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
+        // ATTN: Using Lambda here for action listener
+        exitMenuItem.addActionListener((e) -> {
                 gameFrame.dispose();
                 System.exit(0);
-            }
-        });
+            });
         filesMenu.add(exitMenuItem);
         return filesMenu;
     }

@@ -156,7 +156,8 @@ public class Pawn extends Piece {
         ArrayList<Move> legalMoves = new ArrayList<>();
         for (Cell c : legalDestinations) {
             Move m = new Move(this, c);
-            m.generatePathsForThisMove();
+            m.path.add(m.source);
+            m.path.add(m.destination);
             legalMoves.add(m);
         }
         return legalMoves;
