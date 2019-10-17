@@ -155,6 +155,7 @@ public class Table {
                 public void mouseClicked(final MouseEvent event) {
                     tileToHighlight.clear();
                     destTileToHighlight.clear();
+                    //boardPanel.selectedPiece = chessBoard.getPiece(tileId);
                     accumulateLegalPathTilesToHighlight();
                     boardPanel.drawBoard();
                 }
@@ -163,6 +164,9 @@ public class Table {
                 public void mouseExited(final MouseEvent e) {
                     tileToHighlight.clear();
                     destTileToHighlight.clear();
+                    //if(boardPanel.selectedPiece != null) {
+                    //    chessBoard.setPiece(tileId, null);
+                    //}
                     boardPanel.drawBoard();
                 }
 
@@ -182,10 +186,11 @@ public class Table {
 
                 @Override
                 public void mouseReleased(final MouseEvent e) {
-                    piece = boardPanel.selectedPiece;
-                    cell.setPiece(piece);
-                    boardPanel.drawBoard();
-                    boardPanel.selectedPiece = null;
+                    //piece = boardPanel.selectedPiece;
+                    //piece.setNewCordinates(getCordinateFromTileID());
+                    //cell.setPiece(piece);
+                    //boardPanel.drawBoard();
+                   // boardPanel.selectedPiece = null;
                     System.out.println("Mouse Released");
                 }
 
@@ -204,10 +209,18 @@ public class Table {
             return chessBoard.getChessBoard()[row][col];
         }
 
+        private Cordinate getCordinateFromTileID() {
+            Cell c = this.getCellFromTileID(tileId);
+            return c.getCordinate();
+        }
+
         void accumulateLegalPathTilesToHighlight() {
             ArrayList<Move> legalMoves = chessBoard.getPiece(tileId).generateLegalMovesForPiece();
 
-            //ATTN: Using the Java 8 stream API along with Lamda
+            if(legalMoves == null || legalMoves.isEmpty()) {
+                return;
+            }
+            //ATTN: Using the Java 8 stream API along with Lambda
             List<Move> verifiedLegalMoves = legalMoves.stream().filter((e) ->
                     e.destination.getCordinate().isWithinBounds(chessBoard.SIZE_BOARD)).collect(Collectors.toList());
             assert(verifiedLegalMoves.size() == legalMoves.size());

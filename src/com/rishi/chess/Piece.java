@@ -23,6 +23,10 @@ public class Piece {
     public Piece() {}
     public String pieceIconPath = "art/";
 
+    public void setNewCordinates(Cordinate c) {
+        this.cordinate = c;
+    }
+
 
     public boolean isMoveLegal(Cordinate dest) {
         System.out.println("This should not be called");

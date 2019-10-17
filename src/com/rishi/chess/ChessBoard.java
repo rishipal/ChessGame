@@ -82,4 +82,11 @@ public class ChessBoard {
         int col = tileId % SIZE_BOARD;
         return board[row][col].piece;
     }
+
+    public void setPiece(int tileID, Piece piece) {
+        int row = tileID/SIZE_BOARD;
+        int col = tileID % SIZE_BOARD;
+        board[row][col].piece = piece;
+        return;
+    }
 }
