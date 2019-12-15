@@ -150,14 +150,26 @@ public class Table {
             cell = getCellFromTileID(tileId);
             setPreferredSize(TILE_PANEL_DIMENSION);
             highlightTileBorder(chessBoard);
+            addMouseMotionListener(new MouseMotionListener() {
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    System.out.print(e.getSource());
+                }
+
+                @Override
+                public void mouseMoved(MouseEvent e) {
+
+                }
+            });
             addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(final MouseEvent event) {
-                    tileToHighlight.clear();
-                    destTileToHighlight.clear();
+                    //tileToHighlight.clear();
+                    //destTileToHighlight.clear();
                     //boardPanel.selectedPiece = chessBoard.getPiece(tileId);
-                    accumulateLegalPathTilesToHighlight();
-                    boardPanel.drawBoard();
+                    //ATTN: Don't do this computation here. You should cache all results earlier; only display here.
+                    //accumulateLegalPathTilesToHighlight();
+                    //boardPanel.drawBoard();
                 }
 
                 @Override
@@ -167,19 +179,20 @@ public class Table {
                     //if(boardPanel.selectedPiece != null) {
                     //    chessBoard.setPiece(tileId, null);
                     //}
-                    boardPanel.drawBoard();
+                    //boardPanel.drawBoard();
                 }
 
                 @Override
                 public void mouseEntered(final MouseEvent e) {
-                    Cell c = getCellFromTileID(tileId);
-                    if(c.occupied == false) {
-                        return;
-                    }
-                    if(tileToHighlight == null) {
-                        tileToHighlight = new HashSet<>();
-                    }
-                    tileToHighlight.clear();
+                    //Cell c = getCellFromTileID(tileId);
+                    //if(c.occupied == false) {
+                    //    return;
+                    //}
+                    //ATTN: Why do I need this check here?
+                    //if(tileToHighlight == null) {
+                    //    tileToHighlight = new HashSet<>();
+                    //}
+                    //tileToHighlight.clear();
                     tileToHighlight.add(tileId);
                     boardPanel.drawBoard();
                 }
@@ -190,14 +203,16 @@ public class Table {
                     //piece.setNewCordinates(getCordinateFromTileID());
                     //cell.setPiece(piece);
                     //boardPanel.drawBoard();
-                   // boardPanel.selectedPiece = null;
+                    //boardPanel.selectedPiece = null;
                     System.out.println("Mouse Released");
                 }
 
+                // Fo speed, mousePressed instead of mouseClicked. mouseClicked looks for multiple button clicks, so it will
+                // coalesce some events.
                 @Override
                 public void mousePressed(final MouseEvent e) {
-                     boardPanel.selectedPiece = chessBoard.getPiece(tileId);
-                     System.out.println("Mouse Pressed");
+                    accumulateLegalPathTilesToHighlight();
+                    boardPanel.drawBoard();
                 }
             });
             validate();
@@ -215,27 +230,28 @@ public class Table {
         }
 
         void accumulateLegalPathTilesToHighlight() {
-            ArrayList<Move> legalMoves = chessBoard.getPiece(tileId).generateLegalMovesForPiece();
-
+            //ArrayList<Move> legalMoves = chessBoard.getPiece(tileId).generateLegalMovesForPiece();
+            ArrayList<Move> legalMoves = cell.getLegalMoves();
             if(legalMoves == null || legalMoves.isEmpty()) {
                 return;
             }
-            //ATTN: Using the Java 8 stream API along with Lambda
-            List<Move> verifiedLegalMoves = legalMoves.stream().filter((e) ->
-                    e.destination.getCordinate().isWithinBounds(chessBoard.SIZE_BOARD)).collect(Collectors.toList());
-            assert(verifiedLegalMoves.size() == legalMoves.size());
+            //ATTN: Move this to testing directory.
+            // Using the Java 8 stream API along with Lambda
+            //List<Move> verifiedLegalMoves = legalMoves.stream().filter((e) ->
+            //        e.destination.getCordinate().isWithinBounds(chessBoard.SIZE_BOARD)).collect(Collectors.toList());
+            //assert(verifiedLegalMoves.size() == legalMoves.size());
 
             if(legalMoves == null) {
                 return;
             }
-            if(tileToHighlight == null) {
-                tileToHighlight = new HashSet<>();
-            }
-            if(destTileToHighlight == null) {
-                destTileToHighlight = new HashSet<>();
-            }
-            tileToHighlight.clear();
-            destTileToHighlight.clear();
+            //if(tileToHighlight == null) {
+            //    tileToHighlight = new HashSet<>();
+            //}
+            //if(destTileToHighlight == null) {
+            //    destTileToHighlight = new HashSet<>();
+            //}
+            //tileToHighlight.clear();
+            //destTileToHighlight.clear();
 
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
