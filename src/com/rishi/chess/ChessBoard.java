@@ -12,8 +12,12 @@ public class ChessBoard {
 
     public ChessBoard() {
         this.board = new Cell[SIZE_BOARD][SIZE_BOARD];
-        moveManager = new MoveManager();
+        moveManager = new MoveManager(this);
         createInitialBoard();
+    }
+
+    public void makeMove(Cell source, Cell destination) {
+        moveManager.makeMove(source, destination);
     }
 
     private void createInitialBoard() {

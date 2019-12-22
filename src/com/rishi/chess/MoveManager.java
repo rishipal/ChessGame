@@ -4,9 +4,24 @@ import java.util.ArrayList;
 
 public class MoveManager {
 
-    ArrayList<Move> movesHistory;
-    MoveManager() {
-        movesHistory = new ArrayList<>();
+    private final ChessBoard chessBoard; // can not re-instantiate a board even if a bad move requested
+    private ArrayList<Move> movesHistory;
+    MoveManager(ChessBoard board) {
+        this.movesHistory = new ArrayList<>();
+        this.chessBoard = board;
+    }
+
+    private boolean isValidMove(Cell source, Cell destination) {
+        // TODO(rishipal): Complete this
+        return true;
+    }
+
+    public void makeMove(Cell source, Cell destination) {
+        // TODO(rishipal): Complete this
+        if(!isValidMove(source, destination)) {
+            return;
+        }
+        //saveMove(move);
     }
 
     void saveMove(Move move) {

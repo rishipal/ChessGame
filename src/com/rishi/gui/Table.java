@@ -1,6 +1,7 @@
 package com.rishi.gui;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.rishi.chess.Cell;
 import com.rishi.chess.ChessBoard;
@@ -32,8 +32,8 @@ public class Table {
     private Set<Integer> tileToHighlight;
     private Set<Integer> destTileToHighlight;
 
-    private Color lightTileColor = Color.decode("#FFFACD");
-    private Color darkTileColor = Color.decode("#593E1A");
+    private static final Color lightTileColor = Color.decode("#FFFACD");
+    private static final Color darkTileColor = Color.decode("#593E1A");
 
     public Table() {
         chessBoard = new ChessBoard();
@@ -103,6 +103,10 @@ public class Table {
     private class BoardPanel extends JPanel {
         final List<TilePanel> boardTiles;
         private Piece selectedPiece;
+        protected Piece pieceInMotion;
+        boolean inTransition = false;
+        TilePanel destination = null;
+
 
         BoardPanel() {
             super(new GridLayout(chessBoard.SIZE_BOARD, chessBoard.SIZE_BOARD));
@@ -148,66 +152,71 @@ public class Table {
             super(new GridBagLayout());
             this.tileId = tileId;
             cell = getCellFromTileID(tileId);
+            piece = cell.piece;
             setPreferredSize(TILE_PANEL_DIMENSION);
             highlightTileBorder(chessBoard);
-            addMouseMotionListener(new MouseMotionListener() {
+
+            addMouseMotionListener(new MouseInputAdapter() {
                 @Override
-                public void mouseDragged(MouseEvent e) {
-                    System.out.print(e.getSource());
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
                 }
 
                 @Override
-                public void mouseMoved(MouseEvent e) {
+                public void mouseDragged(MouseEvent e) {
+                    TilePanel source = (TilePanel) e.getSource();
+                    boardPanel.inTransition = true;
 
                 }
             });
-            addMouseListener(new MouseListener() {
+
+            addMouseListener(new MouseInputAdapter() {
                 @Override
-                public void mouseClicked(final MouseEvent event) {
-                    //tileToHighlight.clear();
-                    //destTileToHighlight.clear();
-                    //boardPanel.selectedPiece = chessBoard.getPiece(tileId);
-                    //ATTN: Don't do this computation here. You should cache all results earlier; only display here.
-                    //accumulateLegalPathTilesToHighlight();
-                    //boardPanel.drawBoard();
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
                 }
 
                 @Override
                 public void mouseExited(final MouseEvent e) {
+                    if(boardPanel.inTransition) {
+                        boardPanel.destination = null;
+                    }
                     tileToHighlight.clear();
                     destTileToHighlight.clear();
-                    //if(boardPanel.selectedPiece != null) {
-                    //    chessBoard.setPiece(tileId, null);
-                    //}
-                    //boardPanel.drawBoard();
                 }
 
                 @Override
                 public void mouseEntered(final MouseEvent e) {
-                    //Cell c = getCellFromTileID(tileId);
-                    //if(c.occupied == false) {
-                    //    return;
-                    //}
-                    //ATTN: Why do I need this check here?
-                    //if(tileToHighlight == null) {
-                    //    tileToHighlight = new HashSet<>();
-                    //}
-                    //tileToHighlight.clear();
+                    if(boardPanel.inTransition) {
+                        boardPanel.destination = TilePanel.this;
+                    }
                     tileToHighlight.add(tileId);
                     boardPanel.drawBoard();
                 }
 
+                // This function surprisingly is in reference to the tile from which the dragging originated, not the
+                // destination tile.
                 @Override
                 public void mouseReleased(final MouseEvent e) {
-                    //piece = boardPanel.selectedPiece;
-                    //piece.setNewCordinates(getCordinateFromTileID());
-                    //cell.setPiece(piece);
-                    //boardPanel.drawBoard();
-                    //boardPanel.selectedPiece = null;
-                    System.out.println("Mouse Released");
+                    if(boardPanel.inTransition) {
+                        if(boardPanel.pieceInMotion == null) {
+                            boardPanel.pieceInMotion = TilePanel.this.piece;
+                            Cell source = TilePanel.this.cell;
+                            Cell destination = boardPanel.destination.cell;
+                            chessBoard.makeMove(source, destination);
+
+                            destination.setPiece(source.piece);
+                            destination.piece.setNewCordinates(destination.getCordinate());
+                            source.piece = null;
+                            source.occupied = false;
+                        }
+                    }
+                    boardPanel.inTransition = false;
+                    boardPanel.pieceInMotion = null;
+                    boardPanel.drawBoard();
                 }
 
-                // Fo speed, mousePressed instead of mouseClicked. mouseClicked looks for multiple button clicks, so it will
+                // For speed, mousePressed instead of mouseClicked. mouseClicked looks for multiple button clicks, so it will
                 // coalesce some events.
                 @Override
                 public void mousePressed(final MouseEvent e) {
@@ -235,23 +244,10 @@ public class Table {
             if(legalMoves == null || legalMoves.isEmpty()) {
                 return;
             }
-            //ATTN: Move this to testing directory.
-            // Using the Java 8 stream API along with Lambda
-            //List<Move> verifiedLegalMoves = legalMoves.stream().filter((e) ->
-            //        e.destination.getCordinate().isWithinBounds(chessBoard.SIZE_BOARD)).collect(Collectors.toList());
-            //assert(verifiedLegalMoves.size() == legalMoves.size());
 
             if(legalMoves == null) {
                 return;
             }
-            //if(tileToHighlight == null) {
-            //    tileToHighlight = new HashSet<>();
-            //}
-            //if(destTileToHighlight == null) {
-            //    destTileToHighlight = new HashSet<>();
-            //}
-            //tileToHighlight.clear();
-            //destTileToHighlight.clear();
 
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
