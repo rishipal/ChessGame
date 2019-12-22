@@ -3,13 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ChessGame.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/MoveManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/MoveManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$BoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$BoardPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/MoveManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +48,18 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -95,18 +110,6 @@
         <item itemvalue="JUnit.PawnTests.testPawnPiecesMarkedOccupied" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -294,6 +297,17 @@
       <configuration name="PawnTests" configurationId="JUnit" />
     </history-entry>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="GUI improvements, some helpers" />
     <MESSAGE value="Implemented legal move checks on Pawn" />
@@ -369,12 +383,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
-          <line>275</line>
+          <line>290</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
-          <line>241</line>
+          <line>256</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>

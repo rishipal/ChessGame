@@ -166,6 +166,7 @@ public class Table {
                 public void mouseDragged(MouseEvent e) {
                     TilePanel source = (TilePanel) e.getSource();
                     boardPanel.inTransition = true;
+                    //boardPanel.destination = null;
 
                 }
             });
@@ -198,10 +199,11 @@ public class Table {
                 // destination tile.
                 @Override
                 public void mouseReleased(final MouseEvent e) {
-                    if(boardPanel.inTransition) {
+                    Cell source = TilePanel.this.cell;
+                    if(boardPanel.inTransition && boardPanel.destination != null) {
                         if(boardPanel.pieceInMotion == null) {
                             boardPanel.pieceInMotion = TilePanel.this.piece;
-                            Cell source = TilePanel.this.cell;
+
                             Cell destination = boardPanel.destination.cell;
                             chessBoard.makeMove(source, destination);
 
@@ -213,6 +215,7 @@ public class Table {
                     }
                     boardPanel.inTransition = false;
                     boardPanel.pieceInMotion = null;
+                    boardPanel.destination = null;
                     boardPanel.drawBoard();
                 }
 
