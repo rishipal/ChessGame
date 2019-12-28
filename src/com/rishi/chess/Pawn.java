@@ -3,11 +3,11 @@ import java.util.ArrayList;
 
 public class Pawn extends Piece {
     Pawn(Cordinate cord, PieceColor pieceColor, ChessBoard cb) {
+        super(pieceColor);
         this.board = cb;
         this.cordinate = cord;
-        this.pieceColor = pieceColor;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BP.gif" : "WP.gif");
-        this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
+        //this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
     }
 
 
@@ -124,7 +124,7 @@ public class Pawn extends Piece {
                 }
             }
         } else {
-            if(this.cordinate.row == 6) {
+            if(this.cordinate.row == 7) {
                 return null;
             }
             Cell firstCellBelowThis = board.getChessBoard()[this.cordinate.row + 1][this.cordinate.col];

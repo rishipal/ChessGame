@@ -12,15 +12,19 @@ public class Piece {
         WHITE,
         BLACK
     }
-    protected PieceColor pieceColor;
 
+    protected PieceColor pieceColor;
+    protected PieceDirection pieceDirection;
     protected enum PieceDirection {
         UP,
         DOWN
     }
-    protected PieceDirection pieceDirection;
 
-    public Piece() {}
+    public Piece(PieceColor pieceColor) {
+        this.pieceColor = pieceColor;
+        this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
+
+    }
     public String pieceIconPath = "art/";
 
     public void setNewCordinates(Cordinate c) {

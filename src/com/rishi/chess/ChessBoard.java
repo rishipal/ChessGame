@@ -13,14 +13,19 @@ public class ChessBoard {
     public ChessBoard() {
         this.board = new Cell[SIZE_BOARD][SIZE_BOARD];
         moveManager = new MoveManager(this);
-        createInitialBoard();
+        initializeBoard();
+    }
+
+    public void resetBoard() {
+        moveManager.resetMoveManager();
+        initializeBoard();
     }
 
     public void makeMove(Cell source, Cell destination) {
         moveManager.makeMove(source, destination);
     }
 
-    private void createInitialBoard() {
+    private void initializeBoard() {
         setAllCells();
         fillPawns();
         fillRook();
@@ -76,7 +81,6 @@ public class ChessBoard {
         }
     }
 
-
     public Cell getCellFromCordinate(Cordinate c) {
         return this.board[c.row][c.col];
     }
@@ -85,12 +89,5 @@ public class ChessBoard {
         int row = tileId/SIZE_BOARD;
         int col = tileId % SIZE_BOARD;
         return board[row][col].piece;
-    }
-
-    public void setPiece(int tileID, Piece piece) {
-        int row = tileID/SIZE_BOARD;
-        int col = tileID % SIZE_BOARD;
-        board[row][col].piece = piece;
-        return;
     }
 }

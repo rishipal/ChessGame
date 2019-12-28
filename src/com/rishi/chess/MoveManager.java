@@ -11,6 +11,10 @@ public class MoveManager {
         this.chessBoard = board;
     }
 
+    public void resetMoveManager() {
+        this.movesHistory.clear();
+    }
+
     private boolean isValidMove(Cell source, Cell destination) {
         // TODO(rishipal): Complete this
         return true;
@@ -21,7 +25,13 @@ public class MoveManager {
         if(!isValidMove(source, destination)) {
             return;
         }
-        //saveMove(move);
+        Move m = new Move(source.piece, destination);
+        if(!m.isMoveLegal()) {
+            System.out.print("Illegal Move");
+        }
+        destination.setPiece(source.piece);
+        source.unsetPiece();
+        saveMove(m);
     }
 
     void saveMove(Move move) {

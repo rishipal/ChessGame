@@ -11,13 +11,21 @@ public class Cell {
     public Cell( Cordinate cordinate, ChessBoard cb) {
         this.cordinate = cordinate;
         this.board = cb;
+        this.legalMoves = new ArrayList<>();
     }
 
     public void setPiece(Piece p) {
         this.piece = p;
         this.occupied = true;
         this.piece.cell = this;
+        this.piece.setNewCordinates(this.cordinate);
         this.legalMoves = this.piece.generateLegalMovesForPiece();
+    }
+
+    public void unsetPiece() {
+        this.piece = null;
+        this.occupied = false;
+        this.legalMoves.clear();
     }
 
     public Cordinate getCordinate() {

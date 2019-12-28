@@ -17,25 +17,26 @@ import com.rishi.chess.Cell;
 import com.rishi.chess.ChessBoard;
 import com.rishi.chess.Move;
 import com.rishi.chess.Piece;
-import com.rishi.chess.Cordinate;
 
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 
 public class Table {
+    private static Table INSTANCE = null;
+
     private JFrame gameFrame;
 
     private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
     private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
-    private ChessBoard chessBoard;
+    private static final Color lightTileColor = Color.decode("#FFFACD");
+    private static final Color darkTileColor = Color.decode("#593E1A");
+
+    private final ChessBoard chessBoard;
     private BoardPanel boardPanel;
     private Set<Integer> tileToHighlight;
     private Set<Integer> destTileToHighlight;
 
-    private static final Color lightTileColor = Color.decode("#FFFACD");
-    private static final Color darkTileColor = Color.decode("#593E1A");
-
-    public Table() {
+    private Table() {
         chessBoard = new ChessBoard();
         boardPanel = new BoardPanel();
         tileToHighlight = new HashSet<>();
@@ -44,7 +45,7 @@ public class Table {
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.add(CreateFileMenu());
         gameFrame.setJMenuBar(jMenuBar);
-        gameFrame.setTitle("Rishi Chess Game");
+        gameFrame.setTitle("Chess Game");
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
         gameFrame.setLocationRelativeTo(null);
@@ -61,13 +62,11 @@ public class Table {
         this.getBoardPanel().drawBoard();
     }
 
-
     public static Table get() {
+        if(INSTANCE != null) {
+            return INSTANCE;
+        }
         return new Table();
-    }
-
-    private ChessBoard getChessBoard() {
-        return this.chessBoard;
     }
 
     private BoardPanel getBoardPanel() {
@@ -78,19 +77,10 @@ public class Table {
         JMenu filesMenu = new JMenu("File");
 
         final JMenuItem resetGame = new JMenuItem("Reset", KeyEvent.VK_O);
-        // ATTN: Using Anonymous class here for action listener
-        resetGame.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(final ActionEvent e) {
-                                            gameFrame.dispose();
-                                            Table.get().show();
-                                        }
-                                    }
-        );
+        resetGame.addActionListener((e) -> { Table.get().chessBoard.resetBoard();});
         filesMenu.add(resetGame);
 
         final JMenuItem exitMenuItem = new JMenuItem("Exit", KeyEvent.VK_X);
-        // ATTN: Using Lambda here for action listener
         exitMenuItem.addActionListener((e) -> {
                 gameFrame.dispose();
                 System.exit(0);
@@ -99,14 +89,12 @@ public class Table {
         return filesMenu;
     }
 
-
     private class BoardPanel extends JPanel {
         final List<TilePanel> boardTiles;
         private Piece selectedPiece;
         protected Piece pieceInMotion;
         boolean inTransition = false;
         TilePanel destination = null;
-
 
         BoardPanel() {
             super(new GridLayout(chessBoard.SIZE_BOARD, chessBoard.SIZE_BOARD));
@@ -164,10 +152,7 @@ public class Table {
 
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    TilePanel source = (TilePanel) e.getSource();
                     boardPanel.inTransition = true;
-                    //boardPanel.destination = null;
-
                 }
             });
 
@@ -200,17 +185,11 @@ public class Table {
                 @Override
                 public void mouseReleased(final MouseEvent e) {
                     Cell source = TilePanel.this.cell;
-                    if(boardPanel.inTransition && boardPanel.destination != null) {
+                    if(boardPanel.inTransition && boardPanel.destination != null && boardPanel.destination != TilePanel.this) {
                         if(boardPanel.pieceInMotion == null) {
-                            boardPanel.pieceInMotion = TilePanel.this.piece;
-
+                            boardPanel.pieceInMotion = source.piece;
                             Cell destination = boardPanel.destination.cell;
                             chessBoard.makeMove(source, destination);
-
-                            destination.setPiece(source.piece);
-                            destination.piece.setNewCordinates(destination.getCordinate());
-                            source.piece = null;
-                            source.occupied = false;
                         }
                     }
                     boardPanel.inTransition = false;
@@ -236,22 +215,8 @@ public class Table {
             return chessBoard.getChessBoard()[row][col];
         }
 
-        private Cordinate getCordinateFromTileID() {
-            Cell c = this.getCellFromTileID(tileId);
-            return c.getCordinate();
-        }
-
         void accumulateLegalPathTilesToHighlight() {
-            //ArrayList<Move> legalMoves = chessBoard.getPiece(tileId).generateLegalMovesForPiece();
             ArrayList<Move> legalMoves = cell.getLegalMoves();
-            if(legalMoves == null || legalMoves.isEmpty()) {
-                return;
-            }
-
-            if(legalMoves == null) {
-                return;
-            }
-
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
                 if(path.size() != 0) {

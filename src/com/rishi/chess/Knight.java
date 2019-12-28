@@ -8,9 +8,10 @@ import static java.lang.Math.abs;
 
 public class Knight extends Piece {
     public Knight(Cordinate cord, PieceColor color, ChessBoard cb) {
+        super(color);
+
         this.board = cb;
         this.cordinate = cord;
-        this.pieceColor = color;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BN.gif" : "WN.gif");
     }
 
