@@ -1,17 +1,22 @@
 package com.rishi.chess;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Cell {
     private final ChessBoard board;
     private Cordinate cordinate;
     public boolean occupied = false;
     public Piece piece = null;
-    ArrayList<Move> legalMoves;
+    public ArrayList<Move> legalMoves;
+    private Set<Cell> legalDestinations;
+
     public Cell( Cordinate cordinate, ChessBoard cb) {
         this.cordinate = cordinate;
         this.board = cb;
         this.legalMoves = new ArrayList<>();
+        this.legalDestinations = getLegalDestinationsFromMoves();
     }
 
     public void setPiece(Piece p) {
@@ -20,12 +25,15 @@ public class Cell {
         this.piece.cell = this;
         this.piece.setNewCordinates(this.cordinate);
         this.legalMoves = this.piece.generateLegalMovesForPiece();
+        this.legalDestinations = getLegalDestinationsFromMoves();
+
     }
 
     public void unsetPiece() {
         this.piece = null;
         this.occupied = false;
         this.legalMoves.clear();
+        this.legalDestinations.clear();
     }
 
     public Cordinate getCordinate() {
@@ -38,5 +46,17 @@ public class Cell {
 
     public ArrayList<Move> getLegalMoves() {
         return this.legalMoves;
+    }
+
+    public Set<Cell> getLegalDestinations() {
+        return this.legalDestinations;
+    }
+
+    private Set<Cell> getLegalDestinationsFromMoves() {
+        Set<Cell> dests = new HashSet<>();
+        for(Move m : legalMoves) {
+            dests.add(m.destination);
+        }
+        return dests;
     }
 }

@@ -29,8 +29,9 @@ public class MoveManager {
         if(!m.isMoveLegal()) {
             System.out.print("Illegal Move");
         }
-        destination.setPiece(source.piece);
+        Piece pieceMoved = source.piece;
         source.unsetPiece();
+        destination.setPiece(pieceMoved);
         saveMove(m);
     }
 

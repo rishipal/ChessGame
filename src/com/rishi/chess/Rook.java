@@ -13,7 +13,7 @@ public class Rook extends Piece {
 
     @Override
     public ArrayList<Move> generateLegalMovesForPiece() {
-        return null;
+        return new ArrayList<>();
     }
 
     public boolean isMoveLegal(int end_x, int end_y) {

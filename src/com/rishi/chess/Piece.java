@@ -1,5 +1,6 @@
 package com.rishi.chess;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Piece {
@@ -31,7 +32,7 @@ public class Piece {
         this.cordinate = c;
     }
 
-
+    // do nothing, will be overridden.
     public boolean isMoveLegal(Cordinate dest) {
         System.out.println("This should not be called");
         return true;
@@ -40,7 +41,7 @@ public class Piece {
     public ArrayList<Move> generateLegalMovesForPiece() {
         // do nothing, will be overridden.
         System.out.println("Should not come here in generateLegalMovesForPiece");
-        return null;
+        return new ArrayList<Move>();
     }
 
     public Cell getEnclosingCell() {

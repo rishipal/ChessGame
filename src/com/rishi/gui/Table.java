@@ -166,18 +166,20 @@ public class Table {
                 public void mouseExited(final MouseEvent e) {
                     if(boardPanel.inTransition) {
                         boardPanel.destination = null;
+                    } else {
+                        tileToHighlight.clear();
+                        destTileToHighlight.clear();
                     }
-                    tileToHighlight.clear();
-                    destTileToHighlight.clear();
-                }
+               }
 
                 @Override
                 public void mouseEntered(final MouseEvent e) {
                     if(boardPanel.inTransition) {
                         boardPanel.destination = TilePanel.this;
+                    } else {
+                        tileToHighlight.add(tileId);
+                        boardPanel.drawBoard();
                     }
-                    tileToHighlight.add(tileId);
-                    boardPanel.drawBoard();
                 }
 
                 // This function surprisingly is in reference to the tile from which the dragging originated, not the
@@ -189,7 +191,13 @@ public class Table {
                         if(boardPanel.pieceInMotion == null) {
                             boardPanel.pieceInMotion = source.piece;
                             Cell destination = boardPanel.destination.cell;
-                            chessBoard.makeMove(source, destination);
+                            if(source.getLegalDestinations().contains(destination)) {
+                                chessBoard.makeMove(source, destination);
+                            } else {
+                                Toolkit.getDefaultToolkit().beep();
+                            }
+                            tileToHighlight.clear();
+                            destTileToHighlight.clear();
                         }
                     }
                     boardPanel.inTransition = false;
@@ -217,6 +225,7 @@ public class Table {
 
         void accumulateLegalPathTilesToHighlight() {
             ArrayList<Move> legalMoves = cell.getLegalMoves();
+
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
                 if(path.size() != 0) {

@@ -9,7 +9,6 @@ import static java.lang.Math.abs;
 public class Knight extends Piece {
     public Knight(Cordinate cord, PieceColor color, ChessBoard cb) {
         super(color);
-
         this.board = cb;
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BN.gif" : "WN.gif");
@@ -74,25 +73,25 @@ public class Knight extends Piece {
             if(destCord.col > this.cordinate.col) {
                 Cordinate c1 = new Cordinate(this.cordinate.row, this.cordinate.col + 1);
                 Cordinate c2 = new Cordinate(this.cordinate.row, this.cordinate.col + 2);
-                result.add(board.getCellFromCordinate(c1));
                 result.add(board.getCellFromCordinate(c2));
+                result.add(board.getCellFromCordinate(c1));
             } else {
                 Cordinate c1 = new Cordinate(this.cordinate.row, this.cordinate.col - 1);
                 Cordinate c2 = new Cordinate(this.cordinate.row, this.cordinate.col - 2);
-                result.add(board.getCellFromCordinate(c1));
                 result.add(board.getCellFromCordinate(c2));
+                result.add(board.getCellFromCordinate(c1));
             }
         } else if(abs(destCord.col - this.cordinate.col) == 1) {
             if(destCord.row > this.cordinate.row) {
                 Cordinate c1 = new Cordinate(this.cordinate.row + 1, this.cordinate.col);
                 Cordinate c2 = new Cordinate(this.cordinate.row + 2, this.cordinate.col);
-                result.add(board.getCellFromCordinate(c1));
                 result.add(board.getCellFromCordinate(c2));
+                result.add(board.getCellFromCordinate(c1));
             } else {
                 Cordinate c1 = new Cordinate(this.cordinate.row - 1, this.cordinate.col);
                 Cordinate c2 = new Cordinate(this.cordinate.row - 2, this.cordinate.col);
-                result.add(board.getCellFromCordinate(c1));
                 result.add(board.getCellFromCordinate(c2));
+                result.add(board.getCellFromCordinate(c1));
             }
         }
         result.add(board.getCellFromCordinate(this.cordinate));
