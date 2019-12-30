@@ -24,6 +24,20 @@ public class Cordinate {
         return false;
     }
 
+    public boolean isDiagonal(Cordinate another) {
+        int rowDiff = Math.abs(this.row - another.row);
+        int colDiff = Math.abs(this.col - another.col);
+        if(rowDiff == colDiff) {
+            return true;
+        }
+        return false;
+    }
+
+    // Number of diagonal steps is same as rowDiff or colDiff when diagonally moving
+    public int getDiagonalDistance(Cordinate another) {
+        return (Math.abs(this.row - another.row));
+    }
+
     public int getTileIDFromCordinate( int boardSize) {
         return this.row * boardSize + this.col;
     }

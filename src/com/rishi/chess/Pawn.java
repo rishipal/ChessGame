@@ -38,26 +38,45 @@ public class Pawn extends Piece {
 
     }
 
+
+
     boolean isLegalConsideringVerticalObstructions(Cordinate destination) {
+        assert(this.cordinate.isSameColumn(destination));
         boolean twoStepJumpAllowed = false;
         if((this.cordinate.row == 1 && this.pieceDirection == PieceDirection.DOWN) ||
                 (this.cordinate.row == 6 && this.pieceDirection == PieceDirection.UP)) {
             twoStepJumpAllowed = true;
         }
 
-        if(twoStepJumpAllowed){
-            //vertical path to destination does not have an occupied cell
-            int smallerRow = destination.row > this.cordinate.row? this.cordinate.row : destination.col;
-            if(board.getChessBoard()[smallerRow+1][destination.col].occupied) {
+        int thisRow = this.cordinate.row;
+        int destRow = destination.row;
+
+        if(Math.abs(thisRow-destRow) > 1) {
+            if(!twoStepJumpAllowed) {
                 return false;
             }
         }
-        return true;
 
+        if(Math.abs(thisRow-destRow) > 2) {
+            return false;
+        }
+
+        int smallerRow = destination.row > this.cordinate.row? this.cordinate.row : destination.row;
+        int largerRow = destination.row < this.cordinate.row? this.cordinate.row : destination.row;
+        while(smallerRow < largerRow) {
+            if(board.getChessBoard()[smallerRow+1][destination.col].occupied) {
+                return false;
+            }
+            smallerRow++;
+        }
+        return true;
     }
 
     boolean isKillingEnemyDiagonally(Cordinate destination) {
-        if(destination.col == this.cordinate.col) {
+        assert(this.cordinate.isDiagonal(destination));
+
+        int diagnalDist = this.cordinate.getDiagonalDistance(destination);
+        if(diagnalDist != 1) {
             return false;
         }
 
@@ -67,7 +86,6 @@ public class Pawn extends Piece {
         }
         PieceColor expectedColorOfOpponent = this.pieceColor == PieceColor.BLACK? PieceColor.WHITE: PieceColor.BLACK;
         PieceColor destinationCellPieceColor = board.getChessBoard()[destination.row][destination.col].piece.pieceColor;
-
         if(destinationCellPieceColor != expectedColorOfOpponent) {
             return false;
         }
@@ -77,6 +95,7 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isMoveLegal(Cordinate destination) {
+        System.out.print("Inside Pawn isMoveLegal");
         if(isMoveSpatiallyLegal(destination) &&
                 isMoveDirectionallyLegal(destination) &&
                 isLegalConsideringVerticalObstructions(destination) &&
@@ -87,25 +106,15 @@ public class Pawn extends Piece {
     }
 
     private boolean isDestionationLegal(Cell cell) {
-        if(this.cordinate.isSameRow(cell.getCordinate())) {
-            return false;
-        }
         if(this.cordinate.isSameColumn(cell.getCordinate())) {
-            if(this.cordinate.getCordinateAbove().equals(cell.getCordinate()) || this.cordinate.getCordinateBelow().equals(cell.getCordinate())) {
-                if(cell.occupied) {
-                    return false;
-                }
-                return true;
+            if(cell.occupied) {
+                return false;
+            }
+            if(!isLegalConsideringVerticalObstructions(cell.getCordinate())) {
+                return false;
             }
         }
-        if(isKillingEnemyDiagonally(cell.getCordinate())) {
-            return true;
-        }
-        if(cell.occupied) {
-            return false;
-        }
         return true;
-        //AI: todo check for obstruction from source to destination
     }
 
     @Override
@@ -117,22 +126,24 @@ public class Pawn extends Piece {
                 return null;
             }
             Cell firstCellAboveThis = board.getChessBoard()[this.cordinate.row - 1][this.cordinate.col];
-            if(isDestionationLegal(firstCellAboveThis)) {
+            if(!firstCellAboveThis.occupied) {
                 legalDestinations.add(firstCellAboveThis);
-            }
-            if(this.cordinate.row == 6) {
-                Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row - 2][this.cordinate.col];
-                if(isDestionationLegal(secondCellAboveThis)) {
-                    legalDestinations.add(secondCellAboveThis);
+                if(this.cordinate.row == 6) {
+                    Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row - 2][this.cordinate.col];
+                    if(!secondCellAboveThis.occupied) {
+                        legalDestinations.add(secondCellAboveThis);
+                    }
                 }
             }
-            Cordinate topLeft = new Cordinate(this.cordinate.row -1, this.cordinate.row -1);
+            System.out.print("Coming here1");
+            Cordinate topLeft = new Cordinate(this.cordinate.row -1, this.cordinate.col -1);
             if(topLeft.isWithinBounds(board.SIZE_BOARD)) {
                 Cell topLeftCell = board.getCellFromCordinate(topLeft);
                 if(topLeftCell.occupied && topLeftCell.piece.pieceColor != this.pieceColor) {
                     legalDestinations.add(topLeftCell);
                 }
             }
+            System.out.print("Coming here2");
             Cordinate topRight = new Cordinate(this.cordinate.row -1, this.cordinate.col + 1);
             if(topRight.isWithinBounds(board.SIZE_BOARD)) {
                 Cell topRightCell = board.getCellFromCordinate(topRight);
@@ -145,15 +156,16 @@ public class Pawn extends Piece {
                 return null;
             }
             Cell firstCellBelowThis = board.getChessBoard()[this.cordinate.row + 1][this.cordinate.col];
-            if(isDestionationLegal(firstCellBelowThis)) {
+            if(!firstCellBelowThis.occupied) {
                 legalDestinations.add(firstCellBelowThis);
-            }
-            if(this.cordinate.row == 1) {
-                Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row + 2][this.cordinate.col];
-                if(isDestionationLegal(secondCellAboveThis)) {
-                    legalDestinations.add(secondCellAboveThis);
+                if(this.cordinate.row == 1) {
+                    Cell secondCellBelowThis = board.getChessBoard()[this.cordinate.row + 2][this.cordinate.col];
+                    if(!secondCellBelowThis.occupied) {
+                        legalDestinations.add(secondCellBelowThis);
+                    }
                 }
             }
+            System.out.print("Coming here3");
             Cordinate downLeft = new Cordinate(this.cordinate.row +1, this.cordinate.col -1);
             if(downLeft.isWithinBounds(board.SIZE_BOARD)) {
                 Cell downLeftCell = board.getCellFromCordinate(downLeft);
@@ -161,7 +173,8 @@ public class Pawn extends Piece {
                     legalDestinations.add(downLeftCell);
                 }
             }
-            Cordinate downRight = new Cordinate(this.cordinate.row -1, this.cordinate.col + 1);
+            System.out.print("Coming here4");
+            Cordinate downRight = new Cordinate(this.cordinate.row +1, this.cordinate.col + 1);
             if(downRight.isWithinBounds(board.SIZE_BOARD)) {
                 Cell downRightCell = board.getCellFromCordinate(downRight);
                 if(downRightCell.occupied && downRightCell.piece.pieceColor != this.pieceColor) {
@@ -169,7 +182,7 @@ public class Pawn extends Piece {
                 }
             }
         }
-
+        System.out.print("Coming here5");
         ArrayList<Move> legalMoves = new ArrayList<>();
         for (Cell c : legalDestinations) {
             Move m = new Move(this, c);
@@ -177,6 +190,7 @@ public class Pawn extends Piece {
             m.path.add(m.destination);
             legalMoves.add(m);
         }
+        System.out.print("Coming here6");
         return legalMoves;
     }
 }

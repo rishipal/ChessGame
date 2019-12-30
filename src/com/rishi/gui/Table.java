@@ -225,7 +225,9 @@ public class Table {
 
         void accumulateLegalPathTilesToHighlight() {
             ArrayList<Move> legalMoves = cell.getLegalMoves();
-
+            if(legalMoves.isEmpty()) {
+                tileToHighlight.add(cell.getTileIDFromCell());
+            }
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
                 if(path.size() != 0) {
@@ -268,7 +270,8 @@ public class Table {
 
         private void highlightTileColor() {
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
-                setBackground(Color.CYAN);
+                Color LIGHT_GREEN = new Color(150, 255, 150);
+                setBackground(LIGHT_GREEN);
             }
             if(destTileToHighlight != null && destTileToHighlight.contains((this.tileId))){
                 setBackground(Color.GREEN);
