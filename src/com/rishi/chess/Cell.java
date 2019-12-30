@@ -19,6 +19,11 @@ public class Cell {
         this.legalDestinations = getLegalDestinationsFromMoves();
     }
 
+    public void update() {
+        this.legalMoves = new ArrayList<>();
+        this.legalDestinations = getLegalDestinationsFromMoves();
+    }
+
     public void setPiece(Piece p) {
         this.piece = p;
         this.occupied = true;
@@ -45,6 +50,11 @@ public class Cell {
     }
 
     public ArrayList<Move> getLegalMoves() {
+        if(this.legalMoves.isEmpty()) {
+            this.legalMoves = this.piece.generateLegalMovesForPiece();
+            this.legalDestinations = getLegalDestinationsFromMoves();
+            return this.legalMoves;
+        }
         return this.legalMoves;
     }
 

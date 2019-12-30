@@ -86,7 +86,24 @@ public class Pawn extends Piece {
         return false;
     }
 
-    private boolean isDestionationPossible(Cell cell) {
+    private boolean isDestionationLegal(Cell cell) {
+        if(this.cordinate.isSameRow(cell.getCordinate())) {
+            return false;
+        }
+        if(this.cordinate.isSameColumn(cell.getCordinate())) {
+            if(this.cordinate.getCordinateAbove().equals(cell.getCordinate()) || this.cordinate.getCordinateBelow().equals(cell.getCordinate())) {
+                if(cell.occupied) {
+                    return false;
+                }
+                return true;
+            }
+        }
+        if(isKillingEnemyDiagonally(cell.getCordinate())) {
+            return true;
+        }
+        if(cell.occupied) {
+            return false;
+        }
         return true;
         //AI: todo check for obstruction from source to destination
     }
@@ -100,12 +117,12 @@ public class Pawn extends Piece {
                 return null;
             }
             Cell firstCellAboveThis = board.getChessBoard()[this.cordinate.row - 1][this.cordinate.col];
-            if(isDestionationPossible(firstCellAboveThis)) {
+            if(isDestionationLegal(firstCellAboveThis)) {
                 legalDestinations.add(firstCellAboveThis);
             }
             if(this.cordinate.row == 6) {
                 Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row - 2][this.cordinate.col];
-                if(isDestionationPossible(secondCellAboveThis)) {
+                if(isDestionationLegal(secondCellAboveThis)) {
                     legalDestinations.add(secondCellAboveThis);
                 }
             }
@@ -128,12 +145,12 @@ public class Pawn extends Piece {
                 return null;
             }
             Cell firstCellBelowThis = board.getChessBoard()[this.cordinate.row + 1][this.cordinate.col];
-            if(isDestionationPossible(firstCellBelowThis)) {
+            if(isDestionationLegal(firstCellBelowThis)) {
                 legalDestinations.add(firstCellBelowThis);
             }
             if(this.cordinate.row == 1) {
                 Cell secondCellAboveThis = board.getChessBoard()[this.cordinate.row + 2][this.cordinate.col];
-                if(isDestionationPossible(secondCellAboveThis)) {
+                if(isDestionationLegal(secondCellAboveThis)) {
                     legalDestinations.add(secondCellAboveThis);
                 }
             }

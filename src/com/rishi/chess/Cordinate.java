@@ -10,8 +10,30 @@ public class Cordinate {
         col = j;
     }
 
+    public boolean isSameColumn(Cordinate another) {
+        if(this.col == another.col) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isSameRow(Cordinate another) {
+        if(this.row == another.row) {
+            return true;
+        }
+        return false;
+    }
+
     public int getTileIDFromCordinate( int boardSize) {
         return this.row * boardSize + this.col;
+    }
+
+    public Cordinate getCordinateAbove() {
+        return new Cordinate(this.row-1, this.col);
+    }
+
+    public Cordinate getCordinateBelow() {
+        return new Cordinate(this.row+1, this.col);
     }
 
     public boolean isWithinBounds( int boardSize) {

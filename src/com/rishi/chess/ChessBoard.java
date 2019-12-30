@@ -21,6 +21,14 @@ public class ChessBoard {
         initializeBoard();
     }
 
+    public void updateAll() {
+        for (Cell[] row : board) {
+            for(Cell c : row) {
+                c.update();
+            }
+        }
+    }
+
     public void makeMove(Cell source, Cell destination) {
         moveManager.makeMove(source, destination);
     }
@@ -68,10 +76,10 @@ public class ChessBoard {
     }
 
     private void fillRook() {
-        this.board[0][0].setPiece( new Rook(new Cordinate(0, 0) , Piece.PieceColor.WHITE));
-        this.board[0][7].setPiece( new Rook(new Cordinate(0, 7) , Piece.PieceColor.WHITE));
-        this.board[7][7].setPiece( new Rook(new Cordinate(7, 7) , Piece.PieceColor.BLACK));
-        this.board[7][0].setPiece( new Rook(new Cordinate(7, 0) , Piece.PieceColor.BLACK));
+        this.board[0][0].setPiece( new Rook(new Cordinate(0, 0) , Piece.PieceColor.WHITE, this));
+        this.board[0][7].setPiece( new Rook(new Cordinate(0, 7) , Piece.PieceColor.WHITE, this));
+        this.board[7][7].setPiece( new Rook(new Cordinate(7, 7) , Piece.PieceColor.BLACK, this));
+        this.board[7][0].setPiece( new Rook(new Cordinate(7, 0) , Piece.PieceColor.BLACK, this));
     }
 
     private void fillPawns() {

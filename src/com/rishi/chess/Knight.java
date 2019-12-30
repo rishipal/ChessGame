@@ -99,16 +99,8 @@ public class Knight extends Piece {
         return result;
     }
 
-    /**
-     * Knight's moves are independent from the direction on the player.
-     * This function first collects all spatially possible destinations,
-     * Out of those, legal destinations are the ones which are unoccupied by the current player
-     * @return legal moves that can be done from the current position of a Knight piece
-     */
-    @Override
-    public ArrayList<Move> generateLegalMovesForPiece() {
+    public ArrayList<Cell> getLegalDestinations() {
         ArrayList<Cell> legalDestinations = new ArrayList<>();
-
         ArrayList<Cordinate> destinationCordinates = getAllSpatiallyPossibleDestinations();
         for(Cordinate c : destinationCordinates) {
             Cell cell = board.getCellFromCordinate(c);
@@ -120,6 +112,18 @@ public class Knight extends Piece {
                 }
             }
         }
+        return legalDestinations;
+    }
+
+    /**
+     * Knight's moves are independent from the direction on the player.
+     * This function first collects all spatially possible destinations,
+     * Out of those, legal destinations are the ones which are unoccupied by the current player
+     * @return legal moves that can be done from the current position of a Knight piece
+     */
+    @Override
+    public ArrayList<Move> generateLegalMovesForPiece() {
+        ArrayList<Cell> legalDestinations = getLegalDestinations();
 
         ArrayList<Move> legalMoves = new ArrayList<>();
         for(Cell dest : legalDestinations) {

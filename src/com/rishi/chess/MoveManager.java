@@ -33,6 +33,7 @@ public class MoveManager {
         source.unsetPiece();
         destination.setPiece(pieceMoved);
         saveMove(m);
+        chessBoard.updateAll();
     }
 
     void saveMove(Move move) {

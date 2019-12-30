@@ -1,6 +1,4 @@
 package com.rishi.chess;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Piece {
@@ -41,7 +39,13 @@ public class Piece {
     public ArrayList<Move> generateLegalMovesForPiece() {
         // do nothing, will be overridden.
         System.out.println("Should not come here in generateLegalMovesForPiece");
-        return new ArrayList<Move>();
+        return new ArrayList<>();
+    }
+
+    public ArrayList<Move> generatePathsForLegalMoves() {
+        // do nothing, will be overridden.
+        System.out.println("Should not come here in generatePathsForLegalMoves");
+        return new ArrayList<>();
     }
 
     public Cell getEnclosingCell() {
