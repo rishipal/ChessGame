@@ -21,8 +21,6 @@ import com.rishi.chess.Piece;
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 
 public class Table {
-    private static Table INSTANCE = null;
-
     private JFrame gameFrame;
 
     private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
@@ -63,11 +61,7 @@ public class Table {
     }
 
     public static Table get() {
-        //if(INSTANCE != null) {
-        //    return INSTANCE;
-        //}
-        INSTANCE = new Table();
-        return INSTANCE;
+        return new Table();
     }
 
     private BoardPanel getBoardPanel() {

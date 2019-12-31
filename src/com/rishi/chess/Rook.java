@@ -81,7 +81,7 @@ public class Rook extends Piece {
             Move m = new Move(this, dest);
             ArrayList<Cell> path = this.generatePathForRookMove(m);
             m.setPath(path);
-            System.out.println(" and path is " + m.getPathAsString());
+            //System.out.println(" and path is " + m.getPathAsString());
 
             legalMoves.add(m);
         }

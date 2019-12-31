@@ -16,11 +16,6 @@ public class ChessBoard {
         initializeBoard();
     }
 
-    public void resetBoard() {
-        moveManager.resetMoveManager();
-        initializeBoard();
-    }
-
     public void updateAll() {
         for (Cell[] row : board) {
             for(Cell c : row) {
@@ -49,7 +44,7 @@ public class ChessBoard {
             for(int j = 0; j < this.SIZE_BOARD; j++) {
                 Cell c = this.board[i][j];
                 if(c.occupied) {
-                    this.board[i][j].setPieceData();
+                    c.setPieceData();
                 }
             }
         }
