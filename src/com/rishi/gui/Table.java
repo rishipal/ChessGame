@@ -63,10 +63,11 @@ public class Table {
     }
 
     public static Table get() {
-        if(INSTANCE != null) {
-            return INSTANCE;
-        }
-        return new Table();
+        //if(INSTANCE != null) {
+        //    return INSTANCE;
+        //}
+        INSTANCE = new Table();
+        return INSTANCE;
     }
 
     private BoardPanel getBoardPanel() {
@@ -77,7 +78,10 @@ public class Table {
         JMenu filesMenu = new JMenu("File");
 
         final JMenuItem resetGame = new JMenuItem("Reset", KeyEvent.VK_O);
-        resetGame.addActionListener((e) -> { Table.get().chessBoard.resetBoard();});
+        resetGame.addActionListener((e) -> {
+            gameFrame.dispose();
+            Table.get().show();
+        });
         filesMenu.add(resetGame);
 
         final JMenuItem exitMenuItem = new JMenuItem("Exit", KeyEvent.VK_X);

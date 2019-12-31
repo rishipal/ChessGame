@@ -29,9 +29,12 @@ public class Cell {
         this.occupied = true;
         this.piece.cell = this;
         this.piece.setNewCordinates(this.cordinate);
+    }
+
+    // Should be called only when all the pieces are set on the board. - board is static state.
+    public void setPieceData() {
         this.legalMoves = this.piece.generateLegalMovesForPiece();
         this.legalDestinations = getLegalDestinationsFromMoves();
-
     }
 
     public void unsetPiece() {
@@ -50,7 +53,7 @@ public class Cell {
     }
 
     public ArrayList<Move> getLegalMoves() {
-        if(this.legalMoves.isEmpty()) {
+        if(this.occupied && this.legalMoves.isEmpty()) {
             this.legalMoves = this.piece.generateLegalMovesForPiece();
             this.legalDestinations = getLegalDestinationsFromMoves();
             return this.legalMoves;

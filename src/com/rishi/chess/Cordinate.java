@@ -1,8 +1,5 @@
 package com.rishi.chess;
 
-
-import jdk.management.jfr.RecordingInfo;
-
 public class Cordinate {
     public final int row;
     public final int col;
@@ -58,6 +55,71 @@ public class Cordinate {
 
     public Cordinate getCordinateBelow() {
         return new Cordinate(this.row+1, this.col);
+    }
+
+    private Cordinate getCordinateNorthEast() {
+        return new Cordinate(this.row-1, this.col+1);
+    }
+
+    private Cordinate getCordinateNorthWest() {
+        return new Cordinate(this.row-1, this.col-1);
+    }
+
+    private Cordinate getCordinateSouthEast() {
+        return new Cordinate(this.row+1, this.col+1);
+    }
+
+    private Cordinate getCordinateSouthWest() {
+        return new Cordinate(this.row+1, this.col -1);
+    }
+
+    public Cordinate getNextCordinate(Piece.PieceDirection d) {
+        switch(d) {
+            case UP: return getCordinateAbove();
+            case DOWN: return getCordinateBelow();
+            case LEFT: return getCordinateLeft();
+            case RIGHT: return getCordinateRight();
+            case NORTHEAST: return getCordinateNorthEast();
+            case NORTHWEST: return getCordinateNorthWest();
+            case SOUTHEAST: return getCordinateSouthEast();
+            case SOUTHWEST: return getCordinateSouthWest();
+        }
+        return null;
+    }
+
+    public Piece.PieceDirection getDirection(Cordinate destination) {
+        if(this.isSameColumn(destination)) {
+            if(this.row < destination.row) {
+                return Piece.PieceDirection.DOWN;
+            } else {
+                return Piece.PieceDirection.UP;
+            }
+        } else if (this.isSameRow(destination)) {
+            if(this.col < destination.col) {
+                return Piece.PieceDirection.RIGHT;
+            } else {
+                return Piece.PieceDirection.LEFT;
+            }
+        } else if(this.isDiagonal(destination)) {
+            if(this.row < destination.row) {
+                if(this.col < destination.col) {
+                    return Piece.PieceDirection.NORTHEAST;
+                } else {
+                    return Piece.PieceDirection.NORTHWEST;
+                }
+            } else {
+                    if(this.col < destination.col) {
+                        return Piece.PieceDirection.SOUTHEAST;
+                    } else {
+                        return Piece.PieceDirection.SOUTHWEST;
+                }
+            }
+        }
+        return Piece.PieceDirection.UNKNOWN;
+    }
+
+    public boolean isEqual(Cordinate another) {
+        return this.row == another.row && this.col == another.col;
     }
 
     public boolean isWithinBounds( int boardSize) {

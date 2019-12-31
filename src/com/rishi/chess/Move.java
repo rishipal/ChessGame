@@ -25,6 +25,14 @@ public class Move {
         this.path = p;
     }
 
+    public String getPathAsString() {
+        String p = new String();
+        for ( Cell c : path) {
+            p = p + "[" + c.getCordinate().row + "," + c.getCordinate().col + "] --> " ;
+        }
+        return p;
+    }
+
     boolean isMoveLegal() {
         return piece.isMoveLegal(destination.getCordinate());
     }

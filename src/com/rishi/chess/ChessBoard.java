@@ -41,6 +41,18 @@ public class ChessBoard {
         fillBishops();
         fillQueens();
         fillKings();
+        setData();
+    }
+
+    private void setData() {
+        for(int i = 0; i < this.SIZE_BOARD; i++) {
+            for(int j = 0; j < this.SIZE_BOARD; j++) {
+                Cell c = this.board[i][j];
+                if(c.occupied) {
+                    this.board[i][j].setPieceData();
+                }
+            }
+        }
     }
 
     private void setAllCells() {

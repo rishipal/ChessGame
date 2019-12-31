@@ -16,7 +16,14 @@ public class Piece {
     protected PieceDirection pieceDirection;
     protected enum PieceDirection {
         UP,
-        DOWN
+        DOWN,
+        RIGHT,
+        LEFT,
+        NORTHEAST,
+        NORTHWEST,
+        SOUTHEAST,
+        SOUTHWEST,
+        UNKNOWN
     }
 
     public Piece(PieceColor pieceColor) {

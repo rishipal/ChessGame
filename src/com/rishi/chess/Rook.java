@@ -5,7 +5,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Rook extends Piece {
-
     public Rook(Cordinate cord, PieceColor c, ChessBoard cb) {
         super(c);
         this.cordinate = cord;
@@ -14,90 +13,23 @@ public class Rook extends Piece {
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BR.gif" : "WR.gif");
     }
 
-    private Set<Cell> getLegalDestinationsLeft() {
+    private Set<Cell> getLegalDestinations(PieceDirection d) {
         Cordinate currCord = this.cordinate;
         Set<Cell> dests = new LinkedHashSet<>();
-
-        Cordinate cordinateLeft = currCord.getCordinateLeft();
-        while(cordinateLeft.isWithinBounds(this.board.SIZE_BOARD)) {
-            Cell cellLeft = board.getCellFromCordinate(cordinateLeft);
-            if(cellLeft.occupied) {
+        Cordinate nextCordinate = currCord.getNextCordinate(d);
+        while(nextCordinate.isWithinBounds(this.board.SIZE_BOARD)) {
+            Cell nextCell = board.getCellFromCordinate(nextCordinate);
+            if(nextCell.occupied) {
+                if(nextCell.piece.pieceColor != this.pieceColor) {
+                    dests.add(nextCell);
+                }
                 break;
             } else {
-                dests.add(cellLeft);
+                dests.add(nextCell);
             }
-            cordinateLeft = cordinateLeft.getCordinateLeft();
+            nextCordinate = nextCordinate.getNextCordinate(d);
         }
         return dests;
-    }
-
-    private Set<Cell> getLegalDestinationsRight() {
-        Cordinate currCord = this.cordinate;
-        Set<Cell> dests = new LinkedHashSet<>();
-
-        Cordinate cordinateRight = currCord.getCordinateRight();
-        while(cordinateRight.isWithinBounds(this.board.SIZE_BOARD)) {
-            Cell cellRight = board.getCellFromCordinate(cordinateRight);
-            if(cellRight.occupied) {
-                break;
-            } else {
-                dests.add(cellRight);
-            }
-            cordinateRight = cordinateRight.getCordinateRight();
-        }
-        return dests;
-    }
-
-    private Set<Cell> getLegalDestinationsAbove() {
-        Cordinate currCord = this.cordinate;
-        Set<Cell> dests = new LinkedHashSet<>();
-
-        Cordinate cordAbove = currCord.getCordinateAbove();
-        while(cordAbove.isWithinBounds(this.board.SIZE_BOARD)) {
-            Cell cellAbove = board.getCellFromCordinate(cordAbove);
-            if(cellAbove.occupied) {
-                break;
-            } else {
-                dests.add(cellAbove);
-            }
-            cordAbove = cordAbove.getCordinateAbove();
-        }
-        return dests;
-    }
-
-    private Set<Cell> getLegalDestinationsBelow() {
-        Cordinate currCord = this.cordinate;
-        Set<Cell> dests = new LinkedHashSet<>();
-
-        Cordinate cordBelow = currCord.getCordinateBelow();
-        while(cordBelow.isWithinBounds(this.board.SIZE_BOARD)) {
-            Cell cellBelow = board.getCellFromCordinate(cordBelow);
-            if(cellBelow.occupied) {
-                break;
-            } else {
-                dests.add(cellBelow);
-            }
-            cordBelow = cordBelow.getCordinateBelow();
-        }
-        return dests;
-    }
-
-    /**
-     * Collects legal destinations above and below this cell for Rook piece
-     * @return
-     */
-    private Set<Cell> getLegalVerticalDestinations() {
-        Set<Cell> destsAbove = getLegalDestinationsAbove();
-        Set<Cell> destsBelow = getLegalDestinationsBelow();
-        destsAbove.addAll(destsBelow);
-        return destsAbove;
-    }
-
-    private Set<Cell> getLegalHorizontalDestinations() {
-        Set<Cell> destsLeft = getLegalDestinationsLeft();
-        Set<Cell> destsRight = getLegalDestinationsRight();
-        destsLeft.addAll(destsRight);
-        return destsLeft;
     }
 
     /**
@@ -105,46 +37,38 @@ public class Rook extends Piece {
      * @return
      */
     private Set<Cell> getLegalDestinations() {
-        Set<Cell> verticalDests = getLegalVerticalDestinations();
-        Set<Cell> horizonralDests = getLegalHorizontalDestinations();
-        verticalDests.addAll(horizonralDests);
-        return verticalDests;
+        Set<Cell> destsUp = getLegalDestinations(PieceDirection.UP);
+        Set<Cell> destsDown = getLegalDestinations(PieceDirection.DOWN);
+        Set<Cell> destsLeft = getLegalDestinations(PieceDirection.LEFT);
+        Set<Cell> destsRight = getLegalDestinations(PieceDirection.RIGHT);
+        destsUp.addAll(destsDown);
+        destsUp.addAll(destsLeft);
+        destsUp.addAll(destsRight);
+        return destsUp;
+    }
+
+    private ArrayList<Cell> generatePathForRookMove(Move move, PieceDirection d) {
+        ArrayList<Cell> path = new ArrayList<>();
+        Cell source = move.source;
+        Cell destination = move.destination;
+        path.add(source);
+        Cordinate next = source.getCordinate().getNextCordinate(d);
+        while(next.isWithinBounds(board.SIZE_BOARD) &&  next.isEqual(destination.getCordinate())) {
+            Cell curr = board.getCellFromCordinate(next);
+            path.add(curr);
+            next = next.getNextCordinate(d);
+        }
+        path.add(destination);
+        System.out.println("Direction is " + d);
+        return path;
     }
 
     private ArrayList<Cell> generatePathForRookMove(Move move) {
-        ArrayList<Cell> path = new ArrayList<>();
+        ArrayList<Cell> path;
+        Cell source = move.source;
         Cell destination = move.destination;
-        path.add(move.source);
-        int currCol = move.source.getCordinate().col;
-        int currRow =  move.source.getCordinate().row;
-        if(this.cordinate.isSameColumn(destination.getCordinate())) {
-            if(this.cordinate.row < destination.getCordinate().row) {
-                while(currRow < destination.getCordinate().row) {
-                    path.add(board.getChessBoard()[currRow][currCol]);
-                    currRow++;
-                }
-            } else {
-                while(currRow > destination.getCordinate().row) {
-                    path.add(board.getChessBoard()[currRow][currCol]);
-                    currRow--;
-                }
-            }
-        } else if(this.cordinate.isSameRow(destination.getCordinate())) {
-            if(this.cordinate.col <= destination.getCordinate().col) {
-                while(currCol < destination.getCordinate().col) {
-                    path.add(board.getChessBoard()[currRow][currCol]);
-                    currCol++;
-                }
-            } else {
-                while(currCol > destination.getCordinate().col) {
-                    path.add(board.getChessBoard()[currRow][currCol]);
-                    currCol--;
-                }
-            }
-        } else {
-            System.out.print("Rook move calculated incorrectly - destination is niether vertical nor horizontal");
-        }
-        path.add(destination);
+        Piece.PieceDirection d = source.getCordinate().getDirection(destination.getCordinate());
+        path = generatePathForRookMove(move, d);
         return path;
     }
 
@@ -157,13 +81,10 @@ public class Rook extends Piece {
             Move m = new Move(this, dest);
             ArrayList<Cell> path = this.generatePathForRookMove(m);
             m.setPath(path);
+            System.out.println(" and path is " + m.getPathAsString());
+
             legalMoves.add(m);
         }
         return legalMoves;
     }
-
-    public boolean isMoveLegal(int end_x, int end_y) {
-        return true;
-    }
-
 }
