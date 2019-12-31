@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="Fix bug in pawn move's destination validator">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cell.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cordinate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Knight.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Move.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/MoveManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Pawn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece$PieceColor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece$PieceDirection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Rook.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$BoardPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/tests/PawnTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/tests/PawnTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,21 +40,9 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowSVN Repositories.ShowToolbar" value="false" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -120,6 +93,18 @@
         <item itemvalue="JUnit.PawnTests.testPawnPiecesMarkedOccupied" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -314,19 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1577680959427</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fix bug in pawn move's destination validator &#10;&#10;Now it can detect cross moves(killing enemy) and also updates moves when it is on row 1 or 6 (elibible for 2 steps) but there is a new obstruction in front of it.">
+      <created>1577692109957</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1577692109957</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="GUI improvements, some helpers" />
@@ -352,69 +333,70 @@
     <MESSAGE value="Clean and bug fix when gragged outside a cell and brought back into the same cell." />
     <MESSAGE value="Make improvements in movemanager and handling highlights" />
     <MESSAGE value="Add dynamic path calculation when surroundings change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add dynamic path calculation when surroundings change" />
+    <MESSAGE value="Fix bug in pawn move's destination validator &#10;&#10;Now it can detect cross moves(killing enemy) and also updates moves when it is on row 1 or 6 (elibible for 2 steps) but there is a new obstruction in front of it." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug in pawn move's destination validator &#10;&#10;Now it can detect cross moves(killing enemy) and also updates moves when it is on row 1 or 6 (elibible for 2 steps) but there is a new obstruction in front of it." />
   </component>
   <component name="WindowStateProjectService">
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1576982552119">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1576982552119" />
-    <state x="353" y="52" key="CommitChangelistDialog2" timestamp="1577691932412">
+    <state x="353" y="52" key="CommitChangelistDialog2" timestamp="1577692109765">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="353" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1577691932412" />
+    <state x="353" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1577692109765" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1577320009039">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1577320009039" />
-    <state width="1398" height="95" key="GridCell.Tab.0.bottom" timestamp="1577692022033">
+    <state width="1398" height="95" key="GridCell.Tab.0.bottom" timestamp="1577771342934">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="95" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1577692022033" />
+    <state width="1398" height="95" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1577771342934" />
     <state width="980" height="147" key="GridCell.Tab.0.bottom/0.23.1440.829@0.23.1440.829" timestamp="1577683087667" />
     <state width="980" height="95" key="GridCell.Tab.0.bottom/0.23.1440.830@0.23.1440.830" timestamp="1577689428923" />
     <state width="980" height="95" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1577689452358" />
-    <state width="1398" height="95" key="GridCell.Tab.0.center" timestamp="1577692022032">
+    <state width="1398" height="95" key="GridCell.Tab.0.center" timestamp="1577771342932">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="95" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1577692022032" />
+    <state width="1398" height="95" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1577771342932" />
     <state width="980" height="147" key="GridCell.Tab.0.center/0.23.1440.829@0.23.1440.829" timestamp="1577683087665" />
     <state width="980" height="95" key="GridCell.Tab.0.center/0.23.1440.830@0.23.1440.830" timestamp="1577689428922" />
     <state width="980" height="95" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1577689452357" />
-    <state width="1398" height="95" key="GridCell.Tab.0.left" timestamp="1577692022031">
+    <state width="1398" height="95" key="GridCell.Tab.0.left" timestamp="1577771342932">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="95" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1577692022031" />
+    <state width="1398" height="95" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1577771342932" />
     <state width="980" height="147" key="GridCell.Tab.0.left/0.23.1440.829@0.23.1440.829" timestamp="1577683087664" />
     <state width="980" height="95" key="GridCell.Tab.0.left/0.23.1440.830@0.23.1440.830" timestamp="1577689428922" />
     <state width="980" height="95" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1577689452356" />
-    <state width="1398" height="95" key="GridCell.Tab.0.right" timestamp="1577692022033">
+    <state width="1398" height="95" key="GridCell.Tab.0.right" timestamp="1577771342933">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="95" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1577692022033" />
+    <state width="1398" height="95" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1577771342933" />
     <state width="980" height="147" key="GridCell.Tab.0.right/0.23.1440.829@0.23.1440.829" timestamp="1577683087666" />
     <state width="980" height="95" key="GridCell.Tab.0.right/0.23.1440.830@0.23.1440.830" timestamp="1577689428923" />
     <state width="980" height="95" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1577689452357" />
-    <state width="1398" height="261" key="GridCell.Tab.1.bottom" timestamp="1577690992452">
+    <state width="1398" height="261" key="GridCell.Tab.1.bottom" timestamp="1577763792558">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1577690992452" />
-    <state width="1398" height="261" key="GridCell.Tab.1.center" timestamp="1577690992451">
+    <state width="1398" height="261" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1577763792558" />
+    <state width="1398" height="261" key="GridCell.Tab.1.center" timestamp="1577763792556">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1577690992451" />
-    <state width="1398" height="261" key="GridCell.Tab.1.left" timestamp="1577690992449">
+    <state width="1398" height="261" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1577763792556" />
+    <state width="1398" height="261" key="GridCell.Tab.1.left" timestamp="1577763792555">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1577690992449" />
-    <state width="1398" height="261" key="GridCell.Tab.1.right" timestamp="1577690992451">
+    <state width="1398" height="261" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1577763792555" />
+    <state width="1398" height="261" key="GridCell.Tab.1.right" timestamp="1577763792557">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1577690992451" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1577680971150">
+    <state width="1398" height="261" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1577763792557" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1577692117800">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1577680971150" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1577692117800" />
     <state x="399" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1577691021190">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -424,6 +406,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="386" y="207" width="667" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1577690966366" />
+    <state x="419" y="248" key="git4idea.merge.GitPullDialog" timestamp="1577692859224">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="419" y="248" key="git4idea.merge.GitPullDialog/0.0.1440.900@0.0.1440.900" timestamp="1577692859224" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -438,7 +424,91 @@
           <line>133</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
+          <line>283</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
+          <line>285</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>ChessGame</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

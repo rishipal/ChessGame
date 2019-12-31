@@ -270,8 +270,8 @@ public class Table {
 
         private void highlightTileColor() {
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
-                Color LIGHT_GREEN = new Color(150, 255, 150);
-                setBackground(LIGHT_GREEN);
+                Color transparentGray = new Color(220, 220, 220, 250);
+                setBackground(Color.YELLOW);
             }
             if(destTileToHighlight != null && destTileToHighlight.contains((this.tileId))){
                 setBackground(Color.GREEN);

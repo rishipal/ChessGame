@@ -14,6 +14,40 @@ public class Rook extends Piece {
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BR.gif" : "WR.gif");
     }
 
+    private Set<Cell> getLegalDestinationsLeft() {
+        Cordinate currCord = this.cordinate;
+        Set<Cell> dests = new LinkedHashSet<>();
+
+        Cordinate cordinateLeft = currCord.getCordinateLeft();
+        while(cordinateLeft.isWithinBounds(this.board.SIZE_BOARD)) {
+            Cell cellLeft = board.getCellFromCordinate(cordinateLeft);
+            if(cellLeft.occupied) {
+                break;
+            } else {
+                dests.add(cellLeft);
+            }
+            cordinateLeft = cordinateLeft.getCordinateLeft();
+        }
+        return dests;
+    }
+
+    private Set<Cell> getLegalDestinationsRight() {
+        Cordinate currCord = this.cordinate;
+        Set<Cell> dests = new LinkedHashSet<>();
+
+        Cordinate cordinateRight = currCord.getCordinateRight();
+        while(cordinateRight.isWithinBounds(this.board.SIZE_BOARD)) {
+            Cell cellRight = board.getCellFromCordinate(cordinateRight);
+            if(cellRight.occupied) {
+                break;
+            } else {
+                dests.add(cellRight);
+            }
+            cordinateRight = cordinateRight.getCordinateRight();
+        }
+        return dests;
+    }
+
     private Set<Cell> getLegalDestinationsAbove() {
         Cordinate currCord = this.cordinate;
         Set<Cell> dests = new LinkedHashSet<>();
@@ -60,7 +94,10 @@ public class Rook extends Piece {
     }
 
     private Set<Cell> getLegalHorizontalDestinations() {
-        return new LinkedHashSet<>();
+        Set<Cell> destsLeft = getLegalDestinationsLeft();
+        Set<Cell> destsRight = getLegalDestinationsRight();
+        destsLeft.addAll(destsRight);
+        return destsLeft;
     }
 
     /**

@@ -1,6 +1,8 @@
 package com.rishi.chess;
 
 
+import jdk.management.jfr.RecordingInfo;
+
 public class Cordinate {
     public final int row;
     public final int col;
@@ -44,6 +46,14 @@ public class Cordinate {
 
     public Cordinate getCordinateAbove() {
         return new Cordinate(this.row-1, this.col);
+    }
+
+    public Cordinate getCordinateLeft() {
+        return new Cordinate(this.row, this.col-1);
+    }
+
+    public Cordinate getCordinateRight() {
+        return new Cordinate(this.row, this.col+1);
     }
 
     public Cordinate getCordinateBelow() {
