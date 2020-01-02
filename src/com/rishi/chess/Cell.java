@@ -5,10 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Cell {
+    //TODO(rishipal): Remove board from Cell. Logically, cell should not hold a board.
     private final ChessBoard board;
     private Cordinate cordinate;
     public boolean occupied = false;
     public Piece piece = null;
+
+    //TODO(rishipal): Move legalMoves and legalDestinations somewhere else (maybe Piece).
     public ArrayList<Move> legalMoves;
     private Set<Cell> legalDestinations;
 
@@ -19,6 +22,7 @@ public class Cell {
         this.legalDestinations = getLegalDestinationsFromMoves();
     }
 
+    // TODO(rishipal): Rename thsi to indicate that you are resetting the piece's data
     public void update() {
         this.legalMoves = new ArrayList<>();
         this.legalDestinations = getLegalDestinationsFromMoves();
@@ -48,10 +52,12 @@ public class Cell {
         return this.cordinate;
     }
 
+    // TODO(rishipal): Move this to TilePanel class
     public int getTileIDFromCell() {
         return this.cordinate.getTileIDFromCordinate(board.SIZE_BOARD);
     }
 
+    //TODO(rishipal): Move this inside Piece
     public ArrayList<Move> getLegalMoves() {
         if(this.occupied && this.legalMoves.isEmpty()) {
             this.legalMoves = this.piece.generateLegalMovesForPiece();

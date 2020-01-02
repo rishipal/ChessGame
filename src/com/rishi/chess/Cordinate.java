@@ -37,6 +37,7 @@ public class Cordinate {
         return (Math.abs(this.row - another.row));
     }
 
+    // TODO(rishipal); Move this to TIlePanel class
     public int getTileIDFromCordinate( int boardSize) {
         return this.row * boardSize + this.col;
     }

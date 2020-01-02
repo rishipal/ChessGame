@@ -5,7 +5,7 @@ public class Piece {
     protected Cordinate cordinate;
     protected ChessBoard board;
     public Cell cell;
-
+    //TODO(rishipal): Add a player here?
 
     protected enum PieceColor {
         WHITE,
@@ -13,7 +13,9 @@ public class Piece {
     }
 
     protected PieceColor pieceColor;
-    protected PieceDirection pieceDirection;
+    protected PieceDirection pieceDirection; // TODO(rishipal): rename this to player direction
+
+    //TODO(rishipal): This should be defined elsewhere. Make it used by path calculator for all pieces.
     protected enum PieceDirection {
         UP,
         DOWN,
