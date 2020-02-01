@@ -34,6 +34,18 @@ public class Table {
     private Set<Integer> tileToHighlight;
     private Set<Integer> destTileToHighlight;
 
+    private enum HighlightColors {
+        PATH(Color.YELLOW),
+        DEST(Color.GREEN),
+        KILLING(Color.RED);
+
+        Color highlightColor;
+
+        private HighlightColors(Color c) {
+            this.highlightColor = c;
+        }
+    }
+
     private Table() {
         chessBoard = new ChessBoard();
         boardPanel = new BoardPanel();
@@ -268,10 +280,13 @@ public class Table {
 
         private void highlightTileColor() {
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
-                setBackground(Color.YELLOW);
+                setBackground(HighlightColors.PATH.highlightColor);
             }
-            if(destTileToHighlight != null && destTileToHighlight.contains((this.tileId))){
-                setBackground(Color.GREEN);
+            if(destTileToHighlight != null && destTileToHighlight.contains(this.tileId)){
+                setBackground(HighlightColors.DEST.highlightColor);
+            }
+            if(destTileToHighlight != null && destTileToHighlight.contains(this.tileId) && this.cell.occupied) {
+                setBackground(HighlightColors.KILLING.highlightColor);
             }
         }
 
