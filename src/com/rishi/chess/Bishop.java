@@ -13,25 +13,7 @@ public class Bishop extends Piece {
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BB.gif" : "WB.gif");
     }
 
-    private Set<Cell> getLegalDestinations(Piece.PieceDirection d) {
-        Set<Cell> dests = new LinkedHashSet<>();
-        Cordinate next = this.cordinate.getNextCordinate(d);
-        while(next.isWithinBounds(this.board.SIZE_BOARD)) {
-            Cell currCell = board.getCellFromCordinate(next);
-            if(currCell.occupied) {
-                if(currCell.piece.pieceColor != this.pieceColor) {
-                    dests.add(currCell);
-                }
-                break;
-            } else {
-                dests.add(currCell);
-            }
-            next = next.getNextCordinate(d);
-        }
-        return dests;
-    }
-
-    private Set<Cell> getLegalDestinations() {
+    final protected Set<Cell> getLegalDestinations() {
         Set<Cell> destsNE = getLegalDestinations(PieceDirection.NORTHEAST);
         Set<Cell> destsNW = getLegalDestinations(PieceDirection.NORTHWEST);
         Set<Cell> destsSE = getLegalDestinations(PieceDirection.SOUTHEAST);

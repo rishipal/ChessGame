@@ -152,7 +152,7 @@ public class Cordinate {
                 }
             }
         }
-        return Piece.PieceDirection.UNKNOWN;
+        throw new RuntimeException();
     }
 
     public boolean isEqual(Cordinate another) {

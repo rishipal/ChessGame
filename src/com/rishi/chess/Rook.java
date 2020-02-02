@@ -2,6 +2,7 @@ package com.rishi.chess;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Rook extends Piece {
@@ -13,38 +14,17 @@ public class Rook extends Piece {
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BR.gif" : "WR.gif");
     }
 
-    private Set<Cell> getLegalDestinations(PieceDirection d) {
-        Cordinate currCord = this.cordinate;
-        Set<Cell> dests = new LinkedHashSet<>();
-        Cordinate nextCordinate = currCord.getNextCordinate(d);
-        while(nextCordinate.isWithinBounds(this.board.SIZE_BOARD)) {
-            Cell nextCell = board.getCellFromCordinate(nextCordinate);
-            if(nextCell.occupied) {
-                if(nextCell.piece.pieceColor != this.pieceColor) {
-                    dests.add(nextCell);
-                }
-                break;
-            } else {
-                dests.add(nextCell);
-            }
-            nextCordinate = nextCordinate.getNextCordinate(d);
-        }
-        return dests;
-    }
-
     /**
      * Collects legal destinations vertical and horizontal for this Rook piece
      * @return
      */
     private Set<Cell> getLegalDestinations() {
-        Set<Cell> destsUp = getLegalDestinations(PieceDirection.UP);
-        Set<Cell> destsDown = getLegalDestinations(PieceDirection.DOWN);
-        Set<Cell> destsLeft = getLegalDestinations(PieceDirection.LEFT);
-        Set<Cell> destsRight = getLegalDestinations(PieceDirection.RIGHT);
-        destsUp.addAll(destsDown);
-        destsUp.addAll(destsLeft);
-        destsUp.addAll(destsRight);
-        return destsUp;
+        List<PieceDirection> directions = this.pieceDirection.get4WayDirectionsAsList();
+        Set<Cell> legalDests = new LinkedHashSet<>();
+        for(PieceDirection direction : directions) {
+            legalDests.addAll(getLegalDestinations(direction));
+        }
+        return legalDests;
     }
 
     private ArrayList<Cell> generatePathForRookMove(Move move, PieceDirection d) {

@@ -1,5 +1,5 @@
 package com.rishi.chess;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Piece {
     protected Cordinate cordinate;
@@ -24,8 +24,17 @@ public class Piece {
         NORTHEAST,
         NORTHWEST,
         SOUTHEAST,
-        SOUTHWEST,
-        UNKNOWN
+        SOUTHWEST;
+
+        public List<PieceDirection> getAllDirectionsAsList() {
+            PieceDirection[] arr = this.values();
+            return Arrays.asList(arr);
+        }
+
+        public List<PieceDirection> get4WayDirectionsAsList() {
+            PieceDirection[] arr = new PieceDirection[]{UP, DOWN, LEFT, RIGHT};
+            return Arrays.asList(arr);
+        }
     }
 
     public Piece(PieceColor pieceColor) {
@@ -37,6 +46,25 @@ public class Piece {
 
     public void setNewCordinates(Cordinate c) {
         this.cordinate = c;
+    }
+
+    protected Set<Cell> getLegalDestinations(PieceDirection d) {
+        Cordinate currCord = this.cordinate;
+        Set<Cell> dests = new LinkedHashSet<>();
+        Cordinate nextCordinate = currCord.getNextCordinate(d);
+        while(nextCordinate.isWithinBounds(this.board.SIZE_BOARD)) {
+            Cell nextCell = board.getCellFromCordinate(nextCordinate);
+            if(nextCell.occupied) {
+                if(nextCell.piece.pieceColor != this.pieceColor) {
+                    dests.add(nextCell);
+                }
+                break;
+            } else {
+                dests.add(nextCell);
+            }
+            nextCordinate = nextCordinate.getNextCordinate(d);
+        }
+        return dests;
     }
 
     public boolean isSamePlayer(Piece p) {
