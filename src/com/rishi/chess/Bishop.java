@@ -57,7 +57,8 @@ public class Bishop extends Piece {
         return path;
     }
 
-    private ArrayList<Cell> generatePathForBishopMove(Move move) {
+    @Override
+    final protected ArrayList<Cell> generatePathForLegalMove(Move move) {
         ArrayList<Cell> path = new ArrayList<>();
         Cell source = move.source;
         Cell destination = move.destination;
@@ -74,7 +75,7 @@ public class Bishop extends Piece {
         ArrayList<Move> legalMoves = new ArrayList<>();
         for(Cell dest : destinations) {
             Move m = new Move(this, dest);
-            ArrayList<Cell> path = this.generatePathForBishopMove(m);
+            ArrayList<Cell> path = this.generatePathForLegalMove(m);
             m.setPath(path);
             legalMoves.add(m);
         }

@@ -1,5 +1,7 @@
 package com.rishi.chess;
 
+import java.util.ArrayList;
+
 public class Cordinate {
     public final int row;
     public final int col;
@@ -86,6 +88,40 @@ public class Cordinate {
             case SOUTHWEST: return getCordinateSouthWest();
         }
         return null;
+    }
+
+    private ArrayList<Cordinate> getUncheckedNeighboringCords() {
+        ArrayList<Cordinate> cords = new ArrayList<>();
+        Cordinate left = this.getCordinateLeft();
+        Cordinate right = this.getCordinateRight();
+        Cordinate top = this.getCordinateAbove();
+        Cordinate bottom = this.getCordinateBelow();
+        Cordinate northwest = this.getNextCordinate(Piece.PieceDirection.NORTHWEST);
+        Cordinate northeast = this.getNextCordinate(Piece.PieceDirection.NORTHEAST);
+        Cordinate southwest = this.getNextCordinate(Piece.PieceDirection.SOUTHWEST);
+        Cordinate southeast = this.getNextCordinate(Piece.PieceDirection.SOUTHEAST);
+
+        cords.add(left);
+        cords.add(right);
+        cords.add(top);
+        cords.add(bottom);
+        cords.add(northwest);
+        cords.add(northeast);
+        cords.add(southwest);
+        cords.add(southeast);
+        return cords;
+    }
+
+    public ArrayList<Cordinate> getAllValidNeighboringCords(int boardSize) {
+        ArrayList<Cordinate> uncheckedCords = getUncheckedNeighboringCords();
+        ArrayList<Cordinate> validCords = new ArrayList<>();
+
+        for(Cordinate c : uncheckedCords) {
+            if(c.isWithinBounds(boardSize)) {
+                validCords.add(c);
+            }
+        }
+        return validCords;
     }
 
     public Piece.PieceDirection getDirection(Cordinate destination) {

@@ -13,10 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.rishi.chess.Cell;
-import com.rishi.chess.ChessBoard;
-import com.rishi.chess.Move;
-import com.rishi.chess.Piece;
+import com.rishi.chess.*;
 
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 
@@ -29,7 +26,7 @@ public class Table {
     private static final Color lightTileColor = Color.decode("#FFFACD");
     private static final Color darkTileColor = Color.decode("#593E1A");
 
-    private final ChessBoard chessBoard;
+    private final Game game;
     private BoardPanel boardPanel;
     private Set<Integer> tileToHighlight;
     private Set<Integer> destTileToHighlight;
@@ -41,13 +38,13 @@ public class Table {
 
         Color highlightColor;
 
-        private HighlightColors(Color c) {
+        HighlightColors(Color c) {
             this.highlightColor = c;
         }
     }
 
     private Table() {
-        chessBoard = new ChessBoard();
+        game = new Game();
         boardPanel = new BoardPanel();
         tileToHighlight = new HashSet<>();
         destTileToHighlight = new HashSet<>();
@@ -107,9 +104,9 @@ public class Table {
         TilePanel destination = null;
 
         BoardPanel() {
-            super(new GridLayout(chessBoard.SIZE_BOARD, chessBoard.SIZE_BOARD));
+            super(new GridLayout(game.chessBoard.SIZE_BOARD, game.chessBoard.SIZE_BOARD));
             this.boardTiles = new ArrayList<>();
-            for (int i = 0; i < chessBoard.SIZE_BOARD*chessBoard.SIZE_BOARD; i++) {
+            for (int i = 0; i < game.chessBoard.SIZE_BOARD*game.chessBoard.SIZE_BOARD; i++) {
                 final TilePanel tilePanel = new TilePanel(this, i);
                 this.boardTiles.add(tilePanel);
                 add(tilePanel);
@@ -124,7 +121,7 @@ public class Table {
             removeAll();
             highlightTiles();
             for (final TilePanel boardTile : boardTiles) {
-                boardTile.drawTile(chessBoard);
+                boardTile.drawTile(game.chessBoard);
                 add(boardTile);
             }
             validate();
@@ -152,7 +149,7 @@ public class Table {
             cell = getCellFromTileID(tileId);
             piece = cell.piece;
             setPreferredSize(TILE_PANEL_DIMENSION);
-            highlightTileBorder(chessBoard);
+            highlightTileBorder(game.chessBoard);
 
             addMouseMotionListener(new MouseInputAdapter() {
                 @Override
@@ -202,7 +199,7 @@ public class Table {
                             boardPanel.pieceInMotion = source.piece;
                             Cell destination = boardPanel.destination.cell;
                             if(source.getLegalDestinations().contains(destination)) {
-                                chessBoard.makeMove(source, destination);
+                                game.makeMove(source, destination);
                             } else {
                                 Toolkit.getDefaultToolkit().beep();
                             }
@@ -228,9 +225,9 @@ public class Table {
         }
 
         private Cell getCellFromTileID(int tileId) {
-            int row = tileId/chessBoard.SIZE_BOARD;
-            int col = tileId - row * chessBoard.SIZE_BOARD;
-            return chessBoard.getChessBoard()[row][col];
+            int row = tileId/game.chessBoard.SIZE_BOARD;
+            int col = tileId - row * game.chessBoard.SIZE_BOARD;
+            return game.chessBoard.getChessBoard()[row][col];
         }
 
         void accumulateLegalPathTilesToHighlight() {

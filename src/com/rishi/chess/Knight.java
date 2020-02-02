@@ -62,7 +62,8 @@ public class Knight extends Piece {
      * @param m move
      * @return list of cells in the path for this move
      */
-    private ArrayList<Cell> generatePathForKnightMove(Move m) {
+    @Override
+    final protected ArrayList<Cell> generatePathForLegalMove(Move m) {
         Cordinate destCord = m.destination.getCordinate();
         assert(abs(destCord.row - this.cordinate.row) == 1 || abs(destCord.col - this.cordinate.col) == 1 );
 
@@ -128,7 +129,7 @@ public class Knight extends Piece {
         ArrayList<Move> legalMoves = new ArrayList<>();
         for(Cell dest : legalDestinations) {
             Move m = new Move(this, dest);
-            ArrayList<Cell> path = this.generatePathForKnightMove(m);
+            ArrayList<Cell> path = this.generatePathForLegalMove(m);
             m.setPath(path);
             legalMoves.add(m);
         }

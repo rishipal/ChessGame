@@ -11,7 +11,6 @@ public class ChessBoard {
     // TODO(rishipal): This should only contain a bed of cells and size. Move moveManager out.
     public final int SIZE_BOARD = 8;
     private final Cell[][] board;
-    private final MoveManager moveManager;
 
     public Cell[][] getChessBoard() {
         return board;
@@ -19,7 +18,6 @@ public class ChessBoard {
 
     public ChessBoard() {
         this.board = new Cell[SIZE_BOARD][SIZE_BOARD];
-        moveManager = new MoveManager(this);
         initializeBoard();
     }
 
@@ -29,10 +27,6 @@ public class ChessBoard {
                 c.update();
             }
         }
-    }
-
-    public void makeMove(Cell source, Cell destination) {
-        moveManager.makeMove(source, destination);
     }
 
     private void initializeBoard() {

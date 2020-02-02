@@ -39,6 +39,14 @@ public class Piece {
         this.cordinate = c;
     }
 
+    public boolean isSamePlayer(Piece p) {
+        if(this.pieceColor == p.pieceColor) {
+            assert(this.pieceDirection == p.pieceDirection);
+            return true;
+        }
+        return false;
+    }
+
     // do nothing, will be overridden.
     public boolean isMoveLegal(Cordinate dest) {
         System.out.println("This should not be called");
@@ -51,7 +59,7 @@ public class Piece {
         return new ArrayList<>();
     }
 
-    public ArrayList<Move> generatePathsForLegalMoves() {
+    protected ArrayList<Cell> generatePathForLegalMove(Move m) {
         // do nothing, will be overridden.
         System.out.println("Should not come here in generatePathsForLegalMoves");
         return new ArrayList<>();

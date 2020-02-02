@@ -186,6 +186,7 @@ public class Pawn extends Piece {
         ArrayList<Move> legalMoves = new ArrayList<>();
         for (Cell c : legalDestinations) {
             Move m = new Move(this, c);
+            //TODO(rishipal): Move this to generatePathForLegalMove(Move m) override function in this class.
             m.path.add(m.source);
             m.path.add(m.destination);
             legalMoves.add(m);

@@ -63,7 +63,8 @@ public class Rook extends Piece {
         return path;
     }
 
-    private ArrayList<Cell> generatePathForRookMove(Move move) {
+    @Override
+    final protected ArrayList<Cell> generatePathForLegalMove(Move move) {
         ArrayList<Cell> path;
         Cell source = move.source;
         Cell destination = move.destination;
@@ -79,7 +80,7 @@ public class Rook extends Piece {
         ArrayList<Move> legalMoves = new ArrayList<>();
         for(Cell dest : destinations) {
             Move m = new Move(this, dest);
-            ArrayList<Cell> path = this.generatePathForRookMove(m);
+            ArrayList<Cell> path = this.generatePathForLegalMove(m);
             m.setPath(path);
             //System.out.println(" and path is " + m.getPathAsString());
 

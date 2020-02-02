@@ -1,13 +1,14 @@
 package com.rishi.chess;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class MoveManager {
 
     private final ChessBoard chessBoard; // can not re-instantiate a board even if a bad move requested
-    private ArrayList<Move> movesHistory;
+    private Stack<Move> movesHistory;
+
     MoveManager(ChessBoard board) {
-        this.movesHistory = new ArrayList<>();
+        this.movesHistory = new Stack<>();
         this.chessBoard = board;
     }
 
@@ -32,21 +33,21 @@ public class MoveManager {
         Piece pieceMoved = source.piece;
         source.unsetPiece();
         destination.setPiece(pieceMoved);
-        saveMove(m);
+        storeMove(m);
         chessBoard.updateAll();
     }
 
-    void saveMove(Move move) {
-        movesHistory.add(move);
+    void storeMove(Move move) {
+        movesHistory.push(move);;
     }
 
-    ArrayList<Move> getLastNMoves(int n) {
-        ArrayList<Move> result = new ArrayList<>();
-        int reverseIndex = 0;
-        while(reverseIndex < n) {
-            result.add(movesHistory.get(movesHistory.size() - reverseIndex));
-            reverseIndex++;
+    void printLastNMoves(int n) {
+        if(n < 0) {
+            return;
         }
-        return result;
+        Move m = movesHistory.pop();
+        m.printMove();
+        printLastNMoves(n-1);
+        movesHistory.push(m);
     }
 }
