@@ -7,7 +7,9 @@ class Player {
     Piece.PieceColor pieceColor;
     List<Move> moveList;
 
-    Player() {}
+    Player(Piece.PieceColor c) {
+        this.pieceColor = c;
+    }
 
     private void setInfo(String name, Piece.PieceColor pieceColor) {
         this.name = name;

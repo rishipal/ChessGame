@@ -15,6 +15,10 @@ public class Cell {
     public ArrayList<Move> legalMoves;
     private Set<Cell> legalDestinations;
 
+    public boolean isActivePlayerCell(Player active) {
+        return this.piece !=null && this.piece.pieceColor.equals(active.pieceColor);
+    }
+
     public Cell( Cordinate cordinate, ChessBoard cb) {
         this.cordinate = cordinate;
         this.board = cb;
