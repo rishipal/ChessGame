@@ -1,7 +1,7 @@
 package com.rishi.chess;
 import java.util.*;
 
-public class Piece {
+public abstract class Piece {
     protected Cordinate cordinate;
     protected ChessBoard board;
     public Cell cell;

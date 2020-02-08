@@ -159,7 +159,7 @@ public class Table {
 
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    if(cell.isActivePlayerCell(game.getActivePlayer())) {
+                    if(!cell.isActivePlayerCell(game.getActivePlayer())) {
                         return;
                     }
                     boardPanel.inTransition = true;
