@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/rishi/chess/engine/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/rishi/common/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$BoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$BoardPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/engine/Engine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,11 +364,17 @@
       <option name="project" value="LOCAL" />
       <updated>1581150623242</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Refactor, introduce common package and engine package">
+      <created>1581213234795</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1581213234795</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removing comments, etc" />
     <MESSAGE value="Added some more files and their config" />
     <MESSAGE value="Added tests package" />
     <MESSAGE value="Added some code to calculate legal moves for Knights" />
@@ -401,7 +399,8 @@
     <MESSAGE value="Add movements for Queen and share some functionality among piece types" />
     <MESSAGE value="Add active player field" />
     <MESSAGE value="Fix a bug in checking active player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix a bug in checking active player" />
+    <MESSAGE value="Refactor, introduce common package and engine package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor, introduce common package and engine package" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577815396532">
@@ -416,10 +415,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="457" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1577815364471" />
-    <state x="0" y="52" key="CommitChangelistDialog2" timestamp="1581150623108">
+    <state x="0" y="52" key="CommitChangelistDialog2" timestamp="1581213234641">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="0" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1581150623108" />
+    <state x="0" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1581213234641" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1577320009039">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -468,10 +467,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="261" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1577815462237" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1581150630562">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1581213242379">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1581150630562" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1581213242379" />
     <state x="399" y="268" key="com.intellij.ide.util.TipDialog" timestamp="1580798630792">
       <screen x="0" y="23" width="1440" height="827" />
     </state>
