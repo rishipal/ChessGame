@@ -3,16 +3,18 @@ package com.rishi.chess;
 public class Game {
     public final ChessBoard chessBoard;
     private final MoveManager moveManager;
-    private final Player player1;
-    private final Player player2;
+
+    private final Player human;
+    private final Player computer;
+
     private Player activePlayer;
 
      public Game() {
         chessBoard = new ChessBoard();
         moveManager = new MoveManager(chessBoard);
-        player1 = new Player(Piece.PieceColor.WHITE);
-        player2 = new Player(Piece.PieceColor.BLACK);
-        activePlayer = player1;
+        human = new Player(Piece.PieceColor.WHITE);
+        computer = new ComputerPlayer(Piece.PieceColor.BLACK);
+        activePlayer = human; // human player makes the first move
     }
 
     public void makeMove(Cell source, Cell destination) {
@@ -25,7 +27,6 @@ public class Game {
     }
 
     private void toggleActivePlayer() {
-         activePlayer = activePlayer == player1? player2 : player1;
+         activePlayer = activePlayer == human? computer : human;
     }
-
 }

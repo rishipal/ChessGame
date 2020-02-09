@@ -7,6 +7,8 @@ class Player {
     Piece.PieceColor pieceColor;
     List<Move> moveList;
 
+    Player() {}
+
     Player(Piece.PieceColor c) {
         this.pieceColor = c;
     }

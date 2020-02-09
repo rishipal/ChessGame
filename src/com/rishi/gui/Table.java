@@ -29,6 +29,7 @@ public class Table {
     private final Game game;
     private BoardPanel boardPanel;
     private Set<Integer> tileToHighlight;
+    private Set<Integer> tilesToAddBorder;
     private Set<Integer> destTileToHighlight;
 
     private enum HighlightColors {
@@ -47,6 +48,7 @@ public class Table {
         game = new Game();
         boardPanel = new BoardPanel();
         tileToHighlight = new HashSet<>();
+        tilesToAddBorder = new HashSet<>();
         destTileToHighlight = new HashSet<>();
         gameFrame = new JFrame();
         JMenuBar jMenuBar = new JMenuBar();
@@ -63,6 +65,10 @@ public class Table {
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
         center(this.gameFrame);
         gameFrame.setVisible(true);
+    }
+
+    private void playWarningSound() {
+        Toolkit.getDefaultToolkit().beep();
     }
 
     public void show() {
@@ -159,9 +165,6 @@ public class Table {
 
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    if(!cell.isActivePlayerCell(game.getActivePlayer())) {
-                        return;
-                    }
                     boardPanel.inTransition = true;
                 }
             });
@@ -177,6 +180,7 @@ public class Table {
                     if(boardPanel.inTransition) {
                         boardPanel.destination = null;
                     } else {
+                        tilesToAddBorder.clear();
                         tileToHighlight.clear();
                         destTileToHighlight.clear();
                     }
@@ -186,6 +190,10 @@ public class Table {
                 public void mouseEntered(final MouseEvent e) {
                     if(boardPanel.inTransition) {
                         boardPanel.destination = TilePanel.this;
+                        tilesToAddBorder.clear();
+                        tilesToAddBorder.add(tileId);
+                        //this.cell.piece = boardPanel.pieceInMotion;
+                        boardPanel.drawBoard();
                     } else {
                         tileToHighlight.add(tileId);
                         boardPanel.drawBoard();
@@ -193,19 +201,24 @@ public class Table {
                 }
 
                 // This function surprisingly is in reference to the tile from which the dragging originated, not the
-                // destination tile.
+                // cell at which the mouse got released.
                 @Override
                 public void mouseReleased(final MouseEvent e) {
                     Cell source = TilePanel.this.cell;
-                    if(boardPanel.inTransition && boardPanel.destination != null && boardPanel.destination != TilePanel.this) {
+                    if(boardPanel.inTransition == true && !cell.isActivePlayerCell(game.getActivePlayer())) {
+                        playWarningSound(); // not your turn to play
+                    }
+                    if(cell.isActivePlayerCell(game.getActivePlayer()) && boardPanel.inTransition &&
+                            boardPanel.destination != null && boardPanel.destination != TilePanel.this) {
                         if(boardPanel.pieceInMotion == null) {
                             boardPanel.pieceInMotion = source.piece;
                             Cell destination = boardPanel.destination.cell;
                             if(source.getLegalDestinations().contains(destination)) {
                                 game.makeMove(source, destination);
                             } else {
-                                Toolkit.getDefaultToolkit().beep();
+                                playWarningSound(); // illegal destination
                             }
+                            tilesToAddBorder.clear();
                             tileToHighlight.clear();
                             destTileToHighlight.clear();
                         }
@@ -234,6 +247,9 @@ public class Table {
         }
 
         void accumulateLegalPathTilesToHighlight() {
+            if(cell.occupied) {
+                tilesToAddBorder.add(cell.getTileIDFromCell());
+            }
             ArrayList<Move> legalMoves = cell.getLegalMoves();
             if(legalMoves.isEmpty()) {
                 tileToHighlight.add(cell.getTileIDFromCell());
@@ -275,7 +291,11 @@ public class Table {
         }
 
         private void highlightTileBorder(final ChessBoard board) {
-            setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            if(tilesToAddBorder != null && tilesToAddBorder.contains(this.tileId)) {
+                setBorder(BorderFactory.createLineBorder(Color.ORANGE, 5));
+            } else {
+                setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            }
         }
 
         private void highlightTileColor() {
