@@ -214,7 +214,7 @@ public class Table {
                             boardPanel.pieceInMotion = source.piece;
                             Cell destination = boardPanel.destination.cell;
                             if(source.getLegalDestinations().contains(destination)) {
-                                game.makeMove(source, destination);
+                                game.makeHumanMove(source, destination);
                             } else {
                                 playWarningSound(); // illegal destination
                             }

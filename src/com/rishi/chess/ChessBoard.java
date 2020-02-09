@@ -24,7 +24,7 @@ public class ChessBoard {
     public void updateAll() {
         for (Cell[] row : board) {
             for(Cell c : row) {
-                c.update();
+                c.resetData();
             }
         }
     }

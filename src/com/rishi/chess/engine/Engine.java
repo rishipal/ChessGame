@@ -17,6 +17,5 @@ public class Engine {
         MEDIUM, // capture enemy if possible, and also prefer capturing higher valued enemy
         HARD //
     }
-
 }
 

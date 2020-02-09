@@ -26,8 +26,8 @@ public class Cell {
         this.legalDestinations = getLegalDestinationsFromMoves();
     }
 
-    // TODO(rishipal): Rename thsi to indicate that you are resetting the piece's data
-    public void update() {
+    // TODO(rishipal): Rename this to indicate that you are resetting the piece's data
+    public void resetData() {
         this.legalMoves = new ArrayList<>();
         this.legalDestinations = getLegalDestinationsFromMoves();
     }

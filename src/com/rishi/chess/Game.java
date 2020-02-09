@@ -12,14 +12,20 @@ public class Game {
      public Game() {
         chessBoard = new ChessBoard();
         moveManager = new MoveManager(chessBoard);
-        human = new Player(Piece.PieceColor.WHITE);
+        human = new HumanPlayer(Piece.PieceColor.WHITE);
         computer = new ComputerPlayer(Piece.PieceColor.BLACK);
         activePlayer = human; // human player makes the first move
     }
 
-    public void makeMove(Cell source, Cell destination) {
-         moveManager.makeMove(source, destination);
+    public void makeHumanMove(Cell source, Cell destination) {
+         assert (activePlayer == human);
+         human.makeMove(moveManager, source, destination);
+         chessBoard.updateAll();
          toggleActivePlayer();
+
+         // Trigger for computer's move as soon as human move ends
+        computer.makeMove(moveManager, null, null);
+        toggleActivePlayer();
     }
 
     public Player getActivePlayer() {
