@@ -5,8 +5,11 @@ import com.rishi.chess.ChessBoard;
 
 public class Engine {
     private Mode mode;
+    private ChessBoard chessBoard;
 
-    public Engine() {
+
+
+    public Engine(ChessBoard board) {
         this.mode = Mode.RANDOM;
     }
 

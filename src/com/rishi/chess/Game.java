@@ -12,8 +12,8 @@ public class Game {
      public Game() {
         chessBoard = new ChessBoard();
         moveManager = new MoveManager(chessBoard);
-        human = new HumanPlayer(Piece.PieceColor.WHITE);
-        computer = new ComputerPlayer(Piece.PieceColor.BLACK);
+        human = new HumanPlayer(chessBoard, Piece.PieceColor.WHITE);
+        computer = new ComputerPlayer(chessBoard, Piece.PieceColor.BLACK);
         activePlayer = human; // human player makes the first move
     }
 

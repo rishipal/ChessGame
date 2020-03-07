@@ -23,10 +23,7 @@ public class King extends Piece {
 
     @Override
     final protected ArrayList<Cell> generatePathForLegalMove(Move m) {
-        ArrayList<Cell> path = new ArrayList<>();
-        path.add(this.cell);
-        path.add(m.destination);
-        return path;
+        return generateStraightLinePath(m);
     }
 
     @Override

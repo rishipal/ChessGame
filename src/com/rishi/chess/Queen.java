@@ -1,6 +1,5 @@
 package com.rishi.chess;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -24,30 +23,9 @@ public class Queen extends Piece {
         return legalDests;
     }
 
-    // TODO(rishipal): Make this a common function inside Move or Piece - getStraightLinePath()
-    //  as this functionality can be shared by all pieces except Knight.
-    private ArrayList<Cell> generatePathForQueenMove(Move move, PieceDirection d) {
-        ArrayList<Cell> path = new ArrayList<>();
-        Cell source = move.source;
-        Cell destination = move.destination;
-        path.add(source);
-        Cordinate next = source.getCordinate().getNextCordinate(d);
-        while(next.isWithinBounds(board.SIZE_BOARD) &&  next.isEqual(destination.getCordinate())) {
-            Cell curr = board.getCellFromCordinate(next);
-            path.add(curr);
-            next = next.getNextCordinate(d);
-        }
-        path.add(destination);
-        System.out.println("Direction is " + d);
-        return path;
-    }
-
     @Override
     final protected ArrayList<Cell> generatePathForLegalMove(Move m) {
-        ArrayList<Cell> path = new ArrayList<>();
-        Piece.PieceDirection d = m.source.getCordinate().getDirection(m.destination.getCordinate());
-        path = generatePathForQueenMove(m, d);
-        return path;
+        return generateStraightLinePath(m);
     }
 
     @Override

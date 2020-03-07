@@ -10,9 +10,8 @@ public class Move {
     public Cell destination;
     Piece piece;
     public ArrayList<Cell> path;
-    // ATTN:
+    // TODO: Store and use the move's time
     LocalDateTime moveTime;
-
 
     Move(Piece p, Cell dest) {
         piece = p;
@@ -20,6 +19,12 @@ public class Move {
         destination = dest;
         path = new ArrayList<>();
         moveTime = LocalDateTime.now();
+    }
+
+    public boolean isStraightLineMove() {
+        Cordinate src = source.getCordinate();
+        Cordinate dest = destination.getCordinate();
+        return src.isSameRow(dest) || src.isSameColumn(dest) || src.isDiagonal(dest);
     }
 
     void setPath(ArrayList<Cell> p) {
@@ -39,9 +44,5 @@ public class Move {
         result = "Source:[" + this.source.getCordinate().row + "," + this.source.getCordinate().col + "] -->";
         result += "Destination:[" + this.destination.getCordinate().row + "," + this.destination.getCordinate().col + "]\n";
         System.out.print(result);
-    }
-
-    boolean isMoveLegal() {
-        return piece.isMoveLegal(destination.getCordinate());
     }
 }

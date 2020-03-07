@@ -4,9 +4,10 @@ import com.rishi.chess.engine.Engine;
 class ComputerPlayer extends Player {
     private Engine engine;
 
-    ComputerPlayer(Piece.PieceColor color) {
+    ComputerPlayer(ChessBoard board, Piece.PieceColor color) {
         this.pieceColor = color;
-        this.engine = new Engine();
+        this.engine = new Engine(board);
+        this.chessBoard = board;
     }
 
     /** Use the engine to choose a move, and then make that move */

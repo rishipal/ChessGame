@@ -24,30 +24,10 @@ public class Bishop extends Piece {
         return destsNE;
     }
 
-    private ArrayList<Cell> generatePathForBishopMove(Move move, Piece.PieceDirection d) {
-        ArrayList<Cell> path = new ArrayList<>();
-        Cell source = move.source;
-        Cell destination = move.destination;
-        path.add(source);
-        Cordinate next = source.getCordinate().getNextCordinate(d);
-        while(next.isWithinBounds(board.SIZE_BOARD) && next.isEqual(destination.getCordinate())) {
-            Cell curr = board.getCellFromCordinate(next);
-            path.add(curr);
-            next = next.getNextCordinate(d);
-        }
-        path.add(destination);
-        return path;
-    }
-
     @Override
     final protected ArrayList<Cell> generatePathForLegalMove(Move move) {
-        ArrayList<Cell> path = new ArrayList<>();
-        Cell source = move.source;
-        Cell destination = move.destination;
-        assert(destination.getCordinate().isDiagonal(source.getCordinate()));
-        Piece.PieceDirection d = source.getCordinate().getDirection(destination.getCordinate());
-        path = generatePathForBishopMove(move, d );
-        return path;
+        assert(move.destination.getCordinate().isDiagonal(move.source.getCordinate()));
+        return generateStraightLinePath(move);
     }
 
     @Override

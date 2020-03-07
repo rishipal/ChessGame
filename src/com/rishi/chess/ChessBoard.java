@@ -1,14 +1,6 @@
 package com.rishi.chess;
 
-//TODO(rishipal): The ChessBoard should only represent the board and nothing else. For other things,
-// create a class Game which contains:
-//  Players
-//  Board
-//  Move manager
-
 public class ChessBoard {
-
-    // TODO(rishipal): This should only contain a bed of cells and size. Move moveManager out.
     public final int SIZE_BOARD = 8;
     private final Cell[][] board;
 

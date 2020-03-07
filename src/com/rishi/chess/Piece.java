@@ -14,6 +14,7 @@ public abstract class Piece {
 
     protected PieceColor pieceColor;
     protected PieceDirection pieceDirection; // TODO(rishipal): rename this to player direction
+    public String pieceIconPath = "art/";
 
     //TODO(rishipal): This should be defined elsewhere. Make it used by path calculator for all pieces.
     protected enum PieceDirection {
@@ -42,13 +43,12 @@ public abstract class Piece {
         this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
 
     }
-    public String pieceIconPath = "art/";
 
     public void setNewCordinates(Cordinate c) {
         this.cordinate = c;
     }
 
-    protected Set<Cell> getLegalDestinations(PieceDirection d) {
+    final protected Set<Cell> getLegalDestinations(PieceDirection d) {
         Cordinate currCord = this.cordinate;
         Set<Cell> dests = new LinkedHashSet<>();
         Cordinate nextCordinate = currCord.getNextCordinate(d);
@@ -67,7 +67,7 @@ public abstract class Piece {
         return dests;
     }
 
-    public boolean isSamePlayer(Piece p) {
+    final public boolean isSamePlayer(Piece p) {
         if(this.pieceColor == p.pieceColor) {
             assert(this.pieceDirection == p.pieceDirection);
             return true;
@@ -75,26 +75,28 @@ public abstract class Piece {
         return false;
     }
 
-    // do nothing, will be overridden.
-    public boolean isMoveLegal(Cordinate dest) {
-        System.out.println("This should not be called");
-        return true;
+    final protected ArrayList<Cell> generateStraightLinePath(Move m) {
+        assert m.isStraightLineMove() : "Non-straight move calculated for" + m.piece.toString();
+        Cell source = m.source;
+        Cell dest = m.destination;
+        Piece.PieceDirection d = m.source.getCordinate().getDirection(m.destination.getCordinate());
+        Cordinate next = source.getCordinate().getNextCordinate(d);
+        ArrayList<Cell> path = new ArrayList<>();
+        path.add(source);
+        while(next.isWithinBounds(board.SIZE_BOARD) && !next.isEqual(dest.getCordinate())) {
+            path.add(board.getCellFromCordinate(next));
+            next = next.getNextCordinate(d);
+        }
+        path.add(dest);
+        return path;
     }
 
-    public ArrayList<Move> generateLegalMovesForPiece() {
-        // do nothing, will be overridden.
-        System.out.println("Should not come here in generateLegalMovesForPiece");
-        return new ArrayList<>();
-    }
-
-    protected ArrayList<Cell> generatePathForLegalMove(Move m) {
-        // do nothing, will be overridden.
-        System.out.println("Should not come here in generatePathsForLegalMoves");
-        return new ArrayList<>();
-    }
-
-    public Cell getEnclosingCell() {
+    final public Cell getEnclosingCell() {
         return board.getCellFromCordinate(cordinate);
     }
+
+    abstract public ArrayList<Move> generateLegalMovesForPiece();
+
+    abstract protected ArrayList<Cell> generatePathForLegalMove(Move m);
 }
 

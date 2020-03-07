@@ -138,7 +138,7 @@ public class Cordinate {
                 return Piece.PieceDirection.LEFT;
             }
         } else if(this.isDiagonal(destination)) {
-            if(this.row < destination.row) {
+            if(this.row > destination.row) {
                 if(this.col < destination.col) {
                     return Piece.PieceDirection.NORTHEAST;
                 } else {
@@ -156,7 +156,7 @@ public class Cordinate {
     }
 
     public boolean isEqual(Cordinate another) {
-        return this.row == another.row && this.col == another.col;
+        return (this.row == another.row) && (this.col == another.col);
     }
 
     public boolean isWithinBounds( int boardSize) {
