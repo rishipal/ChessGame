@@ -5,6 +5,7 @@ public abstract class Piece {
     protected Cordinate cordinate;
     protected ChessBoard board;
     public Cell cell;
+    private Player player;
     //TODO(rishipal): Add a player here?
 
     protected enum PieceColor {
@@ -40,8 +41,13 @@ public abstract class Piece {
 
     public Piece(PieceColor pieceColor) {
         this.pieceColor = pieceColor;
+        // TODO: Fix the direction here. Human must face up and computer must face down.
         this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
+        // TODO: Try to give user the choice of color
+    }
 
+    public void setPlayer(Player p) {
+        this.player = p;
     }
 
     public void setNewCordinates(Cordinate c) {

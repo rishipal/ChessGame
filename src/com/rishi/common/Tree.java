@@ -3,34 +3,38 @@ package com.rishi.common;
 import java.util.ArrayList;
 import java.util.List;
 
-class Node<T> {
-    private T data;
-    private Node<T> parent;
-    private List<Node<T>> children;
-
-    Node() {}
-    Node(T data) {
-        this.data = data;
-    }
-
-    public boolean insertChildToLast(Node child) {
-        if(this.children == null) {
-            this.children = new ArrayList<>();
-        }
-        this.children.add(child);
-        return true;
-    }
-
-    public List<Node<T>> getChildren() {
-        return this.children;
-    }
-}
-
 public class Tree<T> {
-    private Node<T> root;
+    private final Node<T> root;
+    private int depth = 0;
+
+
+    public Tree(T data) {
+        Node n = new Node(data);
+        this.root = n;
+    }
 
     public Node<T> getRoot() {
         return this.root;
     }
+
+    public void addChildAfter(Node n, T child) {
+        n.addChild(child);
+        // TODO: add depth calculation here
+    }
+
+    public void addChildrenAfter(Node n, ArrayList<T> children) {
+        for(T child : children) {
+            n.addChild(child);
+        }
+    }
+
+    public List<Node<T>> getChildrenOf(Node n) {
+        return (List<Node<T>>) n.getChildren();
+    }
+
+    public T getDataOf(Node n) {
+        return (T) n.getData();
+    }
+
 
 }

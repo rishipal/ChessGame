@@ -20,11 +20,16 @@ public class Game {
     public void makeHumanMove(Cell source, Cell destination) {
          assert (activePlayer == human);
          human.makeMove(moveManager, source, destination);
-         chessBoard.updateAll();
+       //  computer.calculateRemainingPieces(computer);
+       // human.calculateRemainingPieces(human);
+        chessBoard.resetMovesDataForEntireBoard();
+
          toggleActivePlayer();
 
          // Trigger for computer's move as soon as human move ends
         computer.makeMove(moveManager, null, null);
+       // human.calculateRemainingPieces(human);
+      //  chessBoard.resetMovesDataForEntireBoard();
         toggleActivePlayer();
     }
 

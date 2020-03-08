@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="Create move toggle between human and computer player">
+    <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/rishi/common/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cordinate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Move.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Pawn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece$PieceColor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece$PieceColor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece$PieceDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece$PieceDirection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Rook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Rook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$BoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$BoardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table$TilePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/gui/Table.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/HumanPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Rook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/common/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/common/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/gui/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,11 +405,17 @@
       <option name="project" value="LOCAL" />
       <updated>1581217309655</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Bug fixes and refactor. &#10;&#10;1. Move path creation to Piece class for stright line movers&#10;2. Fix a bug in calculating the direction of the move">
+      <created>1583623164141</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1583623164141</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added some code to calculate legal moves for Knights" />
     <MESSAGE value="Added some image and code for handling paths for Knights" />
     <MESSAGE value="Added HighLightKnightMoves.png" />
     <MESSAGE value="Added some comments" />
@@ -425,7 +440,8 @@
     <MESSAGE value="Refactor, introduce common package and engine package" />
     <MESSAGE value="Refactor" />
     <MESSAGE value="Create move toggle between human and computer player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create move toggle between human and computer player" />
+    <MESSAGE value="Bug fixes and refactor. &#10;&#10;1. Move path creation to Piece class for stright line movers&#10;2. Fix a bug in calculating the direction of the move" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes and refactor. &#10;&#10;1. Move path creation to Piece class for stright line movers&#10;2. Fix a bug in calculating the direction of the move" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577815396532">
@@ -440,10 +456,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="457" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1577815364471" />
-    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2" timestamp="1583622768142">
+    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2" timestamp="1583623163968">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1583622768142" />
+    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1583623163968" />
     <state width="458" height="505" key="DebuggerActiveHint" timestamp="1583622447519">
       <screen x="0" y="23" width="1440" height="831" />
     </state>
@@ -454,72 +470,72 @@
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1583619533549" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.23.1440.830@0.23.1440.830" timestamp="1583619579130" />
-    <state width="1398" height="164" key="GridCell.Tab.0.bottom" timestamp="1583622631821">
+    <state width="1398" height="164" key="GridCell.Tab.0.bottom" timestamp="1583708916352">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583622631821" />
+    <state width="1398" height="164" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583708916352" />
     <state width="980" height="147" key="GridCell.Tab.0.bottom/0.23.1440.829@0.23.1440.829" timestamp="1577683087667" />
     <state width="980" height="95" key="GridCell.Tab.0.bottom/0.23.1440.830@0.23.1440.830" timestamp="1577689428923" />
     <state width="980" height="95" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1577689452358" />
-    <state width="1398" height="164" key="GridCell.Tab.0.center" timestamp="1583622631820">
+    <state width="1398" height="164" key="GridCell.Tab.0.center" timestamp="1583708916351">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583622631820" />
+    <state width="1398" height="164" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583708916351" />
     <state width="980" height="147" key="GridCell.Tab.0.center/0.23.1440.829@0.23.1440.829" timestamp="1577683087665" />
     <state width="980" height="95" key="GridCell.Tab.0.center/0.23.1440.830@0.23.1440.830" timestamp="1577689428922" />
     <state width="980" height="95" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1577689452357" />
-    <state width="1398" height="164" key="GridCell.Tab.0.left" timestamp="1583622631819">
+    <state width="1398" height="164" key="GridCell.Tab.0.left" timestamp="1583708916351">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583622631819" />
+    <state width="1398" height="164" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583708916351" />
     <state width="980" height="147" key="GridCell.Tab.0.left/0.23.1440.829@0.23.1440.829" timestamp="1577683087664" />
     <state width="980" height="95" key="GridCell.Tab.0.left/0.23.1440.830@0.23.1440.830" timestamp="1577689428922" />
     <state width="980" height="95" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1577689452356" />
-    <state width="1398" height="164" key="GridCell.Tab.0.right" timestamp="1583622631820">
+    <state width="1398" height="164" key="GridCell.Tab.0.right" timestamp="1583708916352">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583622631820" />
+    <state width="1398" height="164" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583708916352" />
     <state width="980" height="147" key="GridCell.Tab.0.right/0.23.1440.829@0.23.1440.829" timestamp="1577683087666" />
     <state width="980" height="95" key="GridCell.Tab.0.right/0.23.1440.830@0.23.1440.830" timestamp="1577689428923" />
     <state width="980" height="95" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1577689452357" />
-    <state width="1398" height="261" key="GridCell.Tab.1.bottom" timestamp="1583622536434">
+    <state width="1398" height="261" key="GridCell.Tab.1.bottom" timestamp="1583638093739">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583622536434" />
-    <state width="1398" height="261" key="GridCell.Tab.1.center" timestamp="1583622536433">
+    <state width="1398" height="261" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583638093739" />
+    <state width="1398" height="261" key="GridCell.Tab.1.center" timestamp="1583638093739">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1583622536433" />
-    <state width="1398" height="261" key="GridCell.Tab.1.left" timestamp="1583622536433">
+    <state width="1398" height="261" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1583638093739" />
+    <state width="1398" height="261" key="GridCell.Tab.1.left" timestamp="1583638093738">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1583622536433" />
-    <state width="1398" height="261" key="GridCell.Tab.1.right" timestamp="1583622536434">
+    <state width="1398" height="261" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1583638093738" />
+    <state width="1398" height="261" key="GridCell.Tab.1.right" timestamp="1583638093739">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="261" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1583622536434" />
+    <state width="1398" height="261" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1583638093739" />
     <state x="349" y="151" key="NewModule_or_Project.wizard" timestamp="1582817524526">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="349" y="151" key="NewModule_or_Project.wizard/0.0.1440.900@0.0.1440.900" timestamp="1582817524526" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1581217317968">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1583623174697">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1581217317968" />
-    <state x="399" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1583617093279">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1583623174697" />
+    <state x="399" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1583702163251">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="399" y="267" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1583617093278" />
+    <state x="399" y="267" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1583702163251" />
     <state x="399" y="268" key="com.intellij.ide.util.TipDialog/0.23.1440.827@0.23.1440.827" timestamp="1580798630792" />
     <state x="399" y="269" key="com.intellij.ide.util.TipDialog/0.23.1440.828@0.23.1440.828" timestamp="1576826256377" />
     <state x="509" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581213194801">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="509" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1581213194801" />
-    <state x="386" y="207" width="667" height="486" key="find.popup" timestamp="1583621676533">
+    <state x="386" y="207" width="667" height="486" key="find.popup" timestamp="1583709011781">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="386" y="207" width="667" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1583621676533" />
+    <state x="386" y="207" width="667" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1583709011781" />
     <state x="419" y="248" key="git4idea.merge.GitPullDialog" timestamp="1577692859224">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -534,12 +550,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
-          <line>280</line>
+          <line>284</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/gui/Table.java</url>
-          <line>146</line>
+          <line>150</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -559,22 +575,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/chess/Piece.java</url>
-          <line>79</line>
+          <line>85</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/chess/Piece.java</url>
-          <line>82</line>
+          <line>88</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/chess/Piece.java</url>
-          <line>80</line>
+          <line>86</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/chess/Piece.java</url>
-          <line>84</line>
+          <line>90</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>

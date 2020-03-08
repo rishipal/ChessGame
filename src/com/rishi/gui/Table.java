@@ -13,7 +13,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.rishi.chess.*;
+import com.rishi.chess.Game;
+import com.rishi.chess.Piece;
+import com.rishi.chess.Move;
+import com.rishi.chess.Cell;
+import com.rishi.chess.ChessBoard;
 
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 

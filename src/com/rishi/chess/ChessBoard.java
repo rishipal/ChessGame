@@ -13,10 +13,10 @@ public class ChessBoard {
         initializeBoard();
     }
 
-    public void updateAll() {
+    public void resetMovesDataForEntireBoard() {
         for (Cell[] row : board) {
             for(Cell c : row) {
-                c.resetData();
+                c.resetMovesData();
             }
         }
     }
