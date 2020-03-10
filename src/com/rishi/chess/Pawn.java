@@ -18,9 +18,10 @@ public class Pawn extends Piece {
     @Override
     public ArrayList<Move> generateLegalMovesForPiece() {
         ArrayList<Cell> legalDestinations = new ArrayList<>();
+        ArrayList<Move> legalMoves = new ArrayList<>();
         if(pieceDirection == PieceDirection.UP) {
             if(this.cordinate.row == 0) {
-                return null;
+                return legalMoves;
             }
             Cell firstCellAboveThis = board.getChessBoard()[this.cordinate.row - 1][this.cordinate.col];
             if(!firstCellAboveThis.occupied) {
@@ -48,7 +49,7 @@ public class Pawn extends Piece {
             }
         } else {
             if(this.cordinate.row == 7) {
-                return null;
+                return legalMoves;
             }
             Cell firstCellBelowThis = board.getChessBoard()[this.cordinate.row + 1][this.cordinate.col];
             if(!firstCellBelowThis.occupied) {
@@ -75,7 +76,6 @@ public class Pawn extends Piece {
                 }
             }
         }
-        ArrayList<Move> legalMoves = new ArrayList<>();
         for (Cell c : legalDestinations) {
             Move m = new Move(this, c);
             ArrayList<Cell> path = this.generatePathForLegalMove(m);

@@ -77,7 +77,7 @@ public class Cell {
 
     private Set<Cell> getLegalDestinationsFromMoves() {
         Set<Cell> dests = new HashSet<>();
-        for(Move m : legalMoves) {
+        for(Move m : this.legalMoves) {
             dests.add(m.destination);
         }
         return dests;
