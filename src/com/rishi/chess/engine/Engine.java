@@ -4,13 +4,9 @@ import com.rishi.chess.Move;
 import com.rishi.chess.Piece;
 import com.rishi.chess.Player;
 import com.rishi.common.Node;
-import com.rishi.common.Tree;
 import com.rishi.chess.ChessBoard;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Engine {
     private Mode mode;
@@ -18,7 +14,7 @@ public class Engine {
 
     // This is a set containing all possible moves for each piece belonging to the player.
     // TODO: Make the engine use trees of depth > 1
-    private Set<Tree> movesTree;
+    private Map<Piece, Set<Move>> movesTree;
 
     public Engine(ChessBoard board) {
         this.mode = Mode.RANDOM;
@@ -40,25 +36,32 @@ public class Engine {
     }
 
     private void calculateMovesTree(Player computer) {
-        movesTree = new LinkedHashSet<>();
+        movesTree = new LinkedHashMap<>();
         for(Piece piece : computer.getRemainingPieces()) {
-            Tree tree = new Tree(piece);
+            movesTree.put(piece, new HashSet<>());
             ArrayList<Move> legalMoves = piece.generateLegalMovesForPiece();
-            if(!legalMoves.isEmpty()) {
-                tree.addChildrenAfter(tree.getRoot(), legalMoves);
+            if( legalMoves == null) {
+                continue;
             }
-            movesTree.add(tree);
+            for(Move m : legalMoves) {
+                movesTree.get(piece).add(m);
+            }
         }
     }
 
     private Move pickRandomMove() {
         if(!movesTree.isEmpty()) {
-            Tree<Move> t = movesTree.iterator().next();
-            Node<Move> root = t.getRoot();
-            List<Node<Move>> children = root.getChildren();
-            Node<Move> randomMoveNode = children.get(children.size() -1 );
-            return randomMoveNode.getData();
+            Iterator<Map.Entry<Piece, Set<Move>>> moveTreeItr = movesTree.entrySet().iterator();
+            while(moveTreeItr.hasNext()) {
+                Map.Entry<Piece, Set<Move>> pieceMovesMapping = moveTreeItr.next();
+                Set<Move> moves = pieceMovesMapping.getValue();
+                if(moves.isEmpty()) {
+                    continue;
+                }
+                return moves.iterator().next();
+            }
         }
+        assert(false);
         return null;
     }
 }
