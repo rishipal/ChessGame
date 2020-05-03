@@ -72,6 +72,11 @@ public class Cell {
     }
 
     public Set<Cell> getLegalDestinations() {
+        if(this.occupied && this.legalDestinations.isEmpty()) {
+            this.legalMoves = this.piece.generateLegalMovesForPiece();
+            this.legalDestinations = getLegalDestinationsFromMoves();
+            return this.legalDestinations;
+        }
         return this.legalDestinations;
     }
 

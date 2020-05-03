@@ -22,7 +22,8 @@ public class Move {
     }
 
     private boolean isMoveValid() {
-        return source.getLegalMoves().contains(this);
+        return source.getLegalDestinations().contains(destination);
+        //return source.getLegalMoves().contains(this);
     }
 
     public boolean execute() {
@@ -31,6 +32,9 @@ public class Move {
         }
         Piece pieceMoved = source.piece;
         source.unsetPiece();
+        if(destination.occupied) {
+            destination.piece.killPiece();
+        }
         destination.setPiece(pieceMoved);
         return true;
     }

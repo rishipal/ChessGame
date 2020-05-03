@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 
 // TODO(rishipal): Add tests for killing move (reduces player count, etc)
 class MoveTests {
-    ChessBoard board;
+    Game game;
 
     @BeforeEach
     void setUp() {
-        board = new ChessBoard();
+        game = new Game();
     }
 
     @Test
     void testSimpleMove() {
-        Cell source = board.getCellFromCordinate(new Cordinate(1,1));
+        Cell source = game.chessBoard.getCellFromCordinate(new Cordinate(1,1));
         Piece pieceBeforeMove = source.piece;
 
         Move m = source.getLegalMoves().get(0);
@@ -28,8 +28,8 @@ class MoveTests {
     // TODO(rishipal): This should report a warning and be a no-op
     @Test
     void testSameSourceAndDest() {
-        Cell source = board.getCellFromCordinate(new Cordinate(1,1));
-        Cell dest = board.getCellFromCordinate(new Cordinate(1,1));
+        Cell source = game.chessBoard.getCellFromCordinate(new Cordinate(1,1));
+        Cell dest = game.chessBoard.getCellFromCordinate(new Cordinate(1,1));
         Piece pieceBeforeMove = source.piece;
 
         Move m = new Move(source.piece, dest);
@@ -39,7 +39,7 @@ class MoveTests {
 
     @Test
     void testValidKnightMove() {
-        Cell source = board.getCellFromCordinate(new Cordinate(0,1));
+        Cell source = game.chessBoard.getCellFromCordinate(new Cordinate(0,1));
         Piece pieceBeforeMove = source.piece;
 
         assert (pieceBeforeMove.getPieceType() == Piece.PieceType.KNIGHT);

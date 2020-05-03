@@ -4,6 +4,7 @@ import com.rishi.chess.Move;
 import com.rishi.chess.Piece;
 import com.rishi.chess.Player;
 import com.rishi.chess.ChessBoard;
+import com.rishi.chess.utils.*;
 
 import java.util.*;
 
@@ -25,7 +26,11 @@ public class Engine {
 
     public Move getComputerPlayerMove(Player computer) {
         calculateMovesTree(computer);
+        Utils.print("Calculated Computer moves tree");
+
         Move m = pickRandomMove();
+        Utils.print("Picked random computer move");
+        m.printMove();
         return m;
     }
 
@@ -55,6 +60,7 @@ public class Engine {
                 return moves.iterator().next();
             }
         }
+        Utils.print("N more remaining moves !!!");
         assert(false);
         return null;
     }

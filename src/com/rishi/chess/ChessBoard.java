@@ -32,7 +32,23 @@ public class ChessBoard {
         setData();
     }
 
-    private void setData() {
+    // Called by the Game class to set the players for each piece
+    public void assignPlayers(Player human, Player computer) {
+        for(int i = 0; i < this.SIZE_BOARD; i++) {
+            for(int j = 0; j < this.SIZE_BOARD; j++) {
+                Cell c = this.board[i][j];
+                if(c.occupied) {
+                    if(c.piece.pieceColor == Piece.PieceColor.WHITE) {
+                        c.piece.setPlayer(human);
+                    } else {
+                        c.piece.setPlayer(computer);
+                    }
+                }
+            }
+        }
+    }
+
+    public void setData() {
         for(int i = 0; i < this.SIZE_BOARD; i++) {
             for(int j = 0; j < this.SIZE_BOARD; j++) {
                 Cell c = this.board[i][j];

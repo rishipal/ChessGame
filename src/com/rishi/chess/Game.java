@@ -1,11 +1,14 @@
 package com.rishi.chess;
 
+import com.rishi.chess.engine.Engine;
+
 public class Game {
     public final ChessBoard chessBoard;
     private final MoveManager moveManager;
 
     private final Player human;
     private final Player computer;
+    private Engine engine;
 
     private Player activePlayer;
 
@@ -14,22 +17,24 @@ public class Game {
         moveManager = new MoveManager(chessBoard);
         human = new HumanPlayer(chessBoard, Piece.PieceColor.WHITE);
         computer = new ComputerPlayer(chessBoard, Piece.PieceColor.BLACK);
+        chessBoard.assignPlayers(human, computer);
         activePlayer = human; // human player makes the first move
+         engine = new Engine(chessBoard);
     }
 
     public void makeHumanMove(Cell source, Cell destination) {
          assert (activePlayer == human);
-         human.makeAMove(moveManager, source, destination);
+         human.makeAMove(null, moveManager, source, destination);
        //  computer.calculateRemainingPieces(computer);
        // human.calculateRemainingPieces(human);
         chessBoard.resetMovesDataForEntireBoard();
-
+        //chessBoard.setData();
          toggleActivePlayer();
 
          // Trigger for computer's move as soon as human move ends
-        computer.makeAMove(moveManager, null, null);
+        computer.makeAMove(engine, moveManager, null, null);
        // human.calculateRemainingPieces(human);
-      //  chessBoard.resetMovesDataForEntireBoard();
+        chessBoard.resetMovesDataForEntireBoard();
         toggleActivePlayer();
     }
 

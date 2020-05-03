@@ -1,22 +1,21 @@
 package com.rishi.tests;
 
-import com.rishi.chess.ChessBoard;
+import com.rishi.chess.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PawnTests {
-    ChessBoard board;
-
+    Game game;
     @BeforeEach
     void setUp() {
-        board = new ChessBoard();
+        game = new Game();
     }
 
     @Test
     public void testPawnPiecesMarkedOccupied() {
-        for(int j = 0; j < board.SIZE_BOARD; j++) {
-            assert(this.board.getChessBoard()[1][j].occupied);
-            assert(this.board.getChessBoard()[6][j].occupied);
+        for(int j = 0; j < game.chessBoard.SIZE_BOARD; j++) {
+            assert(this.game.chessBoard.getChessBoard()[1][j].occupied);
+            assert(this.game.chessBoard.getChessBoard()[6][j].occupied);
         }
     }
 }

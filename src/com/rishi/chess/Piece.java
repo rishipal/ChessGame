@@ -48,11 +48,17 @@ public abstract class Piece {
         }
     }
 
+    // TODO(rishipal): Do this in the same way we assignPlayers - from Game class
     public Piece(PieceColor pieceColor) {
         this.pieceColor = pieceColor;
         // TODO: Fix the direction here. Human must face up and computer must face down.
         this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
         // TODO: Try to give user the choice of color
+    }
+
+    public void killPiece() {
+        this.player.getRemainingPieces().remove(this);
+        this.cell.piece = null;
     }
 
     public void setPlayer(Player p) {

@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="Don't return null in Pawn move calculator when no move exists">
-      <change afterPath="$PROJECT_DIR$/src/com/rishi/tests/IntegrationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/rishi/tests/MoveTests.java" afterDir="false" />
+    <list default="true" id="2a9ff66d-a820-4b17-8e05-1623aa1425ff" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/rishi/chess/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cordinate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Knight.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/ChessBoard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Pawn.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/rishi/chess/Piece.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Cordinate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ChessBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/ComuterPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/ComputerPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/HumanPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Knight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/chess/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/chess/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/tests/ChessBoardTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/tests/ChessBoardTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rishi/tests/MoveTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/tests/MoveTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/rishi/tests/PawnTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rishi/tests/PawnTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,12 +64,27 @@
       <recent name="$PROJECT_DIR$/src/com/rishi/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MoveTests">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.rishi.Main" />
       <module name="ChessGame" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChessBoardTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rishi.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.rishi.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.rishi.tests.ChessBoardTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,38 +100,6 @@
       <option name="PACKAGE_NAME" value="com.rishi.tests" />
       <option name="MAIN_CLASS_NAME" value="com.rishi.tests.MoveTests" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MoveTests.testMoveExecuted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ChessGame" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.rishi.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.rishi.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.rishi.tests.MoveTests" />
-      <option name="METHOD_NAME" value="testMoveExecuted" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MoveTests.testSimpleMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ChessGame" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.rishi.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.rishi.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.rishi.tests.MoveTests" />
-      <option name="METHOD_NAME" value="testSimpleMove" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -141,20 +120,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PawnTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rishi.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.rishi.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.rishi.tests.PawnTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.MoveTests" />
-      <item itemvalue="JUnit.MoveTests.testMoveExecuted" />
       <item itemvalue="JUnit.MoveTests.testValidKnightMove" />
-      <item itemvalue="JUnit.MoveTests.testSimpleMove" />
+      <item itemvalue="JUnit.PawnTests" />
+      <item itemvalue="JUnit.ChessBoardTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ChessBoardTests" />
+        <item itemvalue="JUnit.PawnTests" />
         <item itemvalue="JUnit.MoveTests" />
         <item itemvalue="JUnit.MoveTests.testValidKnightMove" />
-        <item itemvalue="JUnit.MoveTests.testSimpleMove" />
-        <item itemvalue="JUnit.MoveTests.testMoveExecuted" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -468,11 +462,17 @@
       <option name="project" value="LOCAL" />
       <updated>1583850236943</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Add unit tests for Move and other things">
+      <created>1588538082280</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1588538082280</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add functionality for highlighting destination seperately in path for Knights and Pawns" />
     <MESSAGE value="Add Bishop piece to the board" />
     <MESSAGE value="Complete board and correct the boardsize mistake &#10;&#10;The boardsize was set to 9x9 first, which was wrong as the board should only be 8x8." />
     <MESSAGE value="Add lambdas and some minor clean up" />
@@ -497,7 +497,8 @@
     <MESSAGE value="Added engine parts to make computer move&#10;&#10;Working in random mode. Chooses any random move from any random piece.&#10;There is still a crash that happens when the either player runs out of moves for a piece (observed when Pawn reaches the other player's boundary)." />
     <MESSAGE value="Remove tree class and pick new piece for computer move when current piece's moves are over" />
     <MESSAGE value="Don't return null in Pawn move calculator when no move exists" />
-    <option name="LAST_COMMIT_MESSAGE" value="Don't return null in Pawn move calculator when no move exists" />
+    <MESSAGE value="Add unit tests for Move and other things" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add unit tests for Move and other things" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1685" y="134" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585363033667">
@@ -512,64 +513,69 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1583804021073" />
-    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2" timestamp="1588534919446">
+    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2" timestamp="1588538082077">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1588534919446" />
-    <state width="485" height="505" key="DebuggerActiveHint" timestamp="1588537711889">
+    <state x="0" y="52" width="1273" height="795" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1588538082077" />
+    <state width="485" height="505" key="DebuggerActiveHint" timestamp="1588541200010">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="485" height="505" key="DebuggerActiveHint/0.0.1440.900@0.0.1440.900" timestamp="1588537711889" />
+    <state width="485" height="505" key="DebuggerActiveHint/0.0.1440.900@0.0.1440.900" timestamp="1588541200010" />
     <state width="458" height="505" key="DebuggerActiveHint/0.23.1440.831@0.23.1440.831" timestamp="1583622447519" />
+    <state width="485" height="505" key="DebuggerActiveHint/0.23.1440.837@0.23.1440.837" timestamp="1588539713076" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1583619579130">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1583619533549" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.23.1440.830@0.23.1440.830" timestamp="1583619579130" />
-    <state width="1398" height="241" key="GridCell.Tab.0.bottom" timestamp="1588537970183">
+    <state width="1398" height="241" key="GridCell.Tab.0.bottom" timestamp="1588543159832">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="241" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588537970183" />
+    <state width="1398" height="241" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588543159832" />
     <state width="1398" height="130" key="GridCell.Tab.0.bottom/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783361" />
-    <state width="1398" height="241" key="GridCell.Tab.0.center" timestamp="1588537970181">
+    <state width="1398" height="241" key="GridCell.Tab.0.center" timestamp="1588543159831">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="241" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588537970181" />
+    <state width="1398" height="241" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588543159831" />
     <state width="1398" height="130" key="GridCell.Tab.0.center/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783359" />
-    <state width="1398" height="241" key="GridCell.Tab.0.left" timestamp="1588537970180">
+    <state width="1398" height="241" key="GridCell.Tab.0.left" timestamp="1588543159830">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="241" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588537970180" />
+    <state width="1398" height="241" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588543159830" />
     <state width="1398" height="130" key="GridCell.Tab.0.left/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783358" />
-    <state width="1398" height="241" key="GridCell.Tab.0.right" timestamp="1588537970182">
+    <state width="1398" height="241" key="GridCell.Tab.0.right" timestamp="1588543159831">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="241" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588537970182" />
+    <state width="1398" height="241" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588543159831" />
     <state width="1398" height="130" key="GridCell.Tab.0.right/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783360" />
-    <state width="1398" height="214" key="GridCell.Tab.1.bottom" timestamp="1588537962799">
+    <state width="1398" height="275" key="GridCell.Tab.1.bottom" timestamp="1588541313236">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588537962799" />
+    <state width="1398" height="275" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588541313236" />
     <state width="1398" height="130" key="GridCell.Tab.1.bottom/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783364" />
     <state width="1398" height="261" key="GridCell.Tab.1.bottom/0.23.1440.829@0.23.1440.829" timestamp="1583850062519" />
-    <state width="1398" height="214" key="GridCell.Tab.1.center" timestamp="1588537962796">
+    <state width="1398" height="214" key="GridCell.Tab.1.bottom/0.23.1440.837@0.23.1440.837" timestamp="1588538886978" />
+    <state width="1398" height="275" key="GridCell.Tab.1.center" timestamp="1588541313235">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1588537962796" />
+    <state width="1398" height="275" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1588541313235" />
     <state width="1398" height="130" key="GridCell.Tab.1.center/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783362" />
     <state width="1398" height="261" key="GridCell.Tab.1.center/0.23.1440.829@0.23.1440.829" timestamp="1583850062518" />
-    <state width="1398" height="214" key="GridCell.Tab.1.left" timestamp="1588537962795">
+    <state width="1398" height="214" key="GridCell.Tab.1.center/0.23.1440.837@0.23.1440.837" timestamp="1588538886977" />
+    <state width="1398" height="275" key="GridCell.Tab.1.left" timestamp="1588541313235">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1588537962795" />
+    <state width="1398" height="275" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1588541313235" />
     <state width="1398" height="130" key="GridCell.Tab.1.left/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783361" />
     <state width="1398" height="261" key="GridCell.Tab.1.left/0.23.1440.829@0.23.1440.829" timestamp="1583850062517" />
-    <state width="1398" height="214" key="GridCell.Tab.1.right" timestamp="1588537962797">
+    <state width="1398" height="214" key="GridCell.Tab.1.left/0.23.1440.837@0.23.1440.837" timestamp="1588538886976" />
+    <state width="1398" height="275" key="GridCell.Tab.1.right" timestamp="1588541313236">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="214" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1588537962797" />
+    <state width="1398" height="275" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1588541313236" />
     <state width="1398" height="130" key="GridCell.Tab.1.right/0.23.1440.829/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584233783363" />
     <state width="1398" height="261" key="GridCell.Tab.1.right/0.23.1440.829@0.23.1440.829" timestamp="1583850062519" />
+    <state width="1398" height="214" key="GridCell.Tab.1.right/0.23.1440.837@0.23.1440.837" timestamp="1588538886977" />
     <state x="1905" y="181" key="NewModule_or_Project.wizard" timestamp="1585364926613">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -594,10 +600,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="509" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1581213194801" />
-    <state x="386" y="207" width="667" height="486" key="find.popup" timestamp="1588537423371">
+    <state x="386" y="207" width="667" height="486" key="find.popup" timestamp="1588543100386">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="386" y="207" width="667" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1588537423371" />
+    <state x="386" y="207" width="667" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1588543100386" />
     <state x="1794" y="162" key="new project wizard" timestamp="1585364891079">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -622,18 +628,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/chess/Move.java</url>
-          <line>24</line>
+          <line>25</line>
           <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/rishi/chess/Cell.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/rishi/chess/Cell.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/rishi/tests/MoveTests.java</url>
@@ -641,9 +637,14 @@
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/rishi/chess/Knight.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="67" />
+          <url>file://$PROJECT_DIR$/src/com/rishi/chess/Move.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/rishi/chess/Piece.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

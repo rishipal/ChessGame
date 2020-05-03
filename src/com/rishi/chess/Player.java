@@ -1,5 +1,7 @@
 package com.rishi.chess;
 
+import com.rishi.chess.engine.Engine;
+
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +14,7 @@ public abstract class Player {
     private Set<Piece> remainingPieces;
 
     Player() {}
-    public abstract void makeAMove(MoveManager moveManager, Cell source, Cell destination);
+    public abstract void makeAMove(Engine engine, MoveManager moveManager, Cell source, Cell destination);
 
     protected void calculateRemainingPieces(Player p) {
         p.remainingPieces = new LinkedHashSet<>();
