@@ -13,7 +13,16 @@ public abstract class Piece {
         BLACK
     }
 
+    public enum PieceType {
+        PAWN,
+        KNIGHT,
+        BISHOP,
+        KING,
+        QUEEN
+    }
+
     protected PieceColor pieceColor;
+    protected PieceType pieceType;
     protected PieceDirection pieceDirection; // TODO(rishipal): rename this to player direction
     public String pieceIconPath = "art/";
 
@@ -52,6 +61,14 @@ public abstract class Piece {
 
     public void setNewCordinates(Cordinate c) {
         this.cordinate = c;
+    }
+
+    public Cordinate getCordinate() {
+        return this.cordinate;
+    }
+
+    public PieceType getPieceType() {
+        return this.pieceType;
     }
 
     final protected Set<Cell> getLegalDestinations(PieceDirection d) {

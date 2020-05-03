@@ -13,12 +13,26 @@ public class Move {
     // TODO: Store and use the move's time
     LocalDateTime moveTime;
 
-    Move(Piece p, Cell dest) {
+    public Move(Piece p, Cell dest) {
         piece = p;
         source = p.getEnclosingCell();
         destination = dest;
         path = new ArrayList<>();
         moveTime = LocalDateTime.now();
+    }
+
+    private boolean isMoveValid() {
+        return source.getLegalMoves().contains(this);
+    }
+
+    public boolean execute() {
+        if(!isMoveValid()) {
+            return false;
+        }
+        Piece pieceMoved = source.piece;
+        source.unsetPiece();
+        destination.setPiece(pieceMoved);
+        return true;
     }
 
     public boolean isStraightLineMove() {

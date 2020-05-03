@@ -7,7 +7,7 @@ public class Pawn extends Piece {
         this.board = cb;
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BP.gif" : "WP.gif");
-        //this.pieceDirection = this.pieceColor == PieceColor.BLACK? PieceDirection.UP : PieceDirection.DOWN;
+        this.pieceType = PieceType.PAWN;
     }
 
     @Override

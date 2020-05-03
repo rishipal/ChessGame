@@ -16,12 +16,7 @@ class PawnTests {
     public void testPawnPiecesMarkedOccupied() {
         for(int j = 0; j < board.SIZE_BOARD; j++) {
             assert(this.board.getChessBoard()[1][j].occupied);
-            assert(this.board.getChessBoard()[7][j].occupied);
+            assert(this.board.getChessBoard()[6][j].occupied);
         }
-    }
-
-    @Test
-    public void testPawnMoves() {
-
     }
 }

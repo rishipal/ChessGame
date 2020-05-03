@@ -7,6 +7,7 @@ public class King extends Piece {
         this.board = cb;
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BK.gif" : "WK.gif");
+        this.pieceType = PieceType.KING;
     }
 
     private ArrayList<Cell> getSpatiallyPossibleDests() {

@@ -12,7 +12,7 @@ public abstract class Player {
     private Set<Piece> remainingPieces;
 
     Player() {}
-    public abstract void makeMove(MoveManager moveManager, Cell source, Cell destination);
+    public abstract void makeAMove(MoveManager moveManager, Cell source, Cell destination);
 
     protected void calculateRemainingPieces(Player p) {
         p.remainingPieces = new LinkedHashSet<>();

@@ -7,11 +7,9 @@ class HumanPlayer extends Player {
     }
 
     /** Simply make the move from source to destination */
-    public final void makeMove(MoveManager moveManager, Cell source, Cell destination) {
+    public final void makeAMove(MoveManager moveManager, Cell source, Cell destination) {
         Move m = new Move(source.piece, destination);
-        Piece pieceMoved = source.piece;
-        source.unsetPiece();
-        destination.setPiece(pieceMoved);
+        m.execute();
         moveManager.storeMove(m);
     }
 }

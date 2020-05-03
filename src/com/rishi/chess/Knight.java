@@ -12,10 +12,7 @@ public class Knight extends Piece {
         this.board = cb;
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BN.gif" : "WN.gif");
-    }
-
-    public boolean isMoveLegal(int end_x, int end_y) {
-        return true;
+        this.pieceType = PieceType.KNIGHT;
     }
 
     /**

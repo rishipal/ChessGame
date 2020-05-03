@@ -11,6 +11,7 @@ public class Bishop extends Piece {
         this.board = cb;
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BB.gif" : "WB.gif");
+        this.pieceType = PieceType.BISHOP;
     }
 
     final protected Set<Cell> getLegalDestinations() {
@@ -32,7 +33,7 @@ public class Bishop extends Piece {
 
     @Override
     public ArrayList<Move> generateLegalMovesForPiece() {
-        System.out.print("Coming inside Bishop generateLegalMovesForPiece");
+        System.out.print("Coming inside Bishop generateLegalMovesForPiece\n");
         Set<Cell> destinations = getLegalDestinations();
         ArrayList<Move> legalMoves = new ArrayList<>();
         for(Cell dest : destinations) {

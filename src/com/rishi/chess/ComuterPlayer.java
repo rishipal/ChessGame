@@ -11,11 +11,9 @@ class ComputerPlayer extends Player {
     }
 
     /** TODO: Use the engine to choose a move, and then make that move */
-    public final void makeMove(MoveManager moveManager, Cell ignore, Cell ignore2) {
+    public final void makeAMove(MoveManager moveManager, Cell ignore, Cell ignore2) {
         Move move = engine.getComputerPlayerMove(this);
-        Piece pieceMoved = move.source.piece;
-        move.source.unsetPiece();
-        move.destination.setPiece(pieceMoved);
+        move.execute();
         moveManager.storeMove(move);
         return;
     }
