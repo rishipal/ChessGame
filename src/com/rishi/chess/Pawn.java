@@ -8,6 +8,7 @@ public class Pawn extends Piece {
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BP.gif" : "WP.gif");
         this.pieceType = PieceType.PAWN;
+        this.killScore = 10;
     }
 
     @Override

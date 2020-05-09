@@ -12,6 +12,7 @@ public class Rook extends Piece {
         this.board = cb;
         this.pieceColor = c;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BR.gif" : "WR.gif");
+        this.killScore = 55;
     }
 
     /**

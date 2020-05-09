@@ -10,7 +10,7 @@ class MoveTests {
 
     @BeforeEach
     void setUp() {
-        game = new Game();
+        game = new Game(Game.Mode.RANDOM);
     }
 
     @Test

@@ -9,7 +9,7 @@ class ChessBoardTests {
 
     @BeforeEach
     void setUp() {
-        game = new Game();
+        game = new Game(Game.Mode.RANDOM);
     }
 
     @Test
@@ -22,5 +22,4 @@ class ChessBoardTests {
             assert(this.game.chessBoard.getChessBoard()[6][j].occupied);
         }
     }
-
 }

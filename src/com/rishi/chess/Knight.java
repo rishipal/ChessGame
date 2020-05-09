@@ -13,6 +13,7 @@ public class Knight extends Piece {
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BN.gif" : "WN.gif");
         this.pieceType = PieceType.KNIGHT;
+        this.killScore = 50;
     }
 
     /**

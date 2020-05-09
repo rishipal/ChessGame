@@ -12,6 +12,7 @@ public class Bishop extends Piece {
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BB.gif" : "WB.gif");
         this.pieceType = PieceType.BISHOP;
+        this.killScore = 30;
     }
 
     final protected Set<Cell> getLegalDestinations() {

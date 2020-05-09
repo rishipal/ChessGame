@@ -13,6 +13,7 @@ public class Queen extends Piece {
         this.cordinate = cord;
         this.pieceIconPath = this.pieceIconPath + (this.pieceColor == PieceColor.BLACK? "BQ.gif" : "WQ.gif");
         this.pieceType = PieceType.QUEEN;
+        this.killScore = 80;
     }
 
     private Set<Cell> getSpatiallyPossibleDests() {

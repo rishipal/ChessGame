@@ -6,6 +6,8 @@ public abstract class Piece {
     protected ChessBoard board;
     public Cell cell;
     private Player player;
+    protected Integer killScore = 0;
+
     //TODO(rishipal): Add a player here?
 
     protected enum PieceColor {
@@ -46,6 +48,10 @@ public abstract class Piece {
             PieceDirection[] arr = new PieceDirection[]{UP, DOWN, LEFT, RIGHT};
             return Arrays.asList(arr);
         }
+    }
+
+    public Integer getKillScore() {
+        return this.killScore;
     }
 
     // TODO(rishipal): Do this in the same way we assignPlayers - from Game class

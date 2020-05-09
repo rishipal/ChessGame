@@ -35,6 +35,7 @@ public class Table {
     private Set<Integer> tileToHighlight;
     private Set<Integer> tilesToAddBorder;
     private Set<Integer> destTileToHighlight;
+    private final Game.Mode gameMode;
 
     private enum HighlightColors {
         PATH(Color.YELLOW),
@@ -48,8 +49,9 @@ public class Table {
         }
     }
 
-    private Table() {
-        game = new Game();
+    private Table(Game.Mode mode) {
+        gameMode = mode;
+        game = new Game(gameMode);
         boardPanel = new BoardPanel();
         tileToHighlight = new HashSet<>();
         tilesToAddBorder = new HashSet<>();
@@ -57,6 +59,7 @@ public class Table {
         gameFrame = new JFrame();
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.add(CreateFileMenu());
+        jMenuBar.add(CreateModeMenu());
         gameFrame.setJMenuBar(jMenuBar);
         gameFrame.setTitle("Chess Game");
         this.gameFrame.setLayout(new BorderLayout());
@@ -79,8 +82,8 @@ public class Table {
         this.getBoardPanel().drawBoard();
     }
 
-    public static Table get() {
-        return new Table();
+    public static Table get(Game.Mode mode) {
+        return new Table(mode);
     }
 
     private BoardPanel getBoardPanel() {
@@ -93,7 +96,7 @@ public class Table {
         final JMenuItem resetGame = new JMenuItem("Reset", KeyEvent.VK_O);
         resetGame.addActionListener((e) -> {
             gameFrame.dispose();
-            Table.get().show();
+            Table.get(gameMode).show();
         });
         filesMenu.add(resetGame);
 
@@ -103,6 +106,23 @@ public class Table {
                 System.exit(0);
             });
         filesMenu.add(exitMenuItem);
+        return filesMenu;
+    }
+
+    private JMenu CreateModeMenu() {
+        JMenu filesMenu = new JMenu("Mode");
+
+        final JMenuItem randomMode = new JMenuItem("Random", KeyEvent.VK_O);
+        randomMode.addActionListener((e) -> {
+            game.switchMode(Game.Mode.RANDOM);
+        });
+        filesMenu.add(randomMode);
+
+        final JMenuItem easyMode = new JMenuItem("Easy", KeyEvent.VK_X);
+        easyMode.addActionListener((e) -> {
+            game.switchMode(Game.Mode.EASY);
+        });
+        filesMenu.add(easyMode);
         return filesMenu;
     }
 

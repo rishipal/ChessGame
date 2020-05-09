@@ -33,15 +33,29 @@ public class Game {
     public static Status status;
 
 
-    public Game() {
+
+    /** Mode of the engine represents the way the engine will choose the computer moves. */
+    public enum Mode {
+        RANDOM, // pick a legal move for the computer at random, no need to construct the MoveTree
+        EASY, // pick a move, but prefer moves that capture any enemy piece when available, otherwise random
+        MEDIUM, // capture enemy if possible, and also prefer capturing higher valued enemy
+        HARD //
+    }
+
+
+    public Game(Mode mode) {
         chessBoard = new ChessBoard();
         moveManager = new MoveManager(chessBoard);
         human = new HumanPlayer(chessBoard, Piece.PieceColor.WHITE);
         computer = new ComputerPlayer(chessBoard, Piece.PieceColor.BLACK);
         chessBoard.assignPlayers(human, computer);
         activePlayer = human; // human player makes the first move
-        engine = new Engine(chessBoard);
+        engine = new Engine(chessBoard, Mode.RANDOM);
         status = Status.PLAYING;
+    }
+
+    public void switchMode(Mode m) {
+        engine.switchMode(m);
     }
 
     public void makeHumanMove(Cell source, Cell destination) {

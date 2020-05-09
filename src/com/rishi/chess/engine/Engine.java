@@ -9,28 +9,24 @@ public class Engine {
     // This is a set containing all possible moves for each piece belonging to the player.
     // TODO: Make the engine use trees of depth > 1
     private Map<Piece, Set<Move>> movesTree;
+    private Game.Mode mode;  //can be changed by the user on the fly
 
-    public Engine(ChessBoard board) {
+    public Engine(ChessBoard board, Game.Mode mode) {
+        this.mode = mode;
     }
-
-    /** Mode of the engine represents the way the engine will choose the computer moves. */
-    private enum Mode {
-        RANDOM, // pick a legal move for the computer at random, no need to construct the MoveTree
-        EASY, // pick a move, but prefer moves that capture any enemy piece when available, otherwise random
-        MEDIUM, // capture enemy if possible, and also prefer capturing higher valued enemy
-        HARD //
-    }
-
 
     public Move getComputerPlayerMove(Player computer) {
         calculateMovesTree(computer);
         Utils.print("Calculated Computer moves tree");
 
-        Move m = pickRandomMove();
-        // Move m = pickEasyMove();
+        Move m = pickNextMode(mode);
         Utils.print("Picked random computer move");
         //m.printMove();
         return m;
+    }
+
+    public void switchMode(Game.Mode mode) {
+        this.mode = mode;
     }
 
     private void calculateMovesTree(Player computer) {
@@ -44,6 +40,21 @@ public class Engine {
             for(Move m : legalMoves) {
                 movesTree.get(piece).add(m);
             }
+        }
+    }
+
+    /**
+     * Picks the next move for the player based on the game's Mode
+     * @param mode the difficulty mode of the game
+     * @return selected move
+     */
+    private Move pickNextMode(Game.Mode mode) {
+        if(mode == Game.Mode.RANDOM) {
+            return pickRandomMove();
+        } else if (mode == Game.Mode.EASY) {
+            return pickEasyMove();
+        } else {
+            return null;
         }
     }
 
@@ -66,12 +77,32 @@ public class Engine {
     }
 
     private Move pickEasyMove() {
-
+        Move bestMove = null;
+        Integer bestProfitSoFar = -1;
         if(!movesTree.isEmpty()) {
             Iterator<Map.Entry<Piece, Set<Move>>> moveTreeItr = movesTree.entrySet().iterator();
             while(moveTreeItr.hasNext()) {
-
+                Map.Entry<Piece, Set<Move>> pieceMovesMapping = moveTreeItr.next();
+                Piece piece = pieceMovesMapping.getKey();
+                Set<Move> moves = pieceMovesMapping.getValue();
+                for(Move move : moves) {
+                    Piece dest = move.destination.piece;
+                    Integer currProfit = 0;
+                    if(dest == null) {
+                        if(currProfit > bestProfitSoFar) {
+                            bestMove = move;
+                            bestProfitSoFar = currProfit;
+                        }
+                    } else {
+                        currProfit = dest.getKillScore();
+                        if(currProfit > bestProfitSoFar) {
+                            bestMove = move;
+                            bestProfitSoFar = currProfit;
+                        }
+                    }
+                }
             }
         }
+        return bestMove;
     }
 }

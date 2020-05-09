@@ -8,7 +8,7 @@ class PawnTests {
     Game game;
     @BeforeEach
     void setUp() {
-        game = new Game();
+        game = new Game(Game.Mode.RANDOM);
     }
 
     @Test
