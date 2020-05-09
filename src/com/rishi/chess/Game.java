@@ -12,14 +12,36 @@ public class Game {
 
     private Player activePlayer;
 
-     public Game() {
+    public enum Status {
+        PLAYING(0),
+        OVER(1);
+
+        private int status;
+
+        Status(int i) {
+            this.status = i;
+        }
+
+        int get() {
+            return this.status;
+        }
+
+        void set(int s) {
+            this.status = s;
+        }
+    }
+    public static Status status;
+
+
+    public Game() {
         chessBoard = new ChessBoard();
         moveManager = new MoveManager(chessBoard);
         human = new HumanPlayer(chessBoard, Piece.PieceColor.WHITE);
         computer = new ComputerPlayer(chessBoard, Piece.PieceColor.BLACK);
         chessBoard.assignPlayers(human, computer);
         activePlayer = human; // human player makes the first move
-         engine = new Engine(chessBoard);
+        engine = new Engine(chessBoard);
+        status = Status.PLAYING;
     }
 
     public void makeHumanMove(Cell source, Cell destination) {

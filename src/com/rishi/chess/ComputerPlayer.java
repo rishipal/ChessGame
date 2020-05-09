@@ -10,8 +10,10 @@ public class ComputerPlayer extends Player {
     /** TODO: Use the engine to choose a move, and then make that move */
     public final void makeAMove(Engine engine, MoveManager moveManager, Cell ignore, Cell ignore2) {
         Move move = engine.getComputerPlayerMove(this);
-        move.execute();
-        moveManager.storeMove(move);
-        return;
+        if(move != null) {
+            move.execute();
+            moveManager.storeMove(move);
+            return;
+        }
     }
 }

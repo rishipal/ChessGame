@@ -1,6 +1,5 @@
 package com.rishi.tests;
 
-import com.rishi.chess.ChessBoard;
 import com.rishi.chess.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,6 @@
 package com.rishi.chess.engine;
 
-import com.rishi.chess.Move;
-import com.rishi.chess.Piece;
-import com.rishi.chess.Player;
-import com.rishi.chess.ChessBoard;
+import com.rishi.chess.*;
 import com.rishi.chess.utils.*;
 
 import java.util.*;
@@ -24,13 +21,15 @@ public class Engine {
         HARD //
     }
 
+
     public Move getComputerPlayerMove(Player computer) {
         calculateMovesTree(computer);
         Utils.print("Calculated Computer moves tree");
 
         Move m = pickRandomMove();
+        // Move m = pickEasyMove();
         Utils.print("Picked random computer move");
-        m.printMove();
+        //m.printMove();
         return m;
     }
 
@@ -60,9 +59,19 @@ public class Engine {
                 return moves.iterator().next();
             }
         }
-        Utils.print("N more remaining moves !!!");
-        assert(false);
+        Utils.print("N more remaining moves !!! Game over!");
+        //assert(false);
+        Game.status = Game.Status.OVER;
         return null;
     }
-}
 
+    private Move pickEasyMove() {
+
+        if(!movesTree.isEmpty()) {
+            Iterator<Map.Entry<Piece, Set<Move>>> moveTreeItr = movesTree.entrySet().iterator();
+            while(moveTreeItr.hasNext()) {
+
+            }
+        }
+    }
+}

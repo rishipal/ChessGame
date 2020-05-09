@@ -231,6 +231,10 @@ public class Table {
                     boardPanel.pieceInMotion = null;
                     boardPanel.destination = null;
                     boardPanel.drawBoard();
+                    if(game.status == Game.Status.OVER) {
+                        //gameFrame.dispose();
+                        JOptionPane.showMessageDialog(boardPanel, "","Game over", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
 
                 // For speed, mousePressed instead of mouseClicked. mouseClicked looks for multiple button clicks, so it will

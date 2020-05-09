@@ -31,10 +31,14 @@ class MoveTests {
         Cell source = game.chessBoard.getCellFromCordinate(new Cordinate(1,1));
         Cell dest = game.chessBoard.getCellFromCordinate(new Cordinate(1,1));
         Piece pieceBeforeMove = source.piece;
+        try{
+            Move m = new Move(source.piece, dest);
+            m.execute();
+            throw new IllegalStateException();
+        } catch (UnsupportedOperationException e) {
+           assert(e.getMessage().contains("Performing an invalid move"));
+        }
 
-        Move m = new Move(source.piece, dest);
-        boolean executed = m.execute();
-        assert(executed == false);
     }
 
     @Test

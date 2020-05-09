@@ -28,7 +28,7 @@ public class Move {
 
     public boolean execute() {
         if(!isMoveValid()) {
-            return false;
+            throw new UnsupportedOperationException("Performing an invalid move");
         }
         Piece pieceMoved = source.piece;
         source.unsetPiece();
