@@ -69,9 +69,19 @@ public class Game {
 
          // Trigger for computer's move as soon as human move ends
         computer.makeAMove(engine, moveManager, null, null);
-       // human.calculateRemainingPieces(human);
+        // human.calculateRemainingPieces(human);
         chessBoard.resetMovesDataForEntireBoard();
         toggleActivePlayer();
+
+        if(isGameOver()) {
+            this.status = Status.OVER;
+        }
+    }
+
+    private boolean isGameOver() {
+        human.calculateRemainingPieces();
+        computer.calculateRemainingPieces();
+        return human.isPlayerDead() || computer.isPlayerDead();
     }
 
     public Player getActivePlayer() {

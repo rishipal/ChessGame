@@ -16,13 +16,13 @@ public abstract class Player {
     Player() {}
     public abstract void makeAMove(Engine engine, MoveManager moveManager, Cell source, Cell destination);
 
-    protected void calculateRemainingPieces(Player p) {
-        p.remainingPieces = new LinkedHashSet<>();
+    protected void calculateRemainingPieces() {
+        this.remainingPieces = new LinkedHashSet<>();
         for (Cell[] row : chessBoard.getChessBoard()) {
             for(Cell cell : row) {
-                if( cell.occupied && cell.piece.pieceColor == p.pieceColor) {
-                    cell.piece.setPlayer(p);
-                    p.remainingPieces.add(cell.piece);
+                if( cell.occupied && cell.piece.pieceColor == this.pieceColor) {
+                    cell.piece.setPlayer(this);
+                    this.remainingPieces.add(cell.piece);
                 }
             }
         }
@@ -31,8 +31,21 @@ public abstract class Player {
 
     public Set<Piece> getRemainingPieces() {
         if (this.remainingPieces == null) {
-            calculateRemainingPieces(this);
+            calculateRemainingPieces();
         }
         return this.remainingPieces;
+    }
+
+    public boolean isPlayerDead() {
+        return remainingPieces.isEmpty() || isKingDead();
+    }
+
+    private boolean isKingDead() {
+        for(Piece p : remainingPieces) {
+            if (p.getPieceType() == Piece.PieceType.KING) {
+                return false;
+            }
+        }
+        return true;
     }
 }
