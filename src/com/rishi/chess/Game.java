@@ -17,17 +17,8 @@ public class Game {
         OVER(1);
 
         private int status;
-
         Status(int i) {
             this.status = i;
-        }
-
-        int get() {
-            return this.status;
-        }
-
-        void set(int s) {
-            this.status = s;
         }
     }
     public static Status status;
@@ -37,8 +28,8 @@ public class Game {
     /** Mode of the engine represents the way the engine will choose the computer moves. */
     public enum Mode {
         RANDOM, // pick a legal move for the computer at random, no need to construct the MoveTree
-        EASY, // pick a move, but prefer moves that capture any enemy piece when available, otherwise random
-        MEDIUM, // capture enemy if possible, and also prefer capturing higher valued enemy
+        EASY,
+        MEDIUM,
         HARD //
     }
 
@@ -46,11 +37,12 @@ public class Game {
     public Game(Mode mode) {
         chessBoard = new ChessBoard();
         moveManager = new MoveManager(chessBoard);
+        engine = new Engine(chessBoard, mode);
         human = new HumanPlayer(chessBoard, Piece.PieceColor.WHITE);
-        computer = new ComputerPlayer(chessBoard, Piece.PieceColor.BLACK);
+        computer = new ComputerPlayer(chessBoard, Piece.PieceColor.BLACK, engine); // computer needs an engine
         chessBoard.assignPlayers(human, computer);
         activePlayer = human; // human player makes the first move
-        engine = new Engine(chessBoard, Mode.RANDOM);
+
         status = Status.PLAYING;
     }
 
@@ -58,21 +50,10 @@ public class Game {
         engine.switchMode(m);
     }
 
-    public void makeHumanMove(Cell source, Cell destination) {
-         assert (activePlayer == human);
-         human.makeAMove(null, moveManager, source, destination);
-       //  computer.calculateRemainingPieces(computer);
-       // human.calculateRemainingPieces(human);
-        chessBoard.resetMovesDataForEntireBoard();
-        //chessBoard.setData();
-         toggleActivePlayer();
-
-         // Trigger for computer's move as soon as human move ends
-        computer.makeAMove(engine, moveManager, null, null);
-        // human.calculateRemainingPieces(human);
+    public void makeActivePlayerMove(Cell source, Cell destination) {
+        this.activePlayer.makeAMove(engine, moveManager, source, destination);
         chessBoard.resetMovesDataForEntireBoard();
         toggleActivePlayer();
-
         if(isGameOver()) {
             this.status = Status.OVER;
         }
@@ -86,6 +67,10 @@ public class Game {
 
     public Player getActivePlayer() {
          return this.activePlayer;
+    }
+
+    public boolean isHumanActivePlayer() {
+        return this.activePlayer == this.human;
     }
 
     private void toggleActivePlayer() {

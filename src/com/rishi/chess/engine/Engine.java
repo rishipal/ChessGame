@@ -15,21 +15,11 @@ public class Engine {
         this.mode = mode;
     }
 
-    public Move getComputerPlayerMove(Player computer) {
-        calculateMovesTree(computer);
-        Utils.print("Calculated Computer moves tree");
-
-        Move m = pickNextMode(mode);
-        Utils.print("Picked random computer move");
-        //m.printMove();
-        return m;
-    }
-
     public void switchMode(Game.Mode mode) {
         this.mode = mode;
     }
 
-    private void calculateMovesTree(Player computer) {
+    public void calculateMovesTree(Player computer) {
         movesTree = new LinkedHashMap<>();
         for(Piece piece : computer.getRemainingPieces()) {
             movesTree.put(piece, new HashSet<>());
@@ -48,11 +38,13 @@ public class Engine {
      * @param mode the difficulty mode of the game
      * @return selected move
      */
-    private Move pickNextMode(Game.Mode mode) {
+    public Move pickNextMove() {
         if(mode == Game.Mode.RANDOM) {
             return pickRandomMove();
         } else if (mode == Game.Mode.EASY) {
             return pickEasyMove();
+        } else if (mode == Game.Mode.MEDIUM) {
+            return pickMediumMove();
         } else {
             return null;
         }
@@ -76,6 +68,10 @@ public class Engine {
         return null;
     }
 
+    /**
+     * Finds the best move based on the killScore of a piece.
+     * @return
+     */
     private Move pickEasyMove() {
         Move bestMove = null;
         Integer bestProfitSoFar = -1;
@@ -104,5 +100,10 @@ public class Engine {
             }
         }
         return bestMove;
+    }
+
+    private Move pickMediumMove() {
+        return pickRandomMove();
+
     }
 }

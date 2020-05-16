@@ -22,6 +22,8 @@ import com.rishi.chess.ChessBoard;
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 
 public class Table {
+    private static Table INSTANCE = null;
+
     private JFrame gameFrame;
 
     private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
@@ -83,7 +85,11 @@ public class Table {
     }
 
     public static Table get(Game.Mode mode) {
-        return new Table(mode);
+        if(INSTANCE != null) {
+            return INSTANCE;
+        }
+        INSTANCE = new Table(mode);
+        return INSTANCE;
     }
 
     private BoardPanel getBoardPanel() {
@@ -189,7 +195,11 @@ public class Table {
 
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    boardPanel.inTransition = true;
+                    if(game.isHumanActivePlayer()) {
+                        boardPanel.inTransition = true;
+                    } else {
+                        playWarningSound(); // not your turn to play or not your piece to move
+                    }
                 }
             });
 
@@ -230,7 +240,7 @@ public class Table {
                 public void mouseReleased(final MouseEvent e) {
                     Cell source = TilePanel.this.cell;
                     if(boardPanel.inTransition == true && !cell.isActivePlayerCell(game.getActivePlayer())) {
-                        playWarningSound(); // not your turn to play
+                    //    playWarningSound(); // not your turn to play or not your piece to move
                     }
                     if(cell.isActivePlayerCell(game.getActivePlayer()) && boardPanel.inTransition &&
                             boardPanel.destination != null && boardPanel.destination != TilePanel.this) {
@@ -238,7 +248,8 @@ public class Table {
                             boardPanel.pieceInMotion = source.piece;
                             Cell destination = boardPanel.destination.cell;
                             if(source.getLegalDestinations().contains(destination)) {
-                                game.makeHumanMove(source, destination);
+                                //game.makeHumanMove(source, destination);
+                                game.makeActivePlayerMove(source, destination);
                             } else {
                                 playWarningSound(); // illegal destination
                             }
@@ -255,6 +266,18 @@ public class Table {
                         //gameFrame.dispose();
                         JOptionPane.showMessageDialog(boardPanel, "","Game over", JOptionPane.INFORMATION_MESSAGE);
                     }
+                    new java.util.Timer().schedule(
+                            new java.util.TimerTask() {
+                                @Override
+                                public void run() {
+                                    game.makeActivePlayerMove(null, null);
+                                    boardPanel.drawBoard();
+                                    // your code here
+                                }
+                            },
+                            1000
+                    );
+
                 }
 
                 // For speed, mousePressed instead of mouseClicked. mouseClicked looks for multiple button clicks, so it will
