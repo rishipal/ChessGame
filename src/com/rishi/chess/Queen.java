@@ -1,5 +1,7 @@
 package com.rishi.chess;
 
+import com.rishi.chess.utils.Utils.Direction;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -17,9 +19,9 @@ public class Queen extends Piece {
     }
 
     private Set<Cell> getSpatiallyPossibleDests() {
-        List<PieceDirection> directionList = this.pieceDirection.getAllDirectionsAsList();
+        List<Direction> directionList = this.direction.getAllDirectionsAsList();
         Set<Cell> legalDests = new LinkedHashSet<>();
-        for(PieceDirection direction : directionList) {
+        for(Direction direction : directionList) {
             legalDests.addAll(getLegalDestinations(direction));
         }
         return legalDests;

@@ -31,7 +31,7 @@ public class Move {
             throw new UnsupportedOperationException("Performing an invalid move");
         }
         Piece pieceMoved = source.piece;
-        source.unsetPiece();
+        source.clearCell();
         if(destination.occupied) {
             destination.piece.killPiece();
         }

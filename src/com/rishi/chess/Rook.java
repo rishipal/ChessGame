@@ -5,6 +5,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.rishi.chess.utils.Utils.Direction;
+
+
 public class Rook extends Piece {
     public Rook(Cordinate cord, PieceColor c, ChessBoard cb) {
         super(c);
@@ -20,9 +23,9 @@ public class Rook extends Piece {
      * @return
      */
     private Set<Cell> getLegalDestinations() {
-        List<PieceDirection> directions = this.pieceDirection.get4WayDirectionsAsList();
+        List<Direction> directions = this.direction.get4WayDirectionsAsList();
         Set<Cell> legalDests = new LinkedHashSet<>();
-        for(PieceDirection direction : directions) {
+        for(Direction direction : directions) {
             legalDests.addAll(getLegalDestinations(direction));
         }
         return legalDests;

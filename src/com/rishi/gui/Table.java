@@ -13,77 +13,41 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.rishi.chess.Game;
-import com.rishi.chess.Piece;
-import com.rishi.chess.Move;
-import com.rishi.chess.Cell;
-import com.rishi.chess.ChessBoard;
-
-import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
+import com.rishi.chess.*;
 
 public class Table {
     private static Table INSTANCE = null;
-
     private JFrame gameFrame;
 
-    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
-    private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
-    private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
-    private static final Color lightTileColor = Color.decode("#FFFACD");
-    private static final Color darkTileColor = Color.decode("#593E1A");
-
-    private final Game game;
     private BoardPanel boardPanel;
     private Set<Integer> tileToHighlight;
     private Set<Integer> tilesToAddBorder;
     private Set<Integer> destTileToHighlight;
+
+    private final Game game;
     private final Game.Mode gameMode;
 
-    private enum HighlightColors {
-        PATH(Color.YELLOW),
-        DEST(Color.GREEN),
-        KILLING(Color.RED);
-
-        Color highlightColor;
-
-        HighlightColors(Color c) {
-            this.highlightColor = c;
-        }
-    }
-
+    // `private` in order to disallow creating a new table once game started.
     private Table(Game.Mode mode) {
+        // Game
         gameMode = mode;
         game = new Game(gameMode);
+
+        // GUI
         boardPanel = new BoardPanel();
         tileToHighlight = new HashSet<>();
         tilesToAddBorder = new HashSet<>();
         destTileToHighlight = new HashSet<>();
-        gameFrame = new JFrame();
-        JMenuBar jMenuBar = new JMenuBar();
-        jMenuBar.add(CreateFileMenu());
-        jMenuBar.add(CreateModeMenu());
-        gameFrame.setJMenuBar(jMenuBar);
-        gameFrame.setTitle("Chess Game");
-        this.gameFrame.setLayout(new BorderLayout());
-        this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
-        gameFrame.setLocationRelativeTo(null);
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
-        setDefaultLookAndFeelDecorated(true);
-        this.gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
-        center(this.gameFrame);
-        gameFrame.setVisible(true);
-    }
-
-    private void playWarningSound() {
-        Toolkit.getDefaultToolkit().beep();
+        gameFrame = GUIUtils.initGameFrame(gameMode, game, boardPanel);
     }
 
     public void show() {
         this.getBoardPanel().drawBoard();
     }
 
+    /**
+     * Returns the single instance of the Table being used in the current play.
+     */
     public static Table get(Game.Mode mode) {
         if(INSTANCE != null) {
             return INSTANCE;
@@ -92,47 +56,7 @@ public class Table {
         return INSTANCE;
     }
 
-    private BoardPanel getBoardPanel() {
-        return this.boardPanel;
-    }
-
-    private JMenu CreateFileMenu() {
-        JMenu filesMenu = new JMenu("File");
-
-        final JMenuItem resetGame = new JMenuItem("Reset", KeyEvent.VK_O);
-        resetGame.addActionListener((e) -> {
-            gameFrame.dispose();
-            Table.get(gameMode).show();
-        });
-        filesMenu.add(resetGame);
-
-        final JMenuItem exitMenuItem = new JMenuItem("Exit", KeyEvent.VK_X);
-        exitMenuItem.addActionListener((e) -> {
-                gameFrame.dispose();
-                System.exit(0);
-            });
-        filesMenu.add(exitMenuItem);
-        return filesMenu;
-    }
-
-    private JMenu CreateModeMenu() {
-        JMenu filesMenu = new JMenu("Mode");
-
-        final JMenuItem randomMode = new JMenuItem("Random", KeyEvent.VK_O);
-        randomMode.addActionListener((e) -> {
-            game.switchMode(Game.Mode.RANDOM);
-        });
-        filesMenu.add(randomMode);
-
-        final JMenuItem easyMode = new JMenuItem("Easy", KeyEvent.VK_X);
-        easyMode.addActionListener((e) -> {
-            game.switchMode(Game.Mode.EASY);
-        });
-        filesMenu.add(easyMode);
-        return filesMenu;
-    }
-
-    private class BoardPanel extends JPanel {
+    class BoardPanel extends JPanel {
         final List<TilePanel> boardTiles;
         private Piece selectedPiece;
         protected Piece pieceInMotion;
@@ -147,7 +71,7 @@ public class Table {
                 this.boardTiles.add(tilePanel);
                 add(tilePanel);
             }
-            setPreferredSize(BOARD_PANEL_DIMENSION);
+            setPreferredSize(GUIUtils.BOARD_PANEL_DIMENSION);
             setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             setBackground(Color.LIGHT_GRAY);
             validate();
@@ -184,7 +108,7 @@ public class Table {
             this.tileId = tileId;
             cell = getCellFromTileID(tileId);
             piece = cell.piece;
-            setPreferredSize(TILE_PANEL_DIMENSION);
+            setPreferredSize(GUIUtils.TILE_PANEL_DIMENSION);
             highlightTileBorder(game.chessBoard);
 
             addMouseMotionListener(new MouseInputAdapter() {
@@ -198,7 +122,7 @@ public class Table {
                     if(game.isHumanActivePlayer()) {
                         boardPanel.inTransition = true;
                     } else {
-                        playWarningSound(); // not your turn to play or not your piece to move
+                        GUIUtils.playWarningSound(); // not your turn to play or not your piece to move
                     }
                 }
             });
@@ -234,7 +158,7 @@ public class Table {
                     }
                 }
 
-                // This function surprisingly is in reference to the tile from which the dragging originated, not the
+                // This function surprisingly is run in reference to the tile from which the dragging originated, not the
                 // cell at which the mouse got released.
                 @Override
                 public void mouseReleased(final MouseEvent e) {
@@ -251,7 +175,7 @@ public class Table {
                                 //game.makeHumanMove(source, destination);
                                 game.makeActivePlayerMove(source, destination);
                             } else {
-                                playWarningSound(); // illegal destination
+                                GUIUtils.playWarningSound(); // illegal destination
                             }
                             tilesToAddBorder.clear();
                             tileToHighlight.clear();
@@ -297,22 +221,30 @@ public class Table {
             return game.chessBoard.getChessBoard()[row][col];
         }
 
-        void accumulateLegalPathTilesToHighlight() {
+        private int getTileIDFromCell(Cell cell) {
+            return this.getTileIDFromCordinate(cell.getCordinate(), game.chessBoard.SIZE_BOARD);
+        }
+
+        private int getTileIDFromCordinate(Cordinate cordinate, int boardSize) {
+            return cordinate.row * boardSize + cordinate.col;
+        }
+
+        private void accumulateLegalPathTilesToHighlight() {
             if(cell.occupied) {
-                tilesToAddBorder.add(cell.getTileIDFromCell());
+                tilesToAddBorder.add(getTileIDFromCell(cell));
             }
             ArrayList<Move> legalMoves = cell.getLegalMoves();
             if(legalMoves.isEmpty()) {
-                tileToHighlight.add(cell.getTileIDFromCell());
+                tileToHighlight.add(getTileIDFromCell(cell));
             }
             for(Move m : legalMoves) {
                 ArrayList<Cell> path = m.path;
                 if(path.size() != 0) {
                     Cell dest = path.get(path.size()-1);
-                    destTileToHighlight.add(dest.getTileIDFromCell());
+                    destTileToHighlight.add(getTileIDFromCell(dest));
                 }
                 for(Cell c : path) {
-                    int tileNum = c.getTileIDFromCell();
+                    int tileNum = getTileIDFromCell(c);
                     tileToHighlight.add(tileNum);
                 }
             }
@@ -351,33 +283,30 @@ public class Table {
 
         private void highlightTileColor() {
             if(tileToHighlight != null && tileToHighlight.contains(this.tileId)) {
-                setBackground(HighlightColors.PATH.highlightColor);
+                setBackground(GUIUtils.HighlightColors.PATH.highlightColor);
             }
             if(destTileToHighlight != null && destTileToHighlight.contains(this.tileId)){
-                setBackground(HighlightColors.DEST.highlightColor);
+                setBackground(GUIUtils.HighlightColors.DEST.highlightColor);
             }
             if(destTileToHighlight != null && destTileToHighlight.contains(this.tileId) && this.cell.occupied) {
-                setBackground(HighlightColors.KILLING.highlightColor);
+                setBackground(GUIUtils.HighlightColors.KILLING.highlightColor);
             }
         }
 
         private void assignTileColor(int boardSize) {
             int row = tileId/boardSize;
             if(row %2 == 0) {
-                setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
+                setBackground(this.tileId % 2 == 0 ? GUIUtils.lightTileColor : GUIUtils.darkTileColor);
             } else {
-                setBackground(this.tileId % 2 == 0 ? darkTileColor : lightTileColor);
+                setBackground(this.tileId % 2 == 0 ? GUIUtils.darkTileColor : GUIUtils.lightTileColor);
             }
             highlightTileColor();
         }
     }
 
-    private static void center(final JFrame frame) {
-        final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        final int w = frame.getSize().width;
-        final int h = frame.getSize().height;
-        final int x = (dim.width - w) / 2;
-        final int y = (dim.height - h) / 2;
-        frame.setLocation(x, y);
+    private Table.BoardPanel getBoardPanel() {
+        return this.boardPanel;
     }
+
+
 }

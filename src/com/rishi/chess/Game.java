@@ -6,8 +6,8 @@ public class Game {
     public final ChessBoard chessBoard;
     private final MoveManager moveManager;
 
-    private final Player human;
-    private final Player computer;
+    private final HumanPlayer human;
+    private final ComputerPlayer computer;
     private Engine engine;
 
     private Player activePlayer;
@@ -30,7 +30,7 @@ public class Game {
         RANDOM, // pick a legal move for the computer at random, no need to construct the MoveTree
         EASY,
         MEDIUM,
-        HARD //
+        HARD,
     }
 
 
@@ -50,8 +50,13 @@ public class Game {
         engine.switchMode(m);
     }
 
+    // TODO(rishipal): Make sure the King can not move to a cell in which it is getting a check - Illegal.
     public void makeActivePlayerMove(Cell source, Cell destination) {
-        this.activePlayer.makeAMove(engine, moveManager, source, destination);
+        if(isHumanActivePlayer()) {
+            this.human.makeAMove(moveManager, source, destination);
+        } else {
+            this.computer.makeAMove(engine, moveManager);
+        }
         chessBoard.resetMovesDataForEntireBoard();
         toggleActivePlayer();
         if(isGameOver()) {

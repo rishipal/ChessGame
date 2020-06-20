@@ -2,17 +2,29 @@ package com.rishi.chess.engine;
 
 import com.rishi.chess.*;
 import com.rishi.chess.utils.*;
+import com.rishi.common.Node;
 
 import java.util.*;
 
 public class Engine {
     // This is a set containing all possible moves for each piece belonging to the player.
     // TODO: Make the engine use trees of depth > 1
-    private Map<Piece, Set<Move>> movesTree;
+    private Map<Piece, Set<Move>> movesSet;
+    private Map<Piece, Node<Move>> movesTree;
     private Game.Mode mode;  //can be changed by the user on the fly
 
     public Engine(ChessBoard board, Game.Mode mode) {
         this.mode = mode;
+
+    }
+
+
+    public Move getComputerPlayerMove(Player computer) {
+        this.calculateMovesSet(computer);
+        this.calculateMovesTree(computer);
+        Utils.print("Calculated Computer moves tree");
+        Move m = this.pickNextMove();
+        return m;
     }
 
     public void switchMode(Game.Mode mode) {
@@ -22,13 +34,30 @@ public class Engine {
     public void calculateMovesTree(Player computer) {
         movesTree = new LinkedHashMap<>();
         for(Piece piece : computer.getRemainingPieces()) {
-            movesTree.put(piece, new HashSet<>());
             ArrayList<Move> legalMoves = piece.generateLegalMovesForPiece();
             if( legalMoves == null) {
                 continue;
             }
             for(Move m : legalMoves) {
-                movesTree.get(piece).add(m);
+                if(movesTree.containsKey(piece)) {
+                    movesTree.get(piece).addChild(m);
+                } else {
+                    movesTree.put(piece, new Node(m));
+                }
+            }
+        }
+    }
+
+    public void calculateMovesSet(Player computer) {
+        movesSet = new LinkedHashMap<>();
+        for(Piece piece : computer.getRemainingPieces()) {
+            movesSet.put(piece, new HashSet<>());
+            ArrayList<Move> legalMoves = piece.generateLegalMovesForPiece();
+            if( legalMoves == null) {
+                continue;
+            }
+            for(Move m : legalMoves) {
+                movesSet.get(piece).add(m);
             }
         }
     }
@@ -51,8 +80,8 @@ public class Engine {
     }
 
     private Move pickRandomMove() {
-        if(!movesTree.isEmpty()) {
-            Iterator<Map.Entry<Piece, Set<Move>>> moveTreeItr = movesTree.entrySet().iterator();
+        if(!movesSet.isEmpty()) {
+            Iterator<Map.Entry<Piece, Set<Move>>> moveTreeItr = movesSet.entrySet().iterator();
             while(moveTreeItr.hasNext()) {
                 Map.Entry<Piece, Set<Move>> pieceMovesMapping = moveTreeItr.next();
                 Set<Move> moves = pieceMovesMapping.getValue();
@@ -75,8 +104,8 @@ public class Engine {
     private Move pickEasyMove() {
         Move bestMove = null;
         Integer bestProfitSoFar = -1;
-        if(!movesTree.isEmpty()) {
-            Iterator<Map.Entry<Piece, Set<Move>>> moveTreeItr = movesTree.entrySet().iterator();
+        if(!movesSet.isEmpty()) {
+            Iterator<Map.Entry<Piece, Set<Move>>> moveTreeItr = movesSet.entrySet().iterator();
             while(moveTreeItr.hasNext()) {
                 Map.Entry<Piece, Set<Move>> pieceMovesMapping = moveTreeItr.next();
                 Piece piece = pieceMovesMapping.getKey();

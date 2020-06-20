@@ -31,6 +31,9 @@ public class King extends Piece {
     @Override
     public ArrayList<Move> generateLegalMovesForPiece() {
         ArrayList<Cell> legalDests = getSpatiallyPossibleDests();
+
+        //ArrayList<Cell> canBeKilledDests = getCanBeKilledDests();
+
         ArrayList<Move> legalMoves = new ArrayList<>();
 
         for(Cell d : legalDests) {

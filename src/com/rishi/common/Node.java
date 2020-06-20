@@ -8,8 +8,7 @@ public class Node<T> {
     private Node<T> parent;
     private List<Node<T>> children;
 
-    Node() {}
-    Node(T data) {
+    public Node(T data) {
         this.data = data;
     }
 

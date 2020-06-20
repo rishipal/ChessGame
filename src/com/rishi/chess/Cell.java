@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Cell {
-    //TODO(rishipal): Remove board from Cell. Logically, cell should not hold a board.
-    private final ChessBoard board;
     private Cordinate cordinate;
     public boolean occupied = false;
     public Piece piece = null;
@@ -19,9 +17,8 @@ public class Cell {
         return this.piece !=null && this.piece.pieceColor.equals(active.pieceColor);
     }
 
-    public Cell( Cordinate cordinate, ChessBoard cb) {
+    public Cell(Cordinate cordinate) {
         this.cordinate = cordinate;
-        this.board = cb;
         this.legalMoves = new ArrayList<>();
         this.legalDestinations = getLegalDestinationsFromMoves();
     }
@@ -45,7 +42,7 @@ public class Cell {
         this.legalDestinations = getLegalDestinationsFromMoves();
     }
 
-    public void unsetPiece() {
+    public void clearCell() {
         this.piece = null;
         this.occupied = false;
         this.legalMoves.clear();
@@ -54,11 +51,6 @@ public class Cell {
 
     public Cordinate getCordinate() {
         return this.cordinate;
-    }
-
-    // TODO(rishipal): Move this to TilePanel class
-    public int getTileIDFromCell() {
-        return this.cordinate.getTileIDFromCordinate(board.SIZE_BOARD);
     }
 
     //TODO(rishipal): Move this inside Piece

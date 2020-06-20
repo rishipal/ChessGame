@@ -6,7 +6,7 @@ import com.rishi.gui.*;
 import java.applet.Applet;
 
 // Game driver code
-public class Main extends Applet {
+public class Main {
     public static void main(String[] args) {
     Table.get(Game.Mode.EASY).show();
     }

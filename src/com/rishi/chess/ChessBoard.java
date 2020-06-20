@@ -62,7 +62,7 @@ public class ChessBoard {
     private void setAllCells() {
         for(int i = 0; i < this.SIZE_BOARD; i++) {
             for(int j = 0; j < this.SIZE_BOARD; j++) {
-                this.board[i][j] = new Cell(new Cordinate(i,j), this);
+                this.board[i][j] = new Cell(new Cordinate(i,j));
             }
         }
     }

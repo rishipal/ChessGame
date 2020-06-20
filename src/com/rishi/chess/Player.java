@@ -14,8 +14,6 @@ public abstract class Player {
     private Set<Piece> remainingPieces;
 
     Player() {}
-    public abstract void makeAMove(Engine engine, MoveManager moveManager, Cell source, Cell destination);
-
     protected void calculateRemainingPieces() {
         this.remainingPieces = new LinkedHashSet<>();
         for (Cell[] row : chessBoard.getChessBoard()) {

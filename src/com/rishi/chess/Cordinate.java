@@ -1,6 +1,7 @@
 package com.rishi.chess;
 
 import java.util.ArrayList;
+import com.rishi.chess.utils.Utils.Direction;
 
 public class Cordinate {
     public final int row;
@@ -32,16 +33,6 @@ public class Cordinate {
             return true;
         }
         return false;
-    }
-
-    // Number of diagonal steps is same as rowDiff or colDiff when diagonally moving
-    public int getDiagonalDistance(Cordinate another) {
-        return (Math.abs(this.row - another.row));
-    }
-
-    // TODO(rishipal); Move this to TIlePanel class
-    public int getTileIDFromCordinate( int boardSize) {
-        return this.row * boardSize + this.col;
     }
 
     public Cordinate getCordinateAbove() {
@@ -76,7 +67,7 @@ public class Cordinate {
         return new Cordinate(this.row+1, this.col -1);
     }
 
-    public Cordinate getNextCordinate(Piece.PieceDirection d) {
+    public Cordinate getNextCordinate(Direction d) {
         switch(d) {
             case UP: return getCordinateAbove();
             case DOWN: return getCordinateBelow();
@@ -96,10 +87,10 @@ public class Cordinate {
         Cordinate right = this.getCordinateRight();
         Cordinate top = this.getCordinateAbove();
         Cordinate bottom = this.getCordinateBelow();
-        Cordinate northwest = this.getNextCordinate(Piece.PieceDirection.NORTHWEST);
-        Cordinate northeast = this.getNextCordinate(Piece.PieceDirection.NORTHEAST);
-        Cordinate southwest = this.getNextCordinate(Piece.PieceDirection.SOUTHWEST);
-        Cordinate southeast = this.getNextCordinate(Piece.PieceDirection.SOUTHEAST);
+        Cordinate northwest = this.getNextCordinate(Direction.NORTHWEST);
+        Cordinate northeast = this.getNextCordinate(Direction.NORTHEAST);
+        Cordinate southwest = this.getNextCordinate(Direction.SOUTHWEST);
+        Cordinate southeast = this.getNextCordinate(Direction.SOUTHEAST);
 
         cords.add(left);
         cords.add(right);
@@ -124,31 +115,31 @@ public class Cordinate {
         return validCords;
     }
 
-    public Piece.PieceDirection getDirection(Cordinate destination) {
+    public Direction getDirection(Cordinate destination) {
         if(this.isSameColumn(destination)) {
             if(this.row < destination.row) {
-                return Piece.PieceDirection.DOWN;
+                return Direction.DOWN;
             } else {
-                return Piece.PieceDirection.UP;
+                return Direction.UP;
             }
         } else if (this.isSameRow(destination)) {
             if(this.col < destination.col) {
-                return Piece.PieceDirection.RIGHT;
+                return Direction.RIGHT;
             } else {
-                return Piece.PieceDirection.LEFT;
+                return Direction.LEFT;
             }
         } else if(this.isDiagonal(destination)) {
             if(this.row > destination.row) {
                 if(this.col < destination.col) {
-                    return Piece.PieceDirection.NORTHEAST;
+                    return Direction.NORTHEAST;
                 } else {
-                    return Piece.PieceDirection.NORTHWEST;
+                    return Direction.NORTHWEST;
                 }
             } else {
                     if(this.col < destination.col) {
-                        return Piece.PieceDirection.SOUTHEAST;
+                        return Direction.SOUTHEAST;
                     } else {
-                        return Piece.PieceDirection.SOUTHWEST;
+                        return Direction.SOUTHWEST;
                 }
             }
         }

@@ -1,6 +1,8 @@
 package com.rishi.chess;
 import java.util.ArrayList;
 
+import com.rishi.chess.utils.Utils.Direction;
+
 public class Pawn extends Piece {
     Pawn(Cordinate cord, PieceColor pieceColor, ChessBoard cb) {
         super(pieceColor);
@@ -20,7 +22,7 @@ public class Pawn extends Piece {
     public ArrayList<Move> generateLegalMovesForPiece() {
         ArrayList<Cell> legalDestinations = new ArrayList<>();
         ArrayList<Move> legalMoves = new ArrayList<>();
-        if(pieceDirection == PieceDirection.UP) {
+        if(direction == Direction.UP) {
             if(this.cordinate.row == 0) {
                 return legalMoves;
             }

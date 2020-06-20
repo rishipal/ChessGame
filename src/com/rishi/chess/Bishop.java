@@ -1,8 +1,10 @@
 package com.rishi.chess;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.Set;
+
+import com.rishi.chess.utils.Utils.Direction;
+
 
 public class Bishop extends Piece {
 
@@ -16,10 +18,10 @@ public class Bishop extends Piece {
     }
 
     final protected Set<Cell> getLegalDestinations() {
-        Set<Cell> destsNE = getLegalDestinations(PieceDirection.NORTHEAST);
-        Set<Cell> destsNW = getLegalDestinations(PieceDirection.NORTHWEST);
-        Set<Cell> destsSE = getLegalDestinations(PieceDirection.SOUTHEAST);
-        Set<Cell> destsSW = getLegalDestinations(PieceDirection.SOUTHWEST);
+        Set<Cell> destsNE = getLegalDestinations(Direction.NORTHEAST);
+        Set<Cell> destsNW = getLegalDestinations(Direction.NORTHWEST);
+        Set<Cell> destsSE = getLegalDestinations(Direction.SOUTHEAST);
+        Set<Cell> destsSW = getLegalDestinations(Direction.SOUTHWEST);
         destsNE.addAll(destsNW);
         destsNE.addAll(destsSE);
         destsNE.addAll(destsSW);
